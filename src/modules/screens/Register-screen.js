@@ -21,7 +21,7 @@ import { State } from '../../state';
 import { tryRegister } from '../../state/authorization/action-creator';
 import { UserRegisterModel } from '../../proxy/models';
 import { RegisterForm, Logo } from '../components';
-import Images from '@assets/images';
+import Images from '../../../assets/images';
 
 class RegisterContainer extends Component {
     // static navigationOptions = {
