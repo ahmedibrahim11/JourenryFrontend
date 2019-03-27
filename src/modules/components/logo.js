@@ -5,7 +5,7 @@ import {
     Thumbnail,
     Text
 } from 'native-base';
-import Images from '@assets/images';
+import Images from '../../../assets/images';
 
 export class Logo extends Component {
     props: {
