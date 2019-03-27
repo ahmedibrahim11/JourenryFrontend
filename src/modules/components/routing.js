@@ -4,17 +4,20 @@ import {
   createAppContainer
 } from "react-navigation";
 
-import { RegisterScreen } from "../screens";
+import { RegisterScreen, LoginScreen } from "../screens";
 
 export const navigator = createStackNavigator(
   {
     RegisterScreen: {
       screen: RegisterScreen
-    }
+    },
+    LoginScreen: {
+      screen: LoginScreen
+    },
   },
 
   {
-    initialRouteName: "RegisterScreen",
+    initialRouteName: "LoginScreen",
     headerMode: "none"
   }
 );

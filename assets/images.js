@@ -1,6 +1,6 @@
 const images = {
   logo: require("./logo.png"),
-  // loginBackground: require("./login/login.png"),
+  loginBackground: require("./login/login.png"),
   registerBackground: require("./register/register.png"),
   // loading: require("./greenLoader.gif"),
   // homeLogo: require("./home/home-logo.png"),
