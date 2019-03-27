@@ -10,14 +10,13 @@ type Action =
   | actions.LOGIN_FAIL_Action
   | actions.ON_REGISTER_Action
   | actions.REGISTER_SUCCESS_Action
-  | actions.REGISTER_FAIL_Action
+  | actions.REGISTER_FAIL_Action;
 
 export function authorizationReducer(
   state: AuthorizationState = AuthorizationInitialState,
   action: Action
 ): AuthorizationState {
   switch (action.type) {
-
     case types.ON_LOGIN: {
       return {
         ...state,
@@ -31,9 +30,9 @@ export function authorizationReducer(
         ...state,
         token: action.payload,
         isLoggedIn: true,
-        loading: false,
+        loading: false
         // username: action.payload.username
-      }
+      };
     }
 
     case types.LOGIN_FAIL: {
@@ -42,23 +41,22 @@ export function authorizationReducer(
         isLoggedIn: false,
         errorMessage: action.payload,
         loading: false
-      }
+      };
     }
 
     case types.ON_REGISTER: {
       return {
         ...state,
-        loading: true,
-      }
+        loading: true
+      };
     }
 
     case types.REGISTER_SUCCESS: {
       return {
         ...state,
         isRegistered: true,
-        loading: false,
-        token: action.payload
-      }
+        loading: false
+      };
     }
 
     case types.REGISTER_FAIL: {
@@ -66,7 +64,7 @@ export function authorizationReducer(
         ...state,
         isRegistered: false,
         errorMessage: action.payload
-      }
+      };
     }
 
     default:

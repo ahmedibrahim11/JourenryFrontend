@@ -1,17 +1,22 @@
-import { StackNavigator, createStackNavigator } from "react-navigation";
-
 import {
-    RegisterScreen
-} from "../screens";
+  StackNavigator,
+  createStackNavigator,
+  createAppContainer
+} from "react-navigation";
 
-export const Navigator = createStackNavigator(
-    {
-        RegisterScreen: {
-            screen: RegisterScreen
-        }
-    },
-    {
-        initialRouteName: "RegisterScreen",
-        headerMode: "none"
+import { RegisterScreen } from "../screens";
+
+export const navigator = createStackNavigator(
+  {
+    RegisterScreen: {
+      screen: RegisterScreen
     }
+  },
+
+  {
+    initialRouteName: "RegisterScreen",
+    headerMode: "none"
+  }
 );
+
+export const Navigator = createAppContainer(navigator);

@@ -9,7 +9,7 @@ import {
   UserRegisterModel
 } from "../../proxy";
 import * as UiTypes from "../ui/actions";
-import NavigatorService from "../../services/navigator";
+// import NavigatorService from "../../services/navigator";
 /*************** */
 export type ON_LOGIN_Action = { type: string, payload: any };
 export type LOGIN_SUCCESS_Action = {
@@ -46,8 +46,8 @@ export async function tryLogin(user: UserLoginModel) {
         return request;
       });
       dispatch(success(token));
-      NavigatorService.setLoggedIn(true);
-      NavigatorService.navigate("Home");
+      // NavigatorService.setLoggedIn(true);
+      // NavigatorService.navigate("Home");
       dispatch({ type: UiTypes.UI_LOADING });
     } else {
       dispatch(fail());
@@ -65,16 +65,16 @@ export async function tryRegister(user: UserRegisterModel) {
 
     token = await response.json();
     if (response.status === 200) {
-      HttpClient.requestInterceptor.push(request => {
-        let _token: TokenDto;
-        if (token) _token = token;
-        request.headers = Object.assign({}, request.headers, {
-          Authorization: `bearer ${_token.access_token}`
-        });
-        return request;
-      });
-      dispatch(registerSuccess(token));
-      dispatch({ type: UiTypes.UI_LOADING });
+      // HttpClient.requestInterceptor.push(request => {
+      //   let _token: TokenDto;
+      //   if (token) _token = token;
+      //   request.headers = Object.assign({}, request.headers, {
+      //     Authorization: `bearer ${_token.access_token}`
+      //   });
+      //   return request;
+      // });
+      dispatch(registerSuccess());
+      // dispatch({ type: UiTypes.UI_LOADING });
     } else {
       dispatch(registerFail());
       dispatch({ type: UiTypes.UI_LOADING });
@@ -99,8 +99,8 @@ export function onRegister(user): ON_REGISTER_Action {
   return { type: types.ON_REGISTER, payload: user };
 }
 
-export function registerSuccess(token): REGISTER_SUCCESS_Action {
-  return { type: types.REGISTER_SUCCESS, payload: token };
+export function registerSuccess(): REGISTER_SUCCESS_Action {
+  return { type: types.REGISTER_SUCCESS };
 }
 
 export function registerFail(): REGISTER_FAIL_Action {
