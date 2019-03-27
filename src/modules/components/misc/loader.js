@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import { View, Image, Modal, StyleSheet } from "react-native";
-import Images from "@assets/images";
-import { Spinner } from 'native-base';
+import Images from "../../../../assets/images";
+import { Spinner } from "native-base";
 export default class Loader extends Component {
   render() {
     const { animationType, modalVisible } = this.props;
@@ -15,7 +15,7 @@ export default class Loader extends Component {
       >
         <View style={styles.wrapper}>
           <View style={styles.loaderContainer}>
-            <Spinner color='blue' />
+            <Spinner color="blue" />
             {/* <Image style={styles.loaderImage} source={Images.loading} /> */}
           </View>
         </View>

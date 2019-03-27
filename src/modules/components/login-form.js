@@ -23,7 +23,7 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { UserLoginModel } from "../../proxy/models";
-import { GradientBtn } from '../components'
+import { GradientBtn } from "../components/Gradient-Btn";
 // import i18next from 'i18next';
 
 // var language = require('../../languages/english.json');
@@ -56,10 +56,10 @@ export class LoginForm extends Component {
     const loadingSpinner = this.props.loading ? (
       <Spinner color="blue" />
     ) : (
-        <Text bold red margin20>
-          {this.props.errorMessage}
-        </Text>
-      );
+      <Text bold red margin20>
+        {this.props.errorMessage}
+      </Text>
+    );
 
     return (
       <View

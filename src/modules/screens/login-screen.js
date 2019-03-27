@@ -24,8 +24,8 @@ import { State, tryLogin } from "../../state";
 
 import { UserLoginModel } from "../../proxy/models";
 import Images from "../../../assets/images";
-import Loader from "../components/misc/loader";
-import i18next from 'i18next';
+// import Loader from "../components/misc/loader";
+//import i18next from 'i18next';
 class loginContainer extends Component {
   // static navigationOptions = () => {
   //   return {
@@ -44,7 +44,7 @@ class loginContainer extends Component {
     super();
     this.state = {
       isMounted: false
-    }
+    };
   }
   static navigationOptions = {
     header: null
@@ -75,7 +75,6 @@ class loginContainer extends Component {
       this.props.navigation.navigate("RegisterScreen");
     }
     this.setState({ isMounted: !this.state.isMounted });
-
   }
   componentWillReceiveProps(nextProps) {
     // setTimeout(() => {
@@ -86,7 +85,6 @@ class loginContainer extends Component {
 
     // console.log('will orders')
     this.setState({ isMounted: !this.state.isMounted });
-
   }
   render() {
     // console.log("from login screen", i18next.t("key"));
@@ -106,7 +104,7 @@ class loginContainer extends Component {
             navigation={this.props.navigation}
           />
         </Container>
-        <Loader modalVisible={this.props.loading} animationType="fade" />
+        {/* <Loader modalVisible={this.props.loading} animationType="fade" /> */}
       </ImageBackground>
     );
   }
