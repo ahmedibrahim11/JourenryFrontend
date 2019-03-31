@@ -1,13 +1,10 @@
 import {
-    AuthorizationState,
-    AuthorizationInitialState
+  AuthorizationState,
+  AuthorizationInitialState
 } from "./authorization/state";
-import {
-    UiInitialState
-} from "./";
+import { UiInitialState } from "./";
 
 export type State = {
-    authorization: AuthorizationInitialState,
-    ui: UiInitialState
-
+  authorization: AuthorizationInitialState,
+  ui: UiInitialState
 };

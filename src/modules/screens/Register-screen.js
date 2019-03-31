@@ -50,7 +50,7 @@ class RegisterContainer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isRegistered) {
-      nextProps.navigation.navigate("LoginScreen");
+      nextProps.navigation.navigate("HomeScreen");
     }
   }
 

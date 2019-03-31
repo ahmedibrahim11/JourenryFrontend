@@ -1,7 +1,5 @@
-export * from './register-component';
+export * from "./register-component";
 
-export * from './logo';
+export * from "./logo";
 
-export * from './routing';
-
-export * from './login-form';
+export * from "./login-form";

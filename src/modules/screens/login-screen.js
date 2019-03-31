@@ -27,19 +27,6 @@ import Images from "../../../assets/images";
 // import Loader from "../components/misc/loader";
 //import i18next from 'i18next';
 class loginContainer extends Component {
-  // static navigationOptions = () => {
-  //   return {
-  //     tabBarOnPress({ navigation, defaultHandler }) {
-  //       if (navigation.isFocused()) {
-  //         // same tab was tapped twice
-  //         // reset inner state
-  //         return;
-  //       }
-  //       // tab was not previously focused
-  //       defaultHandler();
-  //     }
-  //   };
-  // };
   constructor() {
     super();
     this.state = {
@@ -69,19 +56,19 @@ class loginContainer extends Component {
     tryLogin: (userModel: UserLoginModel) => void
   };
 
-  componentWillMount() {
-    // console.warn('componentWillMount orders');
-    if (this.props.isLoggedIn) {
-      this.props.navigation.navigate("RegisterScreen");
-    }
-    this.setState({ isMounted: !this.state.isMounted });
-  }
+  // componentWillMount() {
+  //   // console.warn('componentWillMount orders');
+  //   if (this.props.isLoggedIn) {
+  //     this.props.navigation.navigate("RegisterScreen");
+  //   }
+  //   this.setState({ isMounted: !this.state.isMounted });
+  // }
   componentWillReceiveProps(nextProps) {
-    // setTimeout(() => {
-    //   if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
-    //     this.props.navigation.navigate("RegisterScreen");
-    //   }
-    // }, 3000);
+    setTimeout(() => {
+      if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
+        this.props.navigation.navigate("HomeScreen");
+      }
+    }, 500);
 
     // console.log('will orders')
     this.setState({ isMounted: !this.state.isMounted });

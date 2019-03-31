@@ -1,3 +1,3 @@
-export * from './Register-screen';
+export * from "./Register-screen";
 
-export * from './login-screen';
+export * from "./login-screen";

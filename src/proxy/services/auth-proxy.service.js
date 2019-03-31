@@ -7,33 +7,35 @@ import {
 import { Application } from "../../application";
 export class AuthProxyService {
   async login(user: UserLoginModel) {
-    const data = `grant_type=password&username=${user.username}&password=${
-      user.password
-      }&client_id=1&client_secret=p@$$w0rd&pushNotificationToken=${(Application.token) ? Application.token.toString() : ''}`;
-    return await fetch(`${BASE_URL}/token`, {
+    const data = {};
+    data["userName"] = user.userName;
+    data["password"] = user.password;
+
+    return await fetch(`${BASE_URL}auth/login`, {
       method: "post",
-      headers: { "content-Type": "application/x-www-form-urlencoded" },
-      body: data
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify(data)
     });
   }
 
   async register(user: UserRegisterModel) {
-    const data = `grant_type=register&mobile=${user.mobile}&email=${
-      user.email
-      }&password=${user.password}&fullname=${user.fullName}&identification=${
-      user.identification
-      }&client_id=1&client_secret=p@$$w0rd`;
-    return await fetch(`${BASE_URL}/token`, {
+    const data = {};
+    data["email"] = user.email;
+    data["password"] = user.password;
+    data["name"] = user.userName;
+    data["userName"] = user.userName;
+
+    return await fetch(`${BASE_URL}auth/register`, {
       method: "post",
-      headers: { "content-Type": "application/x-www-form-urlencoded" },
-      body: data
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify(data)
     });
   }
 
   async confirm(user: UserConfirmModel) {
     const data = `grant_type=confirm&membershipid=${user.membershipId}&mobile=${
       user.mobile
-      }&pin=${user.pin}&client_id=1&client_secret=p@$$w0rd`;
+    }&pin=${user.pin}&client_id=1&client_secret=p@$$w0rd`;
     return await fetch(`${BASE_URL}/token`, {
       method: "post",
       headers: { "content-Type": "application/x-www-form-urlencoded" },

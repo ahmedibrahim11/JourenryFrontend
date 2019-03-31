@@ -1,10 +1,16 @@
 export interface UserLoginModel {
-    username: string;
-    password: string;
+  userName: string;
+  password: string;
 }
 
 export interface UserRegisterModel {
-    UserName: string;
-    password: string;
-    email: string;
+  userName: string;
+  password: string;
+  email: string;
+  mobileNumber: number;
+  gender: number;
 }
+
+// export enum Gender{
+//   male=0,female=1
+// }

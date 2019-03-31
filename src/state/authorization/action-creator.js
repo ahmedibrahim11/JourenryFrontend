@@ -37,26 +37,18 @@ export async function tryLogin(user: UserLoginModel) {
     let response = await authProxyService.login(user);
     token = await response.json();
     if (response.status === 200) {
-      HttpClient.requestInterceptor.push(request => {
-        let _token: TokenDto;
-        if (token) _token = token;
-        request.headers = Object.assign({}, request.headers, {
-          Authorization: `bearer ${_token.access_token}`
-        });
-        return request;
-      });
+      debugger;
       dispatch(success(token));
-      // NavigatorService.setLoggedIn(true);
-      // NavigatorService.navigate("Home");
-      dispatch({ type: UiTypes.UI_LOADING });
+      //dispatch({ type: UiTypes.UI_LOADING });
     } else {
       dispatch(fail());
-      dispatch({ type: UiTypes.UI_LOADING });
+      //dispatch({ type: UiTypes.UI_LOADING });
     }
   };
 }
 
 export async function tryRegister(user: UserRegisterModel) {
+  debugger;
   let token = null;
   return async dispatch => {
     dispatch(onRegister(user));

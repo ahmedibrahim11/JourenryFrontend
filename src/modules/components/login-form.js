@@ -35,8 +35,8 @@ export class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
-      username: "koko",
-      password: "p@$$w0rd"
+      userName: "",
+      password: ""
     };
   }
 
@@ -77,7 +77,7 @@ export class LoginForm extends Component {
                 <Label>User Name</Label>
                 <Input
                   onChangeText={txt => {
-                    this.setState({ username: txt });
+                    this.setState({ userName: txt });
                   }}
                 />
               </Item>

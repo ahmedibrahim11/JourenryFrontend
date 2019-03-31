@@ -4,7 +4,9 @@ import {
   createAppContainer
 } from "react-navigation";
 
-import { RegisterScreen, LoginScreen } from "../screens";
+import { RegisterScreen, LoginScreen } from "./modules/screens";
+
+import HS from "./modules/screens/home-screen";
 
 export const navigator = createStackNavigator(
   {
@@ -14,6 +16,9 @@ export const navigator = createStackNavigator(
     LoginScreen: {
       screen: LoginScreen
     },
+    HomeScreen: {
+      screen: HS
+    }
   },
 
   {

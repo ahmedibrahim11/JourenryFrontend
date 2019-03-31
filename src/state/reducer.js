@@ -4,7 +4,6 @@ import { authorizationReducer } from "./authorization/reducer";
 import { uiReducer } from "./ui/reducer";
 
 export const reducer = combineReducers({
-    authorization: authorizationReducer,
-    ui: uiReducer,
-
+  authorization: authorizationReducer,
+  ui: uiReducer
 });
