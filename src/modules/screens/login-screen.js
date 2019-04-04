@@ -11,7 +11,8 @@ import {
   Input,
   Form,
   Label,
-  View
+  View,
+  Thumbnail
 } from "native-base";
 
 import { connect } from "react-redux";

@@ -19,6 +19,7 @@ import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
 
+import MyTab from "../tab-navigator";
 import HomeScreen from "../components/home";
 import SideBar from "../components/sidebar";
 import { createDrawerNavigator, createAppContainer } from "react-navigation";
@@ -26,8 +27,12 @@ import { createDrawerNavigator, createAppContainer } from "react-navigation";
 export default class HS extends Component {
   render() {
     return (
-      <Container>
-        <HomeScreen />
+      <Container
+        style={{
+          paddingTop: 25
+        }}
+      >
+        <MyTab />
       </Container>
     );
   }

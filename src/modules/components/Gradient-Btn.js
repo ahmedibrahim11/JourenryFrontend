@@ -17,7 +17,7 @@ export class GradientBtn extends Component {
         <LinearGradient
           start={{ x: 0, y: 1 }}
           end={{ x: 1, y: 1 }}
-          colors={["#09225a", "#164fd4"]}
+          color={["#09225a", "#164fd4"]}
           style={styles.gradientBtn}
         >
           <View

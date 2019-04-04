@@ -15,7 +15,8 @@ import {
   Left,
   Right,
   Item,
-  Body
+  Body,
+  Title
 } from "native-base";
 import images from "../../../assets/images";
 
@@ -26,18 +27,24 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <Container>
-        <Header searchBar rounded autoCorrect={false}>
-          <Item>
-            <Icon name="ios-search" />
-            <Input
-              onChangeText={this._onChangeSearchText.bind(this)} // <-- Here
-              placeholder="Search"
-            />
-            <Icon name="ios-people" />
-          </Item>
-          <Button transparent>
-            <Text>Search</Text>
-          </Button>
+        <Header
+          style={{ backgroundColor: "#60b4c2" }}
+          span
+          searchBar
+          rounded
+          autoCorrect={false}
+        >
+          <Body style={{ marginLeft: 10 }}>
+            <Title style={{ marginTop: 30 }}>Explore</Title>
+            <Item rounded>
+              <Icon style={{ color: "white" }} name="ios-search" />
+              <Input
+                placeholderTextColor="white"
+                onChangeText={this._onChangeSearchText.bind(this)} // <-- Here
+                placeholder="Search El-Re7la Alumni"
+              />
+            </Item>
+          </Body>
         </Header>
         <Content>
           <List>
@@ -59,26 +66,6 @@ export default class HomeScreen extends Component {
             </ListItem>
           </List>
         </Content>
-        <Footer>
-          <FooterTab>
-            <Button vertical>
-              <Icon name="apps" />
-              <Text>Apps</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="camera" />
-              <Text>Camera</Text>
-            </Button>
-            <Button vertical active>
-              <Icon active name="navigate" />
-              <Text>Navigate</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="person" />
-              <Text>Contact</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
       </Container>
     );
   }

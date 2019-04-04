@@ -18,7 +18,8 @@ import {
   Text,
   Spinner,
   Label,
-  Button
+  Button,
+  Keyboard
 } from "native-base";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -35,7 +36,7 @@ export class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
-      userName: "",
+      email: "",
       password: ""
     };
   }
@@ -62,48 +63,61 @@ export class LoginForm extends Component {
     );
 
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignContent: "center",
-          padding: 15
-        }}
-      >
-        <KeyboardAwareScrollView>
-          <View style={{ flex: 1 }}>
-            <Form>
-              <Item floatingLabel>
-                <Label>User Name</Label>
-                <Input
-                  onChangeText={txt => {
-                    this.setState({ userName: txt });
-                  }}
-                />
-              </Item>
-              <Item floatingLabel>
-                <Label>Password</Label>
-                <Input
-                  secureTextEntry={true}
-                  onChangeText={txt => {
-                    this.setState({ password: txt });
-                  }}
-                />
-              </Item>
-              <View style={styles.forgetContainer}>
-                <Text
-                  style={styles.forgetText}
-                  onPress={() => console.log("Forget password")}
-                >
-                  ForgetPassword
-                  {/* {i18next.t("login.Lables.ForgotPassword")} */}
-                </Text>
-              </View>
-            </Form>
-            <View style={styles.loginContainer}>
-              <GradientBtn text="Sign IN" action={this.login.bind(this)} />
+      // <View
+      //   style={{
+      //     flex: 1,
+      //     justifyContent: "center",
+      //     alignContent: "center",
+      //     padding: 15
+      //   }}
+      // >
+      <KeyboardAwareScrollView>
+        <View style={{ flex: 1 }}>
+          <Form>
+            <Item floatingLabel>
+              <Label>Email</Label>
+              <Input
+                onChangeText={txt => {
+                  this.setState({ email: txt });
+                }}
+              />
+            </Item>
+            <Item floatingLabel>
+              <Label>Password</Label>
+              <Input
+                secureTextEntry={true}
+                onChangeText={txt => {
+                  this.setState({ password: txt });
+                }}
+              />
+            </Item>
+            <View style={styles.forgetContainer}>
+              <Text
+                style={styles.forgetText}
+                onPress={() => console.log("Forget password")}
+              >
+                ForgetPassword
+              </Text>
             </View>
-            <View style={styles.registerTextContainer}>
+          </Form>
+          <View style={styles.loginContainer}>
+            <Button
+              dark
+              full
+              style={{
+                borderRadius: 25,
+                borderWidth: 0.8,
+                backgroundColor: "#ef9c05"
+              }}
+              onPress={() => {
+                this.props.tryLogin(this.state);
+              }}
+            >
+              <Text style={{ color: "#FFFFFF" }}>Login</Text>
+            </Button>
+            {/* <GradientBtn text="Sign IN" action={this.login.bind(this)} /> */}
+          </View>
+          {/* <View style={styles.registerTextContainer}>
               <Text style={styles.forgetText}>Have No Account</Text>
             </View>
             <View style={{ flex: 1 }}>
@@ -122,11 +136,11 @@ export class LoginForm extends Component {
               >
                 <Text style={{ color: "#1550d6" }}>Register</Text>
               </Button>
-            </View>
-            {loadingSpinner}
-          </View>
-        </KeyboardAwareScrollView>
-      </View>
+            </View> */}
+          {loadingSpinner}
+        </View>
+      </KeyboardAwareScrollView>
+      // </View>
     );
   }
 }
