@@ -1,11 +1,13 @@
-// @Flow
-
 import * as types from "./actions";
-import { ConnectionModel, ConnectionsDto } from "../../proxy";
+import {
+  ConnectionModel,
+  ConnectionsDto,
+  connectionProxyService
+} from "../../proxy";
 
-type State = {
-  CONNECTIONS: ?(ConnectionModel[])
-};
+// type State = {
+//   CONNECTIONS: ?(ConnectionModel[])
+// };
 /*************** */
 
 export type LOAD_CONNECTIONS_ACTION = {
@@ -26,20 +28,22 @@ export type SELECT_CONNECTION_ACTION = {
 /*************** */
 
 export function loadConnections(): LOAD_CONNECTIONS_ACTION {
-  return async (dispatch, getState) => {
-    const state = getState();
-    dispatch({ type: UiTypes.UI_LOADING });
-    const userId = state.authorization.token.userId;
+  return async dispatch => {
+    // const state = getState();
+    // dispatch({ type: UiTypes.UI_LOADING });
+    // const userId = state.authorization.token.userId;
+    const journeyId = 1;
+    let response = await connectionProxyService.getConnections(journeyId);
+    let conns;
     debugger;
-    let response = await connectionProxyService.getConnections(userId);
+    conns = await response.data;
     debugger;
-    let conns: ConnectionsDto[];
-    conns = await response.json();
     if (response.status === 200) {
+      debugger;
       //dispatch({ type: UiTypes.UI_LOADING });
-      dispatch({ type: types.LOAD_CONNECTIONS, payload: conns });
+      dispatch({ type: types.LOAD_ALL_CONNECTIONS, payload: conns });
     } else {
-      dispatch({ type: UiTypes.UI_LOADING });
+      //dispatch({ type: UiTypes.UI_LOADING });
     }
   };
 }

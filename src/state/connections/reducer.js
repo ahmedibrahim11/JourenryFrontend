@@ -8,12 +8,13 @@ type Action =
   | actions.SELECT_CONNECTION_ACTION
   | actions.GET_CONNECTION_BY_ID_ACTION;
 
-export function requestReducer(
+export function connectionReducer(
   state: ConnectionsState = ConnectionsInitialState,
   action: Action
 ): connectionstate {
   switch (action.type) {
     case types.LOAD_ALL_CONNECTIONS: {
+      debugger;
       return {
         ...state,
         connections: action.payload,
@@ -30,4 +31,3 @@ export function requestReducer(
       return state;
   }
 }
-d;

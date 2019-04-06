@@ -1,9 +1,9 @@
 import { AuthProxyService } from "./auth-proxy.service";
 import { RequestProxyService } from "./request-proxy.service";
-import { OrderProxyService } from "./order-proxy.service";
+import { ConnectionProxyService } from "./connetion-service";
 
 const authProxyService = new AuthProxyService();
 const requestProxyService = new RequestProxyService();
-const orderProxyService = new OrderProxyService();
+const connectionProxyService = new ConnectionProxyService();
 
-export { authProxyService, requestProxyService, orderProxyService };
+export { authProxyService, requestProxyService, connectionProxyService };

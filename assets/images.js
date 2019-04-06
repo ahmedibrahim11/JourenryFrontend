@@ -3,7 +3,12 @@ const images = {
   loginBackground: require("./login/login.png"),
   registerBackground: require("./register/register.png"),
   logoImage: require("./illustration.png"),
-  circleImage: require("./topCircle.png")
+  circleImage: require("./topCircle.png"),
+  homeIcon: require("./homeIcon/houseBlackSilhouetteWithoutDoorCopy.png"),
+  connectionIcon: require("./connectionIcon/inActive.png"),
+  profileIcon: require("./profileIcon/inActive.png"),
+  settingIcon: require("./settingIcon/inActive.png")
+
   // loading: require("./greenLoader.gif"),
   // homeLogo: require("./home/home-logo.png"),
   // docIcon: require("./services/doc-icon.png"),
