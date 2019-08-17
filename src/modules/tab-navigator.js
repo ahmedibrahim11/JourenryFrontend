@@ -11,13 +11,13 @@ import { Icon } from "native-base";
 import { Image } from "react-native";
 
 import images from "../../assets/images";
-import HomeSceen from "./components/home";
+import HomeScreen from "./screens/home-screen";
 import { ProfileScreen, SettingScreen } from "../modules/screens";
-
+import ConnectionComponent from "./components/Connections/connections-component";
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
-      screen: HomeSceen,
+      screen: HomeScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Image source={images.homeIcon} style={{ width: 30, height: 30 }} />
@@ -25,7 +25,7 @@ const TabNavigator = createBottomTabNavigator(
       }
     },
     Connections: {
-      screen: ProfileScreen,
+      screen: ConnectionComponent,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Image

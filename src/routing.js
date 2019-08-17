@@ -1,18 +1,8 @@
-import {
-  StackNavigator,
-  createStackNavigator,
-  createAppContainer,
-  createBottomTabNavigator
-} from "react-navigation";
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import {
-  RegisterScreen,
-  LoginScreen,
-  ProfileScreen,
-  SettingScreen
-} from "./modules/screens";
+import { RegisterScreen, LoginScreen } from "./modules/screens";
 
-import HS from "./modules/screens/home-screen";
+import ApplicationContainer from "./modules/screens/application-container";
 
 export const navigator = createStackNavigator(
   {
@@ -23,7 +13,7 @@ export const navigator = createStackNavigator(
       screen: LoginScreen
     },
     HomeScreen: {
-      screen: HS
+      screen: ApplicationContainer
     }
   },
 
@@ -39,5 +29,4 @@ export const Navigator = createAppContainer(navigator);
 //   Profile: ProfileScreen,
 //   Setting: SettingScreen
 // });
-
 // export default createAppContainer(TabNavigator);

@@ -51,7 +51,7 @@ export default class HomeComponent extends Component {
     return (
       <Container>
         <Header
-          style={{ backgroundColor: "#60b4c2" }}
+          style={{ paddingTop: 33, backgroundColor: "#60b4c2" }}
           span
           searchBar
           rounded

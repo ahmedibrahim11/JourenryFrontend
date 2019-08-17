@@ -1,39 +1,42 @@
 import React, { Component } from "react";
-import { ImageBackground, StyleSheet } from "react-native";
-import {
-  Container,
-  Header,
-  Title,
-  Left,
-  Icon,
-  Right,
-  Button,
-  Body,
-  Content,
-  Text,
-  Card,
-  CardItem
-} from "native-base";
+import { Container } from "native-base";
+import images from "../../../assets/images";
 
 import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
+import { State, tryLogin } from "../../state";
+import { loadConnections } from "../../state/connections/action-creator";
+import HomeComponent from "../components/homecomponent";
 
-import MyTab from "../tab-navigator";
-import HomeScreen from "../components/home";
-import SideBar from "../components/sidebar";
-import { createDrawerNavigator, createAppContainer } from "react-navigation";
+class HomeContainer extends Component {
+  props: {
+    connections: any,
+    loadConnections: () => void
+  };
 
-export default class HS extends Component {
+  componentWillMount() {
+    this.props.loadConnections();
+  }
+  static mapStatetToProps(state: State) {
+    return {
+      connections: state.connection.connections
+    };
+  }
+
+  static mapDispatchToProps(dispatch: Dispatch) {
+    return bindActionCreators({ loadConnections }, dispatch);
+  }
+
   render() {
     return (
-      <Container
-        style={{
-          paddingTop: 25
-        }}
-      >
-        <MyTab />
+      <Container>
+        <HomeComponent connections={this.props.connections} />
       </Container>
     );
   }
 }
+export default (HomeScreen = connect(
+  HomeContainer.mapStatetToProps,
+  HomeContainer.mapDispatchToProps
+)(HomeContainer));

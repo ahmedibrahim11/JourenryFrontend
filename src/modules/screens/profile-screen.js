@@ -27,7 +27,7 @@ export class ProfileScreen extends Component {
     return (
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
-          <Title style={{ margin: 15, fontSize: 15 }}>My Connections</Title>
+          <Title style={{ paddingTop: 35, fontSize: 15 }}>My Profile</Title>
         </Header>
         <Container>
           <Content>
