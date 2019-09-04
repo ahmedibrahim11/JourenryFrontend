@@ -10,6 +10,9 @@ import {
   Right,
   Left,
   Body,
+  Grid,
+  Col,
+  Row,
   TabHeading
 } from "native-base";
 import * as _ from "lodash";
@@ -21,7 +24,9 @@ export default class ProfileDataCompletingComponent extends Component {
       answers: [],
       questionNumber: 0,
       currentAnswer: "",
-      userId: 1
+      userId: 1,
+      SelectedYes: false,
+      selectedNo: false
     };
     this.addUserQuestionAnswer = this.addUserQuestionAnswer.bind(this);
     this.getCurrentAnswer = this.getCurrentAnswer.bind(this);
@@ -29,7 +34,13 @@ export default class ProfileDataCompletingComponent extends Component {
   props: {
     questions: any,
     getQuestions: () => any,
-    saveAnswer: (answers: AnswersDto) => void
+    saveAnswer: (answers: AnswersDto) => void,
+    SelectedYes: false,
+    selectedNo: false
+  };
+
+  CheckMe = selectedCheckbox => {
+    this.setState({ selectedCheckbox });
   };
 
   addUserQuestionAnswer() {
@@ -55,6 +66,7 @@ export default class ProfileDataCompletingComponent extends Component {
   }
 
   getCurrentAnswer(answer: UserAnswer) {
+    debugger;
     this.setState({ currentAnswer: answer });
   }
 
@@ -83,7 +95,16 @@ export default class ProfileDataCompletingComponent extends Component {
           </Right>
         </Header>
         <Body>
-          <Text>{this.props.questions[this.state.questionNumber].Name}</Text>
+          <Grid>
+            <Col size={30}>
+              <Text> Question {this.state.questionNumber + 1}</Text>
+            </Col>
+            <Col size={70}>
+              <Text>
+                {this.props.questions[this.state.questionNumber].Name}
+              </Text>
+            </Col>
+          </Grid>
           <QuestionAnswersType
             question={this.props.questions[this.state.questionNumber]}
             getCurrentAnswer={this.getCurrentAnswer}
@@ -91,6 +112,13 @@ export default class ProfileDataCompletingComponent extends Component {
           />
 
           <Button
+            dark
+            full
+            style={{
+              borderRadius: 25,
+              borderWidth: 0.8,
+              backgroundColor: "#ef9c05"
+            }}
             onPress={() => {
               this.addUserQuestionAnswer();
             }}

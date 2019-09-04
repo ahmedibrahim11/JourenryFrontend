@@ -36,8 +36,8 @@ export class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: ""
+      email: "aa",
+      password: "popos"
     };
   }
 

@@ -55,7 +55,7 @@ export async function postAnswers(userAnswers: UserAnswer[]) {
     const state = getstate();
     userAnswers.forEach(element => {
       answers.push({
-        userId: 10002,
+        userId: 1,
         value: element["answer"],
         questionId: element["questionId"]
       });
