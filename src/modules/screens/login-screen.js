@@ -57,17 +57,10 @@ class loginContainer extends Component {
     tryLogin: (userModel: UserLoginModel) => void
   };
 
-  // componentWillMount() {
-  //   // console.warn('componentWillMount orders');
-  //   if (this.props.isLoggedIn) {
-  //     this.props.navigation.navigate("RegisterScreen");
-  //   }
-  //   this.setState({ isMounted: !this.state.isMounted });
-  // }
   componentWillReceiveProps(nextProps) {
     setTimeout(() => {
       if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
-        this.props.navigation.navigate("HomeScreen");
+        this.props.navigation.navigate("ProfileDataCompletingScreen");
       }
     }, 500);
 

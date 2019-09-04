@@ -23,6 +23,13 @@ export interface ConnectionModel {
 export interface ConnectionsDto {
   requests: ConnectionModel[];
 }
-// export enum Gender{
-//   male=0,female=1
-// }
+
+export interface UserAnswer {
+  questionId: Number;
+  userId: Number;
+  value: String;
+}
+
+export interface AnswersDto {
+  answers: UserAnswer[];
+}

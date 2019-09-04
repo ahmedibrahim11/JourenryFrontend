@@ -5,9 +5,10 @@ import {
 import { UiInitialState } from "./";
 
 import { ConnectionsInitialState } from "./connections/state";
-
+import { ProfileDataInitialState } from "./profiledatacompleting/state";
 export type State = {
   authorization: AuthorizationInitialState,
   ui: UiInitialState,
-  connection: ConnectionsInitialState
+  connection: ConnectionsInitialState,
+  profileDataCompleting: ProfileDataInitialState
 };

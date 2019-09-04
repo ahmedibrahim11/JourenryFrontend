@@ -18,6 +18,7 @@ import {
 import { connect } from "react-redux";
 
 import MyTab from "../tab-navigator";
+import ProfileDataCompletingContainer from "./profile-data-completing-screen";
 
 export default class ApplicationContainer extends Component {
   render() {

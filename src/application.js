@@ -39,7 +39,6 @@ export class Application {
   }
 
   async onStart() {
-    debugger;
     // var state = await AsyncStorage.getItem('State');
     //Application.current.store.setState(state);
     // console.log(Application.current.store.getState());

@@ -11,3 +11,7 @@ export * from "./ui/reducer";
 export * from "./connections/state";
 export * from "./connections/reducer";
 export * from "./connections/action-creator";
+
+export * from "./profiledatacompleting/state";
+export * from "./profiledatacompleting/reducer";
+export * from "./profiledatacompleting/action-creator";

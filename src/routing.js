@@ -4,6 +4,8 @@ import { RegisterScreen, LoginScreen } from "./modules/screens";
 
 import ApplicationContainer from "./modules/screens/application-container";
 
+import ProfileDataCompletingScreen from "./modules/screens/profile-data-completing-screen";
+
 export const navigator = createStackNavigator(
   {
     RegisterScreen: {
@@ -14,11 +16,14 @@ export const navigator = createStackNavigator(
     },
     HomeScreen: {
       screen: ApplicationContainer
+    },
+    ProfileDataCompletingScreen: {
+      screen: ProfileDataCompletingScreen
     }
   },
 
   {
-    initialRouteName: "HomeScreen",
+    initialRouteName: "LoginScreen",
     headerMode: "none"
   }
 );
