@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "native-base";
+import { Container, Thumbnail } from "native-base";
 import images from "../../../assets/images";
 
 import { connect } from "react-redux";
@@ -12,6 +12,7 @@ import {
   postAnswers
 } from "../../state/profiledatacompleting/action-creator";
 import ProfileDataCompletingComponent from "../components/ProfileDataCompleting/profile-data-completing";
+import { View } from "antd-mobile";
 
 class ProfileDataCompletingContainer extends Component {
   props: {
@@ -23,6 +24,7 @@ class ProfileDataCompletingContainer extends Component {
   componentWillMount() {
     debugger;
     this.props.getQuestions();
+    console.log("questionsssss", this.props.questions);
   }
   static mapStatetToProps(state: State) {
     return {

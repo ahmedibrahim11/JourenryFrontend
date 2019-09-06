@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet } from "react-native";
+import { ImageBackground, Dimensions } from "react-native";
 import QuestionAnswersType from "../Question/question-answers-type";
 import {
   Container,
@@ -13,7 +13,9 @@ import {
   Grid,
   Col,
   Row,
-  TabHeading
+  View,
+  TabHeading,
+  Content
 } from "native-base";
 import * as _ from "lodash";
 import { UserAnswer, AnswersDto } from "../../../proxy/models/classes";
@@ -74,58 +76,61 @@ export default class ProfileDataCompletingComponent extends Component {
     if (this.props.questions.length == 0) {
       return <Container></Container>;
     }
+    const { height: screenHeight, width: screenWidth } = Dimensions.get(
+      "window"
+    );
     // if (this.props.questions[this.state.questionNumber].Name == undefined) {
     //   debugger;
     //   this.props.saveAnswer(this.state);
     // }
     return (
-      <Container style={{ paddingTop: 30 }}>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon name="arrow-back" />
-              <Text>Back</Text>
-            </Button>
-          </Left>
-          <Text>questions</Text>
-          <Right>
-            <Button transparent>
-              <Text>Skip</Text>
-            </Button>
-          </Right>
-        </Header>
-        <Body>
-          <Grid>
-            <Col size={30}>
-              <Text> Question {this.state.questionNumber + 1}</Text>
-            </Col>
-            <Col size={70}>
-              <Text>
-                {this.props.questions[this.state.questionNumber].Name}
-              </Text>
-            </Col>
-          </Grid>
-          <QuestionAnswersType
-            question={this.props.questions[this.state.questionNumber]}
-            getCurrentAnswer={this.getCurrentAnswer}
-            saveAnswer={this.props.saveAnswer}
-          />
+      <Container style={{ paddingTop: 50 }}>
+        <ImageBackground
+          source={require("../../../../assets/login/login.png")}
+          style={{ flex: 1, height: screenHeight, width: screenWidth }}
+        >
+          <View style={{ flex: 1, marginTop: 15 }}>
+            <Grid>
+              <Col size={30}>
+                <Text> Question {this.state.questionNumber + 1}</Text>
+              </Col>
+              <Col size={70}>
+                <Text>
+                  {this.props.questions[this.state.questionNumber].Name}
+                </Text>
+              </Col>
+            </Grid>
+            <View
+              style={{
+                flex: 1,
+                marginTop: -350,
+                alignSelf: "center",
+                width: 350
+              }}
+            >
+              <QuestionAnswersType
+                question={this.props.questions[this.state.questionNumber]}
+                getCurrentAnswer={this.getCurrentAnswer}
+                saveAnswer={this.props.saveAnswer}
+              />
+            </View>
 
-          <Button
-            dark
-            full
-            style={{
-              borderRadius: 25,
-              borderWidth: 0.8,
-              backgroundColor: "#ef9c05"
-            }}
-            onPress={() => {
-              this.addUserQuestionAnswer();
-            }}
-          >
-            <Text>Answer</Text>
-          </Button>
-        </Body>
+            <Button
+              dark
+              full
+              style={{
+                borderRadius: 25,
+                borderWidth: 0.8,
+                backgroundColor: "#ef9c05"
+              }}
+              onPress={() => {
+                this.addUserQuestionAnswer();
+              }}
+            >
+              <Text>Answer</Text>
+            </Button>
+          </View>
+        </ImageBackground>
       </Container>
     );
   }

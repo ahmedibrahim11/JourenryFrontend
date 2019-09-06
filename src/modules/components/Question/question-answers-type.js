@@ -55,19 +55,15 @@ export default class QuestionAnswersType extends Component {
     switch (this.props.question.QuestionType) {
       case 0: {
         return (
-          <Container>
-            <Content>
-              <Form>
-                <Picker
-                  note
-                  mode="dropdown"
-                  style={{ width: 120 }}
-                  // selectedValue={this.state.selected}
-                  // onValueChange={this.onValueChange.bind(this)}
-                ></Picker>
-              </Form>
-            </Content>
-          </Container>
+          <Form>
+            <Picker
+              note
+              mode="dropdown"
+              style={{ width: 120 }}
+              // selectedValue={this.state.selected}
+              // onValueChange={this.onValueChange.bind(this)}
+            ></Picker>
+          </Form>
         );
       }
       case 1: {
@@ -76,50 +72,41 @@ export default class QuestionAnswersType extends Component {
         );
         console.log("Optionsssssssssdfsdfdsfsdfsdfsdfsdfsd", options[0].values);
         return (
-          <Container>
-            <Content>
-              <Form>
-                <Picker
-                  mode="dropdown"
-                  placeholder="Select your SIM"
-                  iosIcon={<Icon name="arrow-down" />}
-                  placeholder="Select your SIM"
-                  textStyle={{ color: "#5cb85c" }}
-                  itemStyle={{
-                    backgroundColor: "#d3d3d3",
-                    marginLeft: 0,
-                    paddingLeft: 10
-                  }}
-                  itemTextStyle={{ color: "#788ad2" }}
-                  style={{ width: undefined }}
-                  selectedValue={this.state.selectedOption}
-                  onValueChange={this.onValueChange.bind(this)}
-                >
-                  {options[0].values.map((item, index) => {
-                    return <Picker.Item label={item} value={item} />;
-                  })}
-                </Picker>
-              </Form>
-            </Content>
-          </Container>
+          <Form>
+            <Picker
+              mode="dropdown"
+              placeholder="Select your SIM"
+              iosIcon={<Icon name="arrow-down" />}
+              placeholder="Select your Answer"
+              textStyle={{ color: "#ef9c05" }}
+              itemStyle={{
+                marginLeft: 0,
+                paddingLeft: 10
+              }}
+              itemTextStyle={{ color: "#ef9c05" }}
+              style={{ width: undefined }}
+              selectedValue={this.state.selectedOption}
+              onValueChange={this.onValueChange.bind(this)}
+            >
+              {options[0].values.map((item, index) => {
+                return <Picker.Item label={item} key={index} value={item} />;
+              })}
+            </Picker>
+          </Form>
         );
       }
       case 2: {
         return (
-          <Container>
-            <Content padder>
-              <Textarea
-                style={{ width: 200 }}
-                rowSpan={5}
-                bordered
-                placeholder="Textarea"
-                onChangeText={txt => {
-                  var answer = txt;
-                  this.props.getCurrentAnswer(answer);
-                }}
-              />
-            </Content>
-          </Container>
+          <Textarea
+            style={{ width: 300, borderColor: "black" }}
+            rowSpan={5}
+            bordered
+            placeholder="Your Answer"
+            onChangeText={txt => {
+              var answer = txt;
+              this.props.getCurrentAnswer(answer);
+            }}
+          />
         );
       }
 
@@ -128,6 +115,8 @@ export default class QuestionAnswersType extends Component {
           <Content>
             <ListItem>
               <CheckBox
+                style={{ borderRadius: -3 }}
+                color="#ef9c05"
                 checked={this.state.selectedYes}
                 onPress={() => {
                   this.setState({ selectedYes: true, selectedNo: false });
@@ -138,6 +127,8 @@ export default class QuestionAnswersType extends Component {
             </ListItem>
             <ListItem>
               <CheckBox
+                style={{ borderRadius: -3 }}
+                color="#ef9c05"
                 checked={this.state.selectedNo}
                 onPress={() => {
                   this.setState({ selectedNo: true, selectedYes: false });
