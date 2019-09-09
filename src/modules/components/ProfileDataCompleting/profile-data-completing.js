@@ -52,7 +52,16 @@ export default class ProfileDataCompletingComponent extends Component {
       this.props.questions[this.state.questionNumber].Name
     );
     if (this.props.questions[this.state.questionNumber + 1] === undefined) {
+      var _answers = this.state.answers;
+      _answers.push({
+        answer: this.state.currentAnswer,
+        questionId: this.props.questions[this.state.questionNumber].Id
+      });
+      this.setState({
+        answers: _answers
+      });
       this.props.saveAnswer(this.state.answers);
+      this.props.navigation.navigate("HomeScreen");
     } else {
       var _answers = this.state.answers;
       _answers.push({

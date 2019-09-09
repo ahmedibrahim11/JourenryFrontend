@@ -21,6 +21,7 @@ import {
   View,
   TabHeading
 } from "native-base";
+import { ProductService } from "../components/ProfileDataTabs/ProductService/product-service";
 import images from "../../../assets/images.js";
 export class ProfileScreen extends Component {
   render() {
@@ -29,111 +30,89 @@ export class ProfileScreen extends Component {
         <Header style={{ backgroundColor: "#60b4c2" }}>
           <Title style={{ paddingTop: 35, fontSize: 15 }}>My Profile</Title>
         </Header>
-        <Container>
-          <Content>
-            <Card
+        <Content>
+          <Card
+            style={{
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <CardItem>
+              <Thumbnail large source={images.logo} />
+            </CardItem>
+            <CardItem
               style={{
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center"
               }}
             >
-              <CardItem>
-                <Thumbnail large source={images.logo} />
-              </CardItem>
-              <CardItem
-                style={{
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
+              <Text>Mohamed Emad</Text>
+              <Text note>CEO - Giftia</Text>
+              <Button
+                rounded
+                style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
               >
-                <Text>Mohamed Emad</Text>
-                <Text note>CEO - Giftia</Text>
-                <Button
-                  rounded
-                  style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
-                >
-                  <Text style={{ color: "#ffffff" }}>Request Contacts</Text>
-                </Button>
-              </CardItem>
-            </Card>
+                <Text style={{ color: "#ffffff" }}>Request Contacts</Text>
+              </Button>
+            </CardItem>
+          </Card>
 
-            <Tabs
-              tabBarUnderlineStyle={{
-                borderBottomWidth: 2,
-                borderBottomColor: "#EF9C05"
-              }}
-              renderTabBar={() => <ScrollableTab />}
+          <Tabs
+            tabBarUnderlineStyle={{
+              borderBottomWidth: 2,
+              borderBottomColor: "#EF9C05"
+            }}
+            renderTabBar={() => <ScrollableTab />}
+          >
+            <Tab
+              heading="Product/Service"
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}
             >
-              <Tab
-                heading="Product/Service"
-                tabStyle={styles.tabStyle}
-                textStyle={styles.textStyle}
-                activeTabStyle={styles.activeTabStyle}
-                activeTextStyle={styles.activeTextStyle}
-              >
-                <List>
-                  <ListItem
-                    style={{ backgroundColor: "#FAFAFA" }}
-                    itemHeader
-                    first
-                  >
-                    <Text>Main info</Text>
-                  </ListItem>
-                  <ListItem>
-                    <Text>Startup Name</Text>
-                  </ListItem>
-                  <ListItem last>
-                    <Text>Description</Text>
-                  </ListItem>
-                  <ListItem itemHeader style={{ backgroundColor: "#FAFAFA" }}>
-                    <Text>ACTION</Text>
-                  </ListItem>
-                  <ListItem>
-                    <Text>Terminator Genesis</Text>
-                  </ListItem>
-                </List>
-              </Tab>
-              <Tab
-                heading="Organization"
-                tabStyle={styles.tabStyle}
-                textStyle={styles.textStyle}
-                activeTabStyle={styles.activeTabStyle}
-                activeTextStyle={styles.activeTextStyle}
-              >
-                <Text>tab content</Text>
-              </Tab>
-              <Tab
-                heading="Personal"
-                tabStyle={styles.tabStyle}
-                textStyle={styles.textStyle}
-                activeTabStyle={styles.activeTabStyle}
-                activeTextStyle={styles.activeTextStyle}
-              >
-                <Text>tab content</Text>
-              </Tab>
-              <Tab
-                heading="Connections"
-                tabStyle={styles.tabStyle}
-                textStyle={styles.textStyle}
-                activeTabStyle={styles.activeTabStyle}
-                activeTextStyle={styles.activeTextStyle}
-              >
-                <Text>tab content</Text>
-              </Tab>
-              <Tab
-                heading="Community Support"
-                tabStyle={styles.tabStyle}
-                textStyle={styles.textStyle}
-                activeTabStyle={styles.activeTabStyle}
-                activeTextStyle={styles.activeTextStyle}
-              >
-                <Text>tab content</Text>
-              </Tab>
-            </Tabs>
-          </Content>
-        </Container>
+              <ProductService></ProductService>
+            </Tab>
+            <Tab
+              heading="Organization"
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}
+            >
+              <Text>tab content</Text>
+            </Tab>
+            <Tab
+              heading="Personal"
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}
+            >
+              <Text>tab content</Text>
+            </Tab>
+            <Tab
+              heading="Connections"
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}
+            >
+              <Text>tab content</Text>
+            </Tab>
+            <Tab
+              heading="Community Support"
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}
+            >
+              <Text>tab content</Text>
+            </Tab>
+          </Tabs>
+        </Content>
       </Container>
     );
   }

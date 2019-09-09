@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Thumbnail } from "native-base";
+import { Container, Thumbnail, View } from "native-base";
 import images from "../../../assets/images";
 
 import { connect } from "react-redux";
@@ -12,7 +12,6 @@ import {
   postAnswers
 } from "../../state/profiledatacompleting/action-creator";
 import ProfileDataCompletingComponent from "../components/ProfileDataCompleting/profile-data-completing";
-import { View } from "antd-mobile";
 
 class ProfileDataCompletingContainer extends Component {
   props: {
@@ -42,6 +41,7 @@ class ProfileDataCompletingContainer extends Component {
         <ProfileDataCompletingComponent
           questions={this.props.questions}
           saveAnswer={this.props.postAnswers}
+          navigation={this.props.navigation}
         />
       </Container>
     );
