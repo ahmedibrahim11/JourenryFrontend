@@ -47,6 +47,20 @@ export async function getQuestions() {
   };
 }
 
+// export function getUserAnswers(questionTab:Number){
+//   return async(dispatch,getstate)=>{
+//     const state = getstate();
+//     let response = await profileDataCompletingProxyService.getUserAnswers(state.);
+//     token = await response.data;
+//     if (response.status === 200) {
+//       dispatch(onProfileDataCompleting(token));
+//     } else {
+//       dispatch(profileDataCompletingFail());
+//     }
+//   }
+
+// }
+
 export async function postAnswers(userAnswers: UserAnswer[]) {
   debugger;
 

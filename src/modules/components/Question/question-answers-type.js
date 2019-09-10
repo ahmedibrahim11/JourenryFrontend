@@ -74,6 +74,7 @@ export default class QuestionAnswersType extends Component {
         return (
           <Form>
             <Picker
+              style={{ alignSelf: "center" }}
               mode="dropdown"
               placeholder="Select your SIM"
               iosIcon={<Icon name="arrow-down" />}
@@ -98,8 +99,13 @@ export default class QuestionAnswersType extends Component {
       case 2: {
         return (
           <Textarea
-            style={{ width: 300, borderColor: "black" }}
-            rowSpan={5}
+            style={{
+              width: 300,
+              borderColor: "black",
+              alignSelf: "center",
+              marginTop: 20
+            }}
+            rowSpan={7}
             bordered
             placeholder="Your Answer"
             onChangeText={txt => {
@@ -113,7 +119,7 @@ export default class QuestionAnswersType extends Component {
       case 3: {
         return (
           <Content>
-            <ListItem>
+            <ListItem style={{ marginTop: 20 }}>
               <CheckBox
                 style={{ borderRadius: -3 }}
                 color="#ef9c05"

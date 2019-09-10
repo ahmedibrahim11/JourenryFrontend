@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { ImageBackground, Dimensions } from "react-native";
 import QuestionAnswersType from "../Question/question-answers-type";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import {
   Container,
   Header,
@@ -15,7 +17,8 @@ import {
   Row,
   View,
   TabHeading,
-  Content
+  Content,
+  Thumbnail
 } from "native-base";
 import * as _ from "lodash";
 import { UserAnswer, AnswersDto } from "../../../proxy/models/classes";
@@ -93,51 +96,62 @@ export default class ProfileDataCompletingComponent extends Component {
     //   this.props.saveAnswer(this.state);
     // }
     return (
-      <Container style={{ paddingTop: 50 }}>
+      <Container style={{ paddingTop: 10 }}>
         <ImageBackground
           source={require("../../../../assets/login/login.png")}
           style={{ flex: 1, height: screenHeight, width: screenWidth }}
         >
-          <View style={{ flex: 1, marginTop: 15 }}>
-            <Grid>
-              <Col size={30}>
-                <Text> Question {this.state.questionNumber + 1}</Text>
-              </Col>
-              <Col size={70}>
-                <Text>
-                  {this.props.questions[this.state.questionNumber].Name}
-                </Text>
-              </Col>
-            </Grid>
-            <View
-              style={{
-                flex: 1,
-                marginTop: -350,
-                alignSelf: "center",
-                width: 350
-              }}
-            >
-              <QuestionAnswersType
-                question={this.props.questions[this.state.questionNumber]}
-                getCurrentAnswer={this.getCurrentAnswer}
-                saveAnswer={this.props.saveAnswer}
-              />
-            </View>
+          <Thumbnail
+            source={require("../../../../assets/logo.png")}
+            style={{ height: 70, width: 80, alignSelf: "center" }}
+            square
+          />
 
-            <Button
-              dark
-              full
-              style={{
-                borderRadius: 25,
-                borderWidth: 0.8,
-                backgroundColor: "#ef9c05"
-              }}
-              onPress={() => {
-                this.addUserQuestionAnswer();
-              }}
-            >
-              <Text>Answer</Text>
-            </Button>
+          <View style={{ flex: 1, marginTop: 15 }}>
+            <KeyboardAwareScrollView enableOnAndroid>
+              <Grid>
+                <Col size={30}>
+                  <Text> Question {this.state.questionNumber + 1}</Text>
+                </Col>
+                <Col size={70}>
+                  <Text>
+                    {this.props.questions[this.state.questionNumber].Name}
+                  </Text>
+                </Col>
+              </Grid>
+              <View
+                style={{
+                  flex: 1,
+                  alignSelf: "center",
+                  width: 350
+                }}
+              >
+                <QuestionAnswersType
+                  question={this.props.questions[this.state.questionNumber]}
+                  getCurrentAnswer={this.getCurrentAnswer}
+                  saveAnswer={this.props.saveAnswer}
+                />
+              </View>
+
+              <View style={{ marginTop: 50 }}>
+                <Button
+                  dark
+                  full
+                  style={{
+                    borderRadius: 10,
+                    borderWidth: 0.2,
+                    width: 300,
+                    alignSelf: "center",
+                    backgroundColor: "#ef9c05"
+                  }}
+                  onPress={() => {
+                    this.addUserQuestionAnswer();
+                  }}
+                >
+                  <Text>Answer</Text>
+                </Button>
+              </View>
+            </KeyboardAwareScrollView>
           </View>
         </ImageBackground>
       </Container>

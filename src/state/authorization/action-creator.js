@@ -9,6 +9,11 @@ import {
   UserRegisterModel
 } from "../../proxy";
 import * as UiTypes from "../ui/actions";
+
+import * as jwt_decode from "jwt-decode";
+
+import JWT from "expo-jwt";
+
 // import NavigatorService from "../../services/navigator";
 /*************** */
 export type ON_LOGIN_Action = { type: string, payload: any };
@@ -36,6 +41,9 @@ export async function tryLogin(user: UserLoginModel) {
     dispatch({ type: UiTypes.UI_LOADING });
     let response = await authProxyService.login(user);
     token = await response.json();
+    debugger;
+    // var decoded = jwt_decode(token);
+    debugger;
     if (response.status === 200) {
       debugger;
       dispatch(success(token));
