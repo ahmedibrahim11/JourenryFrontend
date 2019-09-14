@@ -1,4 +1,4 @@
-export * from "./accepted-connection";
+export * from "./AcceptedConnections/accepted-connection";
 
 export * from "./connections-component";
 

@@ -21,7 +21,7 @@ import {
   View,
   TabHeading
 } from "native-base";
-import AcceptedConnectionComponent from "./accepted-connection";
+import AcceptedConnectionComponent from "./AcceptedConnections/accepted-connection";
 import RequestedConnectionComponent from "./RequestedConnections/requested-connection";
 export default class ConnectionComponent extends Component {
   render() {

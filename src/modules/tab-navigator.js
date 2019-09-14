@@ -12,7 +12,8 @@ import { Image } from "react-native";
 
 import images from "../../assets/images";
 import HomeScreen from "./screens/home-screen";
-import { ProfileScreen, SettingScreen } from "../modules/screens";
+import ProfileScreen from "./screens/profile-screen";
+import { SettingScreen } from "../modules/screens";
 import ConnectionComponent from "./components/Connections/connections-component";
 const TabNavigator = createBottomTabNavigator(
   {
@@ -62,4 +63,4 @@ const TabNavigator = createBottomTabNavigator(
   { color: "#60b4c2" }
 );
 
-export default (MyTab = createAppContainer(TabNavigator));
+export default MyTab = createAppContainer(TabNavigator);

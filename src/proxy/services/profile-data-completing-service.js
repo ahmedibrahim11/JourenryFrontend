@@ -14,6 +14,11 @@ export class ProfileDataCompletingProxyService {
       headers: { "Access-Control-Allow-Origin": "*" }
     });
   }
+  async getUserAnswers(userId) {
+    return await axios.get(`${BASE_URL}userAnswer/GetUserAnswers/${userId}`, {
+      headers: { "Access-Control-Allow-Origin": "*" }
+    });
+  }
   async postAnswers(answers) {
     debugger;
     console.log(answers);

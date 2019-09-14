@@ -10,9 +10,9 @@ import {
 } from "../../proxy";
 import * as UiTypes from "../ui/actions";
 
-import * as jwt_decode from "jwt-decode";
+// import * as jwt_decode from "jwt-decode";
 
-import JWT from "expo-jwt";
+// import JWT from "expo-jwt";
 
 // import NavigatorService from "../../services/navigator";
 /*************** */

@@ -14,6 +14,7 @@ export type PROFILE_DATA_COMPLETING_FAIL_Action = {
   type: String,
   payload: String
 };
+export type PROFILE_DATA_Action = { type: String, payload: any };
 
 /*************** */
 
@@ -33,6 +34,12 @@ export function profileDataCompletingFail(): PROFILE_DATA_COMPLETING_FAIL_Action
   const errorMsg = "Invalid Data";
   return { type: types.PROFILE_DATA_COMPLETING_FAIL, payload: errorMsg };
 }
+
+export function profileDataCompleteted(
+  answers: AnswersDto
+): PROFILE_DATA_Action {
+  return { type: types.PROFILE_DATA, payload: answers };
+}
 /*************** */
 
 export async function getQuestions() {
@@ -47,19 +54,20 @@ export async function getQuestions() {
   };
 }
 
-// export function getUserAnswers(questionTab:Number){
-//   return async(dispatch,getstate)=>{
-//     const state = getstate();
-//     let response = await profileDataCompletingProxyService.getUserAnswers(state.);
-//     token = await response.data;
-//     if (response.status === 200) {
-//       dispatch(onProfileDataCompleting(token));
-//     } else {
-//       dispatch(profileDataCompletingFail());
-//     }
-//   }
-
-// }
+export function getUserAnswers(userId: Number) {
+  return async (dispatch, getstate) => {
+    debugger;
+    // const state = getstate();
+    let response = await profileDataCompletingProxyService.getUserAnswers(1);
+    token = await response.data;
+    console.log(token);
+    if (response.status === 200) {
+      dispatch(profileDataCompleteted(token));
+    } else {
+      dispatch(profileDataCompletingFail());
+    }
+  };
+}
 
 export async function postAnswers(userAnswers: UserAnswer[]) {
   debugger;

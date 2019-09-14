@@ -6,7 +6,8 @@ import * as types from "./actions";
 type Action =
   | actions.ON_PROFILE_DATA_COMPLETING_Action
   | actions.PROFILE_DATA_COMPLETING_FAIL_Action
-  | actions.PROFILE_DATA_COMPLETING_SUCCESS_Action;
+  | actions.PROFILE_DATA_COMPLETING_SUCCESS_Action
+  | actions.PROFILE_DATA_Action;
 
 export function profileDataCompletingReducer(
   state: ProfileDataState = ProfileDataInitialState,
@@ -20,7 +21,8 @@ export function profileDataCompletingReducer(
       };
     }
 
-    case types.PROFILE_DATA_COMPLETING_SUCCESS: {
+    case types.PROFILE_DATA_COMPLETING_SUCCESS:
+    case types.PROFILE_DATA: {
       return {
         ...state,
         answers: action.payload

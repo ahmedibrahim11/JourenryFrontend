@@ -2,9 +2,12 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import { RegisterScreen, LoginScreen } from "./modules/screens";
 
-import ApplicationContainer from "./modules/screens/application-container";
+import { ApplicationContainer } from "./modules/screens/application-container";
 
 import ProfileDataCompletingScreen from "./modules/screens/profile-data-completing-screen";
+
+import EditProfileScreen from "./modules/screens/edit-profile-screen";
+import editProfileScreen from "./modules/screens/edit-profile-screen";
 
 export const navigator = createStackNavigator(
   {
@@ -19,6 +22,9 @@ export const navigator = createStackNavigator(
     },
     ProfileDataCompletingScreen: {
       screen: ProfileDataCompletingScreen
+    },
+    EditProfileScreen: {
+      screen: EditProfileScreen
     }
   },
 

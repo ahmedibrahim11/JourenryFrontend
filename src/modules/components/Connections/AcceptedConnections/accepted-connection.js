@@ -20,7 +20,7 @@ import {
   Item,
   InputGroup
 } from "native-base";
-import images from "../../../../assets/images";
+import images from "../../../../../assets/images";
 import * as _ from "lodash";
 
 import { FlatList } from "react-native";

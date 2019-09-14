@@ -29,43 +29,33 @@ import { Dispatch, bindActionCreators } from "redux";
 
 import { ProductService } from "../components/ProfileDataTabs/ProductService/product-service";
 import images from "../../../assets/images.js";
-import { getUserAnswers, state } from "../../state";
-import { NavigationContext } from "./application-container";
-class ProfileContainer extends Component {
-  constructor() {
-    super();
-  }
+// import { getUserAnswers, state } from "../../state";
+class EditProfileContainer extends Component {
   props: {
     answers: any,
     getUserAnswers: () => any
   };
-  componentWillMount() {
-    debugger;
-    this.props.getUserAnswers(1);
-  }
+
   static mapStatetToProps(state: State) {
-    return {
-      answers: state.profileDataCompleting.answers
-    };
+    return {};
   }
-  static contextType = NavigationContext;
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ getUserAnswers }, dispatch);
   }
+
   render() {
-    let _nav = this.context;
     return (
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
+          <Left>
+            <Button hasText transparent light>
+              <Text>Cancel</Text>
+            </Button>
+          </Left>
           <Title style={{ paddingTop: 35, fontSize: 15 }}>My Profile</Title>
           <Right>
-            <Button
-              hasText
-              transparent
-              light
-              onPress={() => _nav.navigate("EditProfileScreen")}
-            >
-              <Text>Edit</Text>
+            <Button hasText transparent light>
+              <Text>Save</Text>
             </Button>
           </Right>
         </Header>
@@ -97,7 +87,7 @@ class ProfileContainer extends Component {
               </Button>
             </CardItem>
           </Card>
-
+          {/* 
           <Tabs
             tabBarUnderlineStyle={{
               borderBottomWidth: 2,
@@ -113,6 +103,7 @@ class ProfileContainer extends Component {
               activeTextStyle={styles.activeTextStyle}
             >
               <ProductService
+                editingMode={true}
                 answers={this.props.answers.filter(
                   item => item.Question.QuestionTab == 0
                 )}
@@ -155,16 +146,16 @@ class ProfileContainer extends Component {
               <Text>tab content</Text>
             </Tab>
           </Tabs>
+        */}
         </Content>
       </Container>
     );
   }
 }
-
-export default ProfileScreen = connect(
-  ProfileContainer.mapStatetToProps,
-  ProfileContainer.mapDispatchToProps
-)(ProfileContainer);
+export default EditProfileScreen = connect(
+  EditProfileContainer.mapStatetToProps,
+  EditProfileContainer.mapDispatchToProps
+)(EditProfileContainer);
 
 var styles = StyleSheet.create({
   tabStyle: {

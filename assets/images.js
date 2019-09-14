@@ -7,8 +7,8 @@ const images = {
   homeIcon: require("./homeIcon/houseBlackSilhouetteWithoutDoorCopy.png"),
   connectionIcon: require("./connectionIcon/inActive.png"),
   profileIcon: require("./profileIcon/inActive.png"),
-  settingIcon: require("./settingIcon/inActive.png")
-
+  settingIcon: require("./settingIcon/inActive.png"),
+  editIcon: require("./editIcon/Edit.png")
   // loading: require("./greenLoader.gif"),
   // homeLogo: require("./home/home-logo.png"),
   // docIcon: require("./services/doc-icon.png"),

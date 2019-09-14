@@ -60,7 +60,8 @@ class loginContainer extends Component {
   componentWillReceiveProps(nextProps) {
     setTimeout(() => {
       if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
-        this.props.navigation.navigate("ProfileDataCompletingScreen");
+        //this.props.navigation.navigate("ProfileDataCompletingScreen");
+        this.props.navigation.navigate("HomeScreen");
       }
     }, 500);
 
