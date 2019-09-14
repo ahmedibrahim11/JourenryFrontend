@@ -17,18 +17,18 @@ import {
 
 import { connect } from "react-redux";
 
-import MyTab from "../tab-navigator";
+import { MyTab } from "../tab-navigator";
 import ProfileDataCompletingContainer from "./profile-data-completing-screen";
 
-export const NavigationContext = React.createContext("navigate");
+// export const NavigationContext = React.createContext("navigate");
 
 export default class ApplicationContainer extends Component {
   render() {
     return (
       <Container>
-        <NavigationContext.Provider value={this.props.navigation}>
-          <MyTab />
-        </NavigationContext.Provider>
+        {/* <NavigationContext.Provider value={this.props.navigation}> */}
+        <MyTab />
+        {/* </NavigationContext.Provider> */}
       </Container>
     );
   }

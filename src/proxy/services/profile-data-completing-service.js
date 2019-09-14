@@ -19,12 +19,12 @@ export class ProfileDataCompletingProxyService {
       headers: { "Access-Control-Allow-Origin": "*" }
     });
   }
-  async postAnswers(answers) {
+  async postAnswers(answers, userId) {
     debugger;
     console.log(answers);
     return await axios({
       method: "post",
-      url: `${BASE_URL}userAnswer/saveData`,
+      url: `${BASE_URL}userAnswer/saveData/${userId}`,
       data: answers,
       config: {
         headers: {

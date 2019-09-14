@@ -42,7 +42,8 @@ class loginContainer extends Component {
     return {
       loginError: state.authorization.errorMessage,
       loading: state.ui.loading,
-      isLoggedIn: state.authorization.isLoggedIn
+      isLoggedIn: state.authorization.isLoggedIn,
+      token: state.authorization.token
     };
   }
 
@@ -60,8 +61,12 @@ class loginContainer extends Component {
   componentWillReceiveProps(nextProps) {
     setTimeout(() => {
       if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
-        //this.props.navigation.navigate("ProfileDataCompletingScreen");
-        this.props.navigation.navigate("HomeScreen");
+        debugger;
+        if (nextProps.token.isRegisterd === "True") {
+          this.props.navigation.navigate("HomeScreen");
+        } else {
+          this.props.navigation.navigate("ProfileDataCompletingScreen");
+        }
       }
     }, 500);
 

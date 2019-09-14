@@ -10,11 +10,8 @@ import {
 } from "../../proxy";
 import * as UiTypes from "../ui/actions";
 
-// import * as jwt_decode from "jwt-decode";
+var jwtDecode = require("jwt-decode");
 
-// import JWT from "expo-jwt";
-
-// import NavigatorService from "../../services/navigator";
 /*************** */
 export type ON_LOGIN_Action = { type: string, payload: any };
 export type LOGIN_SUCCESS_Action = {
@@ -35,18 +32,35 @@ export type REGISTER_FAIL_Action = { type: string, payload: string };
 /*************************** */
 
 export async function tryLogin(user: UserLoginModel) {
-  let token = null;
+  let result = null;
   return async dispatch => {
     dispatch(onLogin(user));
     dispatch({ type: UiTypes.UI_LOADING });
     let response = await authProxyService.login(user);
-    token = await response.json();
+    result = await response.json();
     debugger;
-    // var decoded = jwt_decode(token);
+    var token = result["token"];
     debugger;
+    if (token) {
+      try {
+        var decoded = jwtDecode(token);
+        var finalToken: TokenDto = {};
+        finalToken.role = decoded["Role"];
+        finalToken.id = decoded["Id"];
+        finalToken.isRegisterd = decoded["IsRegisterd"];
+        finalToken.token = token;
+        debugger;
+        console.log("final", finalToken);
+      } catch (error) {
+        console.log("err", error);
+      }
+    }
+
+    debugger;
+
     if (response.status === 200) {
       debugger;
-      dispatch(success(token));
+      dispatch(success(finalToken));
       //dispatch({ type: UiTypes.UI_LOADING });
     } else {
       dispatch(fail());
@@ -86,7 +100,7 @@ export function onLogin(user): ON_LOGIN_Action {
   return { type: types.ON_LOGIN, payload: user };
 }
 
-export function success(token): LOGIN_SUCCESS_Action {
+export function success(token: TokenDto): LOGIN_SUCCESS_Action {
   return { type: types.LOGIN_SUCCESS, payload: token };
 }
 

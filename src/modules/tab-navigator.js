@@ -15,7 +15,7 @@ import HomeScreen from "./screens/home-screen";
 import ProfileScreen from "./screens/profile-screen";
 import { SettingScreen } from "../modules/screens";
 import ConnectionComponent from "./components/Connections/connections-component";
-const TabNavigator = createBottomTabNavigator(
+export const TabNavigator = createBottomTabNavigator(
   {
     Home: {
       screen: HomeScreen,
@@ -63,4 +63,4 @@ const TabNavigator = createBottomTabNavigator(
   { color: "#60b4c2" }
 );
 
-export default MyTab = createAppContainer(TabNavigator);
+export const MyTab = createAppContainer(TabNavigator);

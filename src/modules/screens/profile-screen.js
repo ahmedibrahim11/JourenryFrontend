@@ -30,30 +30,32 @@ import { Dispatch, bindActionCreators } from "redux";
 import { ProductService } from "../components/ProfileDataTabs/ProductService/product-service";
 import images from "../../../assets/images.js";
 import { getUserAnswers, state } from "../../state";
-import { NavigationContext } from "./application-container";
+
+// import { NavigationContext } from "./application-container";
 class ProfileContainer extends Component {
   constructor() {
     super();
   }
   props: {
     answers: any,
-    getUserAnswers: () => any
+    getUserAnswers: () => any,
+    navigation: any
   };
   componentWillMount() {
     debugger;
-    this.props.getUserAnswers(1);
+    this.props.getUserAnswers();
   }
   static mapStatetToProps(state: State) {
     return {
       answers: state.profileDataCompleting.answers
     };
   }
-  static contextType = NavigationContext;
+  // static contextType = NavigationContext;
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({ getUserAnswers }, dispatch);
   }
   render() {
-    let _nav = this.context;
+    // let _nav = this.context;
     return (
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
@@ -63,7 +65,10 @@ class ProfileContainer extends Component {
               hasText
               transparent
               light
-              onPress={() => _nav.navigate("EditProfileScreen")}
+              onPress={() => {
+                debugger;
+                this.props.navigation.navigate("EditProfileScreen");
+              }}
             >
               <Text>Edit</Text>
             </Button>

@@ -1,14 +1,13 @@
 // @Flow
 
-import { TokenDto } from '../../proxy/dtos'
+import { TokenDto } from "../../proxy/dtos";
 export interface AuthorizationState {
   username: string;
-  token: tokenDto;
+  token: TokenDto;
   isLoggedIn: boolean;
   isRegistered: boolean;
   errorMessage: string;
   loading: boolean;
-
 }
 
 export const AuthorizationInitialState: AuthorizationState = {

@@ -54,11 +54,14 @@ export async function getQuestions() {
   };
 }
 
-export function getUserAnswers(userId: Number) {
+export function getUserAnswers() {
   return async (dispatch, getstate) => {
     debugger;
-    // const state = getstate();
-    let response = await profileDataCompletingProxyService.getUserAnswers(1);
+    const state = getstate();
+    var userId = state.authorization.token.id;
+    let response = await profileDataCompletingProxyService.getUserAnswers(
+      userId
+    );
     token = await response.data;
     console.log(token);
     if (response.status === 200) {
@@ -75,6 +78,8 @@ export async function postAnswers(userAnswers: UserAnswer[]) {
   return async (dispatch, getstate) => {
     const answers = [];
     const state = getstate();
+    var userId = state.authorization.token.id;
+    debugger;
     userAnswers.forEach(element => {
       answers.push({
         userId: 1,
@@ -83,7 +88,10 @@ export async function postAnswers(userAnswers: UserAnswer[]) {
       });
     });
     console.log(answers);
-    let response = await profileDataCompletingProxyService.postAnswers(answers);
+    let response = await profileDataCompletingProxyService.postAnswers(
+      answers,
+      userId
+    );
     token = await response.data;
     if (response.status === 200) {
       debugger;
