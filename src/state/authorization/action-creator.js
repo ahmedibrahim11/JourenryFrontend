@@ -38,9 +38,7 @@ export async function tryLogin(user: UserLoginModel) {
     dispatch({ type: UiTypes.UI_LOADING });
     let response = await authProxyService.login(user);
     result = await response.json();
-    debugger;
     var token = result["token"];
-    debugger;
     if (token) {
       try {
         var decoded = jwtDecode(token);
@@ -49,7 +47,6 @@ export async function tryLogin(user: UserLoginModel) {
         finalToken.id = decoded["Id"];
         finalToken.isRegisterd = decoded["IsRegisterd"];
         finalToken.token = token;
-        debugger;
         console.log("final", finalToken);
       } catch (error) {
         console.log("err", error);

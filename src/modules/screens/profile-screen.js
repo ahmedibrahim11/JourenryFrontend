@@ -66,8 +66,7 @@ class ProfileContainer extends Component {
               transparent
               light
               onPress={() => {
-                debugger;
-                this.props.navigation.navigate("EditProfileScreen");
+                this.props.screenProps.navigate("EditProfileScreen");
               }}
             >
               <Text>Edit</Text>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -14,6 +14,7 @@ import {
   Body,
   List,
   ListItem,
+  Image,
   Tab,
   Tabs,
   ScrollableTab,
@@ -29,18 +30,32 @@ import { Dispatch, bindActionCreators } from "redux";
 
 import { ProductService } from "../components/ProfileDataTabs/ProductService/product-service";
 import images from "../../../assets/images.js";
-// import { getUserAnswers, state } from "../../state";
+import { getUserAnswers, state } from "../../state";
 class EditProfileContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      updatedAnwsers: {}
+    };
+    this.updateAnwsers = this.updateAnwsers.bind(this);
+  }
+
+  updateAnwsers(answer) {
+    var _updatedAnwsers = this.state.updatedAnwsers;
+    _updatedAnwsers[answer.questionId] = answer;
+    this.setState({ updatedAnwsers: _updatedAnwsers });
+    console.log("updatedAnwsers", _updatedAnwsers);
+  }
+
   props: {
-    answers: any,
-    getUserAnswers: () => any
+    answers: any
   };
 
   static mapStatetToProps(state: State) {
-    return {};
+    return { answers: state.profileDataCompleting.answers };
   }
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({ getUserAnswers }, dispatch);
+    return bindActionCreators({}, dispatch);
   }
 
   render() {
@@ -87,7 +102,7 @@ class EditProfileContainer extends Component {
               </Button>
             </CardItem>
           </Card>
-          {/* 
+
           <Tabs
             tabBarUnderlineStyle={{
               borderBottomWidth: 2,
@@ -104,6 +119,7 @@ class EditProfileContainer extends Component {
             >
               <ProductService
                 editingMode={true}
+                updateAnwsers={this.updateAnwsers}
                 answers={this.props.answers.filter(
                   item => item.Question.QuestionTab == 0
                 )}
@@ -146,7 +162,6 @@ class EditProfileContainer extends Component {
               <Text>tab content</Text>
             </Tab>
           </Tabs>
-        */}
         </Content>
       </Container>
     );

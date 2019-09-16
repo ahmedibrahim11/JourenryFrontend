@@ -27,7 +27,7 @@ export default class ApplicationContainer extends Component {
     return (
       <Container>
         {/* <NavigationContext.Provider value={this.props.navigation}> */}
-        <MyTab />
+        <MyTab screenProps={this.props.navigation} />
         {/* </NavigationContext.Provider> */}
       </Container>
     );
