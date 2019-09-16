@@ -34,11 +34,19 @@ export class ProductService extends Component {
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
-
+  componentWillReceiveProps(nextProps) {
+    console.log("componentWillReceiveProps", nextProps);
+    if (this.props !== nextProps) {
+    }
+  }
   componentDidMount() {
     console.log(this.props.answers);
+    debugger;
   }
-
+  componentWillMount() {
+    console.log(this.props.answers);
+    debugger;
+  }
   render() {
     return (
       <Container>
@@ -77,6 +85,7 @@ export class ProductService extends Component {
                         currentUpdatedAnswer: {},
                         currentQuestionData: {}
                       });
+                      this.forceUpdate();
                     }}
                   >
                     <Text style={{ color: "#ffffff" }}>edit</Text>
@@ -88,34 +97,37 @@ export class ProductService extends Component {
             </View>
           </Modal>
         </View>
-        <List
-          dataArray={this.props.answers}
-          renderRow={Item => (
-            <ListItem>
-              <Text style={{ color: "#666e68" }}>{Item.Question.Metadata}</Text>
+        <List>
+          {this.props.answers.map((Item, index) => {
+            return (
+              <ListItem>
+                <Text style={{ color: "#666e68" }}>
+                  {Item.Question.Metadata}
+                </Text>
 
-              <Text>{Item.Value}</Text>
-              {this.props.editingMode === true ? (
-                <Button
-                  transparent
-                  onPress={() => {
-                    this.setState({ currentQuestionData: Item });
+                <Text>{Item.Value}</Text>
+                {this.props.editingMode === true ? (
+                  <Button
+                    transparent
+                    onPress={() => {
+                      this.setState({ currentQuestionData: Item });
 
-                    this.setModalVisible(true);
-                  }}
-                >
-                  <Icon
-                    type="FontAwesome"
-                    name="edit"
-                    style={{ color: "#EF9C05" }}
-                  />
-                </Button>
-              ) : (
-                <Text>""</Text>
-              )}
-            </ListItem>
-          )}
-        />
+                      this.setModalVisible(true);
+                    }}
+                  >
+                    <Icon
+                      type="FontAwesome"
+                      name="edit"
+                      style={{ color: "#EF9C05" }}
+                    />
+                  </Button>
+                ) : (
+                  <Text>""</Text>
+                )}
+              </ListItem>
+            );
+          })}
+        </List>
       </Container>
     );
   }

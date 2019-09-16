@@ -35,15 +35,20 @@ class EditProfileContainer extends Component {
   constructor() {
     super();
     this.state = {
-      updatedAnwsers: {}
+      updatedAnwsers: []
     };
     this.updateAnwsers = this.updateAnwsers.bind(this);
   }
 
   updateAnwsers(answer) {
+    debugger;
     var _updatedAnwsers = this.state.updatedAnwsers;
-    _updatedAnwsers[answer.questionId] = answer;
+    // var current = _updatedAnwsers[answer.questionId];
+    // current.Value = answer.Value;
+    _updatedAnwsers[answer.questionId].Value = answer.Value;
+    debugger;
     this.setState({ updatedAnwsers: _updatedAnwsers });
+    debugger;
     console.log("updatedAnwsers", _updatedAnwsers);
   }
 
@@ -57,8 +62,15 @@ class EditProfileContainer extends Component {
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({}, dispatch);
   }
+  componentWillMount() {
+    console.log("props", this.props.answers);
+    this.setState({ updatedAnwsers: this.props.answers });
+    console.log("UpdatedAnswers", this.state.updatedAnwsers);
+  }
 
   render() {
+    const aaa = this.state.updatedAnwsers;
+    debugger;
     return (
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
