@@ -1,5 +1,5 @@
 const PROD_BASE_URL = "";
-const DEV_BASE_URL = "http://84cdbffe.ngrok.io/";
+const DEV_BASE_URL = "http://64bc25ec.ngrok.io/";
 
 const DEV = true;
 

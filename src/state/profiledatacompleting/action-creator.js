@@ -101,3 +101,32 @@ export async function postAnswers(userAnswers: UserAnswer[]) {
     }
   };
 }
+
+export async function updateUserAnswers(userAnswers: UserAnswer[]) {
+  debugger;
+  return async (dispatch, getstate) => {
+    const answers = [];
+    const state = getstate();
+    var userId = state.authorization.token.id;
+    debugger;
+    userAnswers.forEach(element => {
+      answers.push({
+        userId: 1,
+        value: element["Value"],
+        questionId: element["QuestionId"]
+      });
+    });
+    console.log(answers);
+    let response = await profileDataCompletingProxyService.updateAnswers(
+      answers,
+      userId
+    );
+    token = await response.data;
+    if (response.status === 200) {
+      debugger;
+      dispatch(profileDataCompletingSuccess(token));
+    } else {
+      dispatch(profileDataCompletingFail());
+    }
+  };
+}

@@ -85,7 +85,6 @@ export class ProductService extends Component {
                         currentUpdatedAnswer: {},
                         currentQuestionData: {}
                       });
-                      this.forceUpdate();
                     }}
                   >
                     <Text style={{ color: "#ffffff" }}>edit</Text>
@@ -100,7 +99,7 @@ export class ProductService extends Component {
         <List>
           {this.props.answers.map((Item, index) => {
             return (
-              <ListItem>
+              <ListItem key={index}>
                 <Text style={{ color: "#666e68" }}>
                   {Item.Question.Metadata}
                 </Text>

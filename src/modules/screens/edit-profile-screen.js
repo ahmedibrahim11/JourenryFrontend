@@ -30,6 +30,9 @@ import { Dispatch, bindActionCreators } from "redux";
 
 import { ProductService } from "../components/ProfileDataTabs/ProductService/product-service";
 import images from "../../../assets/images.js";
+import { AnswersDto } from "../../proxy";
+
+import { updateUserAnswers } from "../../state/profiledatacompleting/action-creator";
 import { getUserAnswers, state } from "../../state";
 class EditProfileContainer extends Component {
   constructor() {
@@ -45,22 +48,27 @@ class EditProfileContainer extends Component {
     var _updatedAnwsers = this.state.updatedAnwsers;
     // var current = _updatedAnwsers[answer.questionId];
     // current.Value = answer.Value;
-    _updatedAnwsers[answer.questionId].Value = answer.Value;
+    _updatedAnwsers[answer.questionId - 1].Value = answer.Value;
     debugger;
     this.setState({ updatedAnwsers: _updatedAnwsers });
     debugger;
     console.log("updatedAnwsers", _updatedAnwsers);
   }
+  saveUpdatedAnswers(newAnswers) {
+    debugger;
+    this.props.updateUserAnswers(this.state.updatedAnwsers);
+  }
 
   props: {
-    answers: any
+    answers: [],
+    updateUserAnswers: (answers: AnswersDto) => void
   };
 
   static mapStatetToProps(state: State) {
     return { answers: state.profileDataCompleting.answers };
   }
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({ updateUserAnswers }, dispatch);
   }
   componentWillMount() {
     console.log("props", this.props.answers);
@@ -69,7 +77,6 @@ class EditProfileContainer extends Component {
   }
 
   render() {
-    const aaa = this.state.updatedAnwsers;
     debugger;
     return (
       <Container>
@@ -81,7 +88,14 @@ class EditProfileContainer extends Component {
           </Left>
           <Title style={{ paddingTop: 35, fontSize: 15 }}>My Profile</Title>
           <Right>
-            <Button hasText transparent light>
+            <Button
+              hasText
+              transparent
+              light
+              onPress={() => {
+                this.saveUpdatedAnswers(this.state.updatedAnwsers);
+              }}
+            >
               <Text>Save</Text>
             </Button>
           </Right>

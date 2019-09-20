@@ -34,4 +34,20 @@ export class ProfileDataCompletingProxyService {
       }
     });
   }
+
+  async updateAnswers(answers, userId) {
+    debugger;
+    console.log(answers);
+    return await axios({
+      method: "put",
+      url: `${BASE_URL}userAnswer/updateAnswer/${userId}`,
+      data: answers,
+      config: {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "content-Type": "application/json"
+        }
+      }
+    });
+  }
 }
