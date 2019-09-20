@@ -12,7 +12,8 @@ import {
   Text,
   Picker,
   Body,
-  Icon
+  Icon,
+  List
 } from "native-base";
 import * as _ from "lodash";
 export default class QuestionAnswersType extends Component {
@@ -34,6 +35,9 @@ export default class QuestionAnswersType extends Component {
       selectedOption: value
     });
     this.props.getCurrentAnswer(value);
+  }
+  componentWillMount() {
+    console.log("currentAnswer", this.props.currentAnswer);
   }
   render() {
     const dropDownChoices = [
@@ -97,8 +101,12 @@ export default class QuestionAnswersType extends Component {
         );
       }
       case 2: {
+        const oldValue = this.props.currentAnswer
+          ? this.props.currentAnswer
+          : "";
         return (
           <Textarea
+            defaultValue={oldValue}
             style={{
               width: 300,
               borderColor: "black",
@@ -118,7 +126,7 @@ export default class QuestionAnswersType extends Component {
 
       case 3: {
         return (
-          <Content>
+          <List>
             <ListItem style={{ marginTop: 20 }}>
               <CheckBox
                 style={{ borderRadius: -3 }}
@@ -143,7 +151,7 @@ export default class QuestionAnswersType extends Component {
               />
               <Text>No</Text>
             </ListItem>
-          </Content>
+          </List>
         );
       }
 

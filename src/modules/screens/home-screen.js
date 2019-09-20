@@ -17,6 +17,7 @@ class HomeContainer extends Component {
 
   componentWillMount() {
     this.props.loadConnections();
+    debugger;
   }
   static mapStatetToProps(state: State) {
     return {
@@ -36,7 +37,7 @@ class HomeContainer extends Component {
     );
   }
 }
-export default (HomeScreen = connect(
+export default HomeScreen = connect(
   HomeContainer.mapStatetToProps,
   HomeContainer.mapDispatchToProps
-)(HomeContainer));
+)(HomeContainer);

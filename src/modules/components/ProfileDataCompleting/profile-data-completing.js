@@ -66,6 +66,7 @@ export default class ProfileDataCompletingComponent extends Component {
       this.props.saveAnswer(this.state.answers);
       this.props.navigation.navigate("HomeScreen");
     } else {
+      debugger;
       var _answers = this.state.answers;
       _answers.push({
         answer: this.state.currentAnswer,
@@ -91,10 +92,63 @@ export default class ProfileDataCompletingComponent extends Component {
     const { height: screenHeight, width: screenWidth } = Dimensions.get(
       "window"
     );
-    // if (this.props.questions[this.state.questionNumber].Name == undefined) {
-    //   debugger;
-    //   this.props.saveAnswer(this.state);
-    // }
+    const skip = this.props.questions[this.state.questionNumber].IsMandatory ? (
+      <Button
+        dark
+        full
+        style={{
+          borderRadius: 10,
+          borderWidth: 0.2,
+          width: 300,
+          alignSelf: "center",
+          backgroundColor: "#ef9c05"
+        }}
+        onPress={() => {
+          this.addUserQuestionAnswer();
+        }}
+      >
+        <Text>Answer</Text>
+      </Button>
+    ) : (
+      <Row>
+        <Col size={50}>
+          <Button
+            dark
+            full
+            style={{
+              borderRadius: 10,
+              borderWidth: 0.2,
+              width: 100,
+              backgroundColor: "#ef9c05"
+            }}
+            onPress={() => {
+              this.addUserQuestionAnswer();
+            }}
+          >
+            <Text>Answer</Text>
+          </Button>
+        </Col>
+        <Col size={50}>
+          <Button
+            dark
+            full
+            style={{
+              borderRadius: 10,
+              borderWidth: 0.2,
+              width: 100,
+              backgroundColor: "#ef9c05"
+            }}
+            onPress={() => {
+              this.setState({ currentAnswer: "" }, () => {
+                this.addUserQuestionAnswer();
+              });
+            }}
+          >
+            <Text>Skip</Text>
+          </Button>
+        </Col>
+      </Row>
+    );
     return (
       <Container style={{ paddingTop: 10 }}>
         <ImageBackground
@@ -133,23 +187,12 @@ export default class ProfileDataCompletingComponent extends Component {
                 />
               </View>
 
-              <View style={{ marginTop: 50 }}>
-                <Button
-                  dark
-                  full
-                  style={{
-                    borderRadius: 10,
-                    borderWidth: 0.2,
-                    width: 300,
-                    alignSelf: "center",
-                    backgroundColor: "#ef9c05"
-                  }}
-                  onPress={() => {
-                    this.addUserQuestionAnswer();
-                  }}
-                >
-                  <Text>Answer</Text>
-                </Button>
+              <View
+                style={{
+                  marginTop: 50
+                }}
+              >
+                {skip}
               </View>
             </KeyboardAwareScrollView>
           </View>

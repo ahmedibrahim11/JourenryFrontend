@@ -46,6 +46,7 @@ export async function getQuestions() {
   return async dispatch => {
     let response = await profileDataCompletingProxyService.getQuestions();
     token = await response.data;
+    debugger;
     if (response.status === 200) {
       dispatch(onProfileDataCompleting(token));
     } else {

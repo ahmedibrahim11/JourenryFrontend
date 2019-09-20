@@ -30,6 +30,21 @@ export default class HomeComponent extends Component {
       final: []
     };
   }
+  UNSAFE_componentWillMount() {
+    debugger;
+    if (this.state.final.length === 0) {
+      this.setState({ final: this.props.connections });
+      console.log("finaaaa", this.state.final);
+      debugger;
+    }
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props != nextProps) {
+      this.setState({ final: nextProps.connections });
+      debugger;
+    }
+  }
+
   _onChangeSearchText(text) {
     let _final = [];
     this.props.connections.forEach(function(item) {
@@ -48,6 +63,11 @@ export default class HomeComponent extends Component {
   };
 
   render() {
+    debugger;
+    console.log("this.props.connections", this.props.connections);
+
+    console.log("this.final", this.state.final);
+
     return (
       <Container>
         <Header
@@ -91,7 +111,7 @@ export default class HomeComponent extends Component {
                         backgroundColor: "#60b4c2",
                         fontSize: 14,
                         color: "white",
-                        height: 20,
+                        height: 40,
                         margin: 5
                       }}
                     >
@@ -103,7 +123,7 @@ export default class HomeComponent extends Component {
                         backgroundColor: "#60b4c2",
                         fontSize: 14,
                         color: "white",
-                        height: 20,
+                        height: 40,
                         margin: 5
                       }}
                     >

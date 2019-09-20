@@ -59,16 +59,14 @@ class loginContainer extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    setTimeout(() => {
-      if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
-        debugger;
-        if (nextProps.token.isRegisterd === "True") {
-          this.props.navigation.navigate("HomeScreen");
-        } else {
-          this.props.navigation.navigate("ProfileDataCompletingScreen");
-        }
+    if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
+      debugger;
+      if (nextProps.token.isRegisterd === "True") {
+        this.props.navigation.navigate("HomeScreen");
+      } else {
+        this.props.navigation.navigate("ProfileDataCompletingScreen");
       }
-    }, 500);
+    }
 
     // console.log('will orders')
     this.setState({ isMounted: !this.state.isMounted });

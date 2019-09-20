@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as rcs from "./product-service-styles";
-import { Modal, TouchableHighlight, View, Alert } from "react-native";
+import { Modal, TouchableHighlight, View, Alert, Button } from "react-native";
 import images from "../../../../../assets/images";
 import {
   Container,
@@ -8,11 +8,12 @@ import {
   List,
   ListItem,
   Right,
-  Button,
   Image,
-  Icon
+  Icon,
+  Content
 } from "native-base";
 import QuestionAnswersType from "../../Question/question-answers-type";
+import { ScrollView } from "react-native-gesture-handler";
 export class ProductService extends Component {
   constructor() {
     super();
@@ -44,7 +45,7 @@ export class ProductService extends Component {
   }
   render() {
     return (
-      <Container>
+      <View style={{ flex: 1 }}>
         <View style={{ marginTop: 22 }}>
           <Modal
             animationType="slide"
@@ -59,18 +60,21 @@ export class ProductService extends Component {
                   <QuestionAnswersType
                     question={this.state.currentQuestionData.Question}
                     getCurrentAnswer={this.getCurrentAnswer}
+                    currentAnswer={this.state.currentQuestionData.Value}
                   />
                   <Button
                     rounded
+                    title="Cancel"
+                    titleStyle={{ color: "#EF9C05" }}
                     style={rcs.cancelButton}
                     onPress={() => {
                       this.setModalVisible(!this.state.modalVisible);
                       this.setState({ currentQuestionData: {} });
                     }}
-                  >
-                    <Text style={{ color: "#EF9C05" }}>Cancel</Text>
-                  </Button>
+                  ></Button>
                   <Button
+                    title="edit"
+                    titleStyle={{ color: "#ffffff" }}
                     rounded
                     style={rcs.acceptButton}
                     onPress={() => {
@@ -81,9 +85,7 @@ export class ProductService extends Component {
                         currentQuestionData: {}
                       });
                     }}
-                  >
-                    <Text style={{ color: "#ffffff" }}>edit</Text>
-                  </Button>
+                  ></Button>
                 </View>
               ) : (
                 <View></View>
@@ -91,38 +93,45 @@ export class ProductService extends Component {
             </View>
           </Modal>
         </View>
-        <List>
-          {this.props.answers.map((Item, index) => {
-            return (
-              <ListItem key={index}>
-                <Text style={{ color: "#666e68" }}>
-                  {Item.Question.Metadata}
-                </Text>
+        <View style={{ flex: 1 }}>
+          <List style={{ flex: 1 }}>
+            {this.props.answers.map((Item, index) => {
+              debugger;
+              return (
+                <ListItem key={index}>
+                  <Text style={{ color: "#666e68" }}>
+                    {Item.Question.Metadata}
+                  </Text>
 
-                <Text>{Item.Value}</Text>
-                {this.props.editingMode === true ? (
-                  <Button
-                    transparent
-                    onPress={() => {
-                      this.setState({ currentQuestionData: Item });
+                  <Text>{Item.Value}</Text>
+                  {this.props.editingMode === true ? (
+                    <View style={{ flex: 1 }}>
+                      <TouchableHighlight
+                        onPress={() => {
+                          debugger;
+                          this.setState({ currentQuestionData: Item });
 
-                      this.setModalVisible(true);
-                    }}
-                  >
-                    <Icon
-                      type="FontAwesome"
-                      name="edit"
-                      style={{ color: "#EF9C05" }}
-                    />
-                  </Button>
-                ) : (
-                  <Text>""</Text>
-                )}
-              </ListItem>
-            );
-          })}
-        </List>
-      </Container>
+                          this.setModalVisible(true);
+                        }}
+                      >
+                        <View>
+                          <Icon
+                            type="FontAwesome"
+                            name="edit"
+                            style={{ color: "#EF9C05" }}
+                          />
+                        </View>
+                      </TouchableHighlight>
+                    </View>
+                  ) : (
+                    <Text>""</Text>
+                  )}
+                </ListItem>
+              );
+            })}
+          </List>
+        </View>
+      </View>
     );
   }
 }

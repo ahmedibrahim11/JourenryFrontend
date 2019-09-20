@@ -73,6 +73,7 @@ class EditProfileContainer extends Component {
   }
   componentWillMount() {
     console.log("props", this.props.answers);
+    debugger;
     this.setState({ updatedAnwsers: this.props.answers });
     console.log("UpdatedAnswers", this.state.updatedAnwsers);
   }
