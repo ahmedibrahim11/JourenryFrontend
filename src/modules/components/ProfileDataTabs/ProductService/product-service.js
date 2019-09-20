@@ -34,11 +34,6 @@ export class ProductService extends Component {
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }
-  componentWillReceiveProps(nextProps) {
-    console.log("componentWillReceiveProps", nextProps);
-    if (this.props !== nextProps) {
-    }
-  }
   componentDidMount() {
     console.log(this.props.answers);
     debugger;

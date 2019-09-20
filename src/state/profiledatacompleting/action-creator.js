@@ -82,7 +82,7 @@ export async function postAnswers(userAnswers: UserAnswer[]) {
     debugger;
     userAnswers.forEach(element => {
       answers.push({
-        userId: 1,
+        userId: userId,
         value: element["answer"],
         questionId: element["questionId"]
       });
@@ -111,7 +111,7 @@ export async function updateUserAnswers(userAnswers: UserAnswer[]) {
     debugger;
     userAnswers.forEach(element => {
       answers.push({
-        userId: 1,
+        userId: userId,
         value: element["Value"],
         questionId: element["QuestionId"]
       });

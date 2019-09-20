@@ -39,8 +39,8 @@ export class ProfileDataCompletingProxyService {
     debugger;
     console.log(answers);
     return await axios({
-      method: "put",
-      url: `${BASE_URL}userAnswer/updateAnswer/${userId}`,
+      method: "post",
+      url: `${BASE_URL}userAnswer/EditUserAnswers/${userId}`,
       data: answers,
       config: {
         headers: {

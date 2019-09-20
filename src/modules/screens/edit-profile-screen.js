@@ -57,6 +57,7 @@ class EditProfileContainer extends Component {
   saveUpdatedAnswers(newAnswers) {
     debugger;
     this.props.updateUserAnswers(this.state.updatedAnwsers);
+    this.props.navigation.navigate("HomeScreen");
   }
 
   props: {
@@ -143,13 +144,17 @@ class EditProfileContainer extends Component {
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}
             >
-              <ProductService
-                editingMode={true}
-                updateAnwsers={this.updateAnwsers}
-                answers={this.props.answers.filter(
-                  item => item.Question.QuestionTab == 0
-                )}
-              ></ProductService>
+              {this.props.answers ? (
+                <ProductService
+                  editingMode={true}
+                  updateAnwsers={this.updateAnwsers}
+                  answers={this.props.answers.filter(
+                    item => item.Question.QuestionTab == 0
+                  )}
+                ></ProductService>
+              ) : (
+                <View></View>
+              )}
             </Tab>
             <Tab
               heading="Organization"
