@@ -36,7 +36,7 @@ export class ProductService extends Component {
     this.setState({ modalVisible: visible });
   }
   componentDidMount() {
-    console.log(this.props.answers);
+    console.log("SEKSEK",this.props.answers);
     debugger;
   }
   componentWillMount() {

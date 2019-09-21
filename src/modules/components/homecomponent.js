@@ -98,7 +98,8 @@ export default class HomeComponent extends Component {
           <List>
             {_.map(this.state.final, (item, id) => {
               return (
-                <ListItem thumbnail key={id}>
+                <ListItem thumbnail key={id} onPress={()=>{this.props.screenProps.navigate("OthersProfileScreen",{userId:item.Id})}}>
+                  
                   <Left>
                     <Thumbnail square source={images.logo} />
                   </Left>

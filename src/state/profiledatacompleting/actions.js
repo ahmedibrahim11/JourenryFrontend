@@ -4,3 +4,5 @@ export const PROFILE_DATA_COMPLETING_SUCCESS =
 export const PROFILE_DATA_COMPLETING_FAIL =
   "[pdc] profile data completing fail";
 export const PROFILE_DATA = "[pdc] profile data";
+
+export const USER_PROFILE_DATA_SUCCESS_Action="[upds] user profile data success";

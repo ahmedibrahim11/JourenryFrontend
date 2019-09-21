@@ -29,49 +29,55 @@ import { Dispatch, bindActionCreators } from "redux";
 
 import { ProductService } from "../components/ProfileDataTabs/ProductService/product-service";
 import images from "../../../assets/images.js";
-import { getUserAnswers, state } from "../../state";
+import { getOtherUserAnswers, state } from "../../state";
 
 // import { NavigationContext } from "./application-container";
-class ProfileContainer extends Component {
+class OtherProfileContainer extends Component {
   constructor() {
     super();
   }
   props: {
-    answers: any,
-    getUserAnswers: () => any,
-    navigation: any
+    otherUserAnswers: any,
+    getOtherUserAnswers: () => any,
+    navigation: any,
+    userId:any
   };
   componentWillMount() {
     debugger;
-    this.props.getUserAnswers();
+    const { navigation } = this.props;
+    const userId = navigation.getParam('userId');
+    this.props.getOtherUserAnswers( userId);
+  }
+  componentDidMount() {
+    console.log("seksek",this.props.otherUserAnswers);
+    debugger;
   }
   static mapStatetToProps(state: State) {
     return {
-      answers: state.profileDataCompleting.answers
+        otherUserAnswers: state.profileDataCompleting.otherUserAnswers
     };
   }
   // static contextType = NavigationContext;
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({ getUserAnswers }, dispatch);
+    return bindActionCreators({ getOtherUserAnswers }, dispatch);
   }
   render() {
     // let _nav = this.context;
     return (
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
-          <Title style={{ paddingTop: 35, fontSize: 15 }}>My Profile</Title>
-          <Right>
             <Button
               hasText
               transparent
               light
               onPress={() => {
-                this.props.screenProps.navigate("EditProfileScreen");
+                this.props.navigation.goBack();
               }}
             >
-              <Text>Edit</Text>
+              <Text>Back</Text>
             </Button>
-          </Right>
+          <Title style={{ paddingTop: 35, fontSize: 15 }}>Profile</Title>
+     
         </Header>
         <Content>
           <Card
@@ -117,7 +123,7 @@ class ProfileContainer extends Component {
               activeTextStyle={styles.activeTextStyle}
             >
               <ProductService
-                answers={this.props.answers.filter(
+                answers={this.props.otherUserAnswers.filter(
                   item => item.Question.QuestionTab == 0
                 )}
               ></ProductService>
@@ -129,11 +135,12 @@ class ProfileContainer extends Component {
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}
             >
-<ProductService answers={this.props.answers.filter(
+              <ProductService
+                answers={this.props.otherUserAnswers.filter(
                   item => item.Question.QuestionTab == 1
                 )}
-              ></ProductService>            
-              </Tab>
+              ></ProductService>
+            </Tab>
             <Tab
               heading="Personal"
               tabStyle={styles.tabStyle}
@@ -142,7 +149,7 @@ class ProfileContainer extends Component {
               activeTextStyle={styles.activeTextStyle}
             >
               <ProductService
-                answers={this.props.answers.filter(
+                answers={this.props.otherUserAnswers.filter(
                   item => item.Question.QuestionTab == 2
                 )}
               ></ProductService>
@@ -155,7 +162,7 @@ class ProfileContainer extends Component {
               activeTextStyle={styles.activeTextStyle}
             >
               <ProductService
-                answers={this.props.answers.filter(
+                answers={this.props.otherUserAnswers.filter(
                   item => item.Question.QuestionTab == 3
                 )}
               ></ProductService>
@@ -168,7 +175,7 @@ class ProfileContainer extends Component {
               activeTextStyle={styles.activeTextStyle}
             >
               <ProductService
-                answers={this.props.answers.filter(
+                answers={this.props.otherUserAnswers.filter(
                   item => item.Question.QuestionTab == 4
                 )}
               ></ProductService>
@@ -180,10 +187,10 @@ class ProfileContainer extends Component {
   }
 }
 
-export default ProfileScreen = connect(
-  ProfileContainer.mapStatetToProps,
-  ProfileContainer.mapDispatchToProps
-)(ProfileContainer);
+export default OthersProfileScreen = connect(
+    OtherProfileContainer.mapStatetToProps,
+    OtherProfileContainer.mapDispatchToProps
+)(OtherProfileContainer);
 
 var styles = StyleSheet.create({
   tabStyle: {

@@ -7,12 +7,12 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "expo": "^32.0.0",
     "expo-jwt": "^1.1.2",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.11",
-    "native-base": "^2.12.1",
+    "lodash": "^4.17.15",
+    "native-base": "^2.13.8",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",

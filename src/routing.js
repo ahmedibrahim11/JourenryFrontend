@@ -5,7 +5,7 @@ import { RegisterScreen, LoginScreen } from "./modules/screens";
 import ApplicationContainer from "./modules/screens/application-container";
 
 import ProfileDataCompletingScreen from "./modules/screens/profile-data-completing-screen";
-
+import OthersProfileScreen from  "./modules/screens/others-profile-screen";
 import EditProfileScreen from "./modules/screens/edit-profile-screen";
 export const navigator = createStackNavigator(
   {
@@ -23,6 +23,9 @@ export const navigator = createStackNavigator(
     },
     EditProfileScreen: {
       screen: EditProfileScreen
+    },
+    OthersProfileScreen:{
+      screen:OthersProfileScreen
     }
   },
 

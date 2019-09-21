@@ -40,6 +40,12 @@ export function profileDataCompleteted(
 ): PROFILE_DATA_Action {
   return { type: types.PROFILE_DATA, payload: answers };
 }
+
+export function userProfileDataSuccess(
+  answers: AnswersDto
+): USER_PROFILE_DATA_SUCCESS_Action {
+  return { type: types.USER_PROFILE_DATA_SUCCESS_Action, payload: answers };
+}
 /*************** */
 
 export async function getQuestions() {
@@ -72,6 +78,24 @@ export function getUserAnswers() {
     }
   };
 }
+
+export function getOtherUserAnswers( OtherUserId ) {
+  return async (dispatch) => {
+ 
+    let response = await profileDataCompletingProxyService.getUserAnswers(
+      OtherUserId
+    );
+    token = await response.data;
+    console.log("SEKSEK",token);
+    debugger;
+    if (response.status === 200) {
+      dispatch(userProfileDataSuccess(token));
+    } else {
+      dispatch(userProfileDataFail());
+    }
+  };
+}
+
 
 export async function postAnswers(userAnswers: UserAnswer[]) {
   debugger;

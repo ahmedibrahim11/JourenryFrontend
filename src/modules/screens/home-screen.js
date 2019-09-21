@@ -32,7 +32,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <Container>
-        <HomeComponent connections={this.props.connections} />
+        <HomeComponent connections={this.props.connections} screenProps={this.props.screenProps} />
       </Container>
     );
   }

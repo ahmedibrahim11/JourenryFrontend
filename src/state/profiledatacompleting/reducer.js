@@ -7,7 +7,8 @@ type Action =
   | actions.ON_PROFILE_DATA_COMPLETING_Action
   | actions.PROFILE_DATA_COMPLETING_FAIL_Action
   | actions.PROFILE_DATA_COMPLETING_SUCCESS_Action
-  | actions.PROFILE_DATA_Action;
+  | actions.PROFILE_DATA_Action
+  | actions.USER_PROFILE_DATA_SUCCESS_Action;
 
 export function profileDataCompletingReducer(
   state: ProfileDataState = ProfileDataInitialState,
@@ -28,7 +29,12 @@ export function profileDataCompletingReducer(
         answers: action.payload
       };
     }
-
+    case types.USER_PROFILE_DATA_SUCCESS_Action: {
+      return {
+        ...state,
+        otherUserAnswers: action.payload
+      };
+    }
     case types.PROFILE_DATA_COMPLETING_FAIL: {
       return {
         ...state,
