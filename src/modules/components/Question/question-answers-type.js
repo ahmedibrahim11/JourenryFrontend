@@ -16,6 +16,7 @@ import {
   List
 } from "native-base";
 import * as _ from "lodash";
+import { TextInput } from "react-native-gesture-handler";
 export default class QuestionAnswersType extends Component {
   constructor() {
     super();

@@ -35,26 +35,30 @@ import { getOtherUserAnswers, state } from "../../state";
 class OtherProfileContainer extends Component {
   constructor() {
     super();
+    this.state = {
+      userInfo: {}
+    };
   }
   props: {
     otherUserAnswers: any,
     getOtherUserAnswers: () => any,
     navigation: any,
-    userId:any
+    userId: any
   };
   componentWillMount() {
     debugger;
     const { navigation } = this.props;
-    const userId = navigation.getParam('userId');
-    this.props.getOtherUserAnswers( userId);
+    const user = navigation.getParam("user");
+
+    this.props.getOtherUserAnswers(user.Id);
   }
   componentDidMount() {
-    console.log("seksek",this.props.otherUserAnswers);
+    console.log("seksek", this.props.otherUserAnswers);
     debugger;
   }
   static mapStatetToProps(state: State) {
     return {
-        otherUserAnswers: state.profileDataCompleting.otherUserAnswers
+      otherUserAnswers: state.profileDataCompleting.otherUserAnswers
     };
   }
   // static contextType = NavigationContext;
@@ -62,10 +66,13 @@ class OtherProfileContainer extends Component {
     return bindActionCreators({ getOtherUserAnswers }, dispatch);
   }
   render() {
+    const { navigation } = this.props;
+    const user = navigation.getParam("user");
     // let _nav = this.context;
     return (
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
+          <Left>
             <Button
               hasText
               transparent
@@ -76,8 +83,16 @@ class OtherProfileContainer extends Component {
             >
               <Text>Back</Text>
             </Button>
-          <Title style={{ paddingTop: 35, fontSize: 15 }}>Profile</Title>
-     
+          </Left>
+          <Title
+            style={{
+              paddingTop: 15,
+              fontSize: 15,
+              marginRight: 150
+            }}
+          >
+            Profile
+          </Title>
         </Header>
         <Content>
           <Card
@@ -97,8 +112,8 @@ class OtherProfileContainer extends Component {
                 alignItems: "center"
               }}
             >
-              <Text>Mohamed Emad</Text>
-              <Text note>CEO - Giftia</Text>
+              <Text>{user.UserName}</Text>
+              {/* <Text note>CEO - Giftia</Text> */}
               <Button
                 rounded
                 style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
@@ -188,8 +203,8 @@ class OtherProfileContainer extends Component {
 }
 
 export default OthersProfileScreen = connect(
-    OtherProfileContainer.mapStatetToProps,
-    OtherProfileContainer.mapDispatchToProps
+  OtherProfileContainer.mapStatetToProps,
+  OtherProfileContainer.mapDispatchToProps
 )(OtherProfileContainer);
 
 var styles = StyleSheet.create({

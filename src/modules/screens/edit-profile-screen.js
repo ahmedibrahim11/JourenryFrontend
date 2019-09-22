@@ -84,11 +84,18 @@ class EditProfileContainer extends Component {
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
           <Left>
-            <Button hasText transparent light>
+            <Button
+              hasText
+              transparent
+              light
+              onPress={() => {
+                this.props.navigation.navigate("HomeScreen");
+              }}
+            >
               <Text>Cancel</Text>
             </Button>
           </Left>
-          <Title style={{ paddingTop: 35, fontSize: 15 }}>My Profile</Title>
+          <Title style={{ paddingTop: 15, fontSize: 15 }}>My Profile</Title>
           <Right>
             <Button
               hasText
@@ -122,12 +129,6 @@ class EditProfileContainer extends Component {
             >
               <Text>Mohamed Emad</Text>
               <Text note>CEO - Giftia</Text>
-              <Button
-                rounded
-                style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
-              >
-                <Text style={{ color: "#ffffff" }}>Request Contacts</Text>
-              </Button>
             </CardItem>
           </Card>
 

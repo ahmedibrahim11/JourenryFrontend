@@ -59,7 +59,7 @@ class ProfileContainer extends Component {
     return (
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}>
-          <Title style={{ paddingTop: 35, fontSize: 15 }}>My Profile</Title>
+          <Title style={{ paddingTop: 15, fontSize: 15 }}>My Profile</Title>
           <Right>
             <Button
               hasText
@@ -93,12 +93,12 @@ class ProfileContainer extends Component {
             >
               <Text>Mohamed Emad</Text>
               <Text note>CEO - Giftia</Text>
-              <Button
+              {/* <Button
                 rounded
                 style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
               >
                 <Text style={{ color: "#ffffff" }}>Request Contacts</Text>
-              </Button>
+              </Button> */}
             </CardItem>
           </Card>
 
@@ -129,11 +129,12 @@ class ProfileContainer extends Component {
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}
             >
-<ProductService answers={this.props.answers.filter(
+              <ProductService
+                answers={this.props.answers.filter(
                   item => item.Question.QuestionTab == 1
                 )}
-              ></ProductService>            
-              </Tab>
+              ></ProductService>
+            </Tab>
             <Tab
               heading="Personal"
               tabStyle={styles.tabStyle}
