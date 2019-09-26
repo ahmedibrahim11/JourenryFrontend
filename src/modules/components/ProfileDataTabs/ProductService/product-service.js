@@ -10,7 +10,10 @@ import {
   Right,
   Image,
   Icon,
-  Content
+  Content,
+  Col,
+  Grid,
+  Row
 } from "native-base";
 import QuestionAnswersType from "../../Question/question-answers-type";
 import { ScrollView } from "react-native-gesture-handler";
@@ -36,7 +39,7 @@ export class ProductService extends Component {
     this.setState({ modalVisible: visible });
   }
   componentDidMount() {
-    console.log("SEKSEK",this.props.answers);
+    console.log("SEKSEK", this.props.answers);
     debugger;
   }
   componentWillMount() {
@@ -97,15 +100,42 @@ export class ProductService extends Component {
           <List style={{ flex: 1 }}>
             {this.props.answers.map((Item, index) => {
               debugger;
+              // const viewData =
+              //   Item.Question.QuestionType === 2 ? (
+              //     <Grid>
+              //       <Row>
+              //         <Text style={{ color: "#666e68" }}>
+              //           {Item.Question.Metadata}
+              //         </Text>
+              //       </Row>
+              //       <Row>
+              //         <Text>{Item.Value}</Text>
+              //       </Row>
+              //     </Grid>
+              //   ) : (
+              //     <View style={{ flex: 1 }}>
+              //       <Grid>
+              //         <Col size={65}>
+              //           <Text style={{ color: "#666e68" }}>
+              //             {Item.Question.Metadata}
+              //           </Text>
+              //         </Col>
+              //         <Col>
+              //           <Text>{Item.Value}</Text>
+              //         </Col>
+              //       </Grid>
+              //     </View>
+              //   );
               return (
                 <ListItem key={index}>
+                  {/* {viewData} */}
                   <Text style={{ color: "#666e68" }}>
                     {Item.Question.Metadata}
                   </Text>
-
                   <Text>{Item.Value}</Text>
+
                   {this.props.editingMode === true ? (
-                    <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, marginLeft: 20 }}>
                       <TouchableHighlight
                         onPress={() => {
                           debugger;
@@ -124,7 +154,7 @@ export class ProductService extends Component {
                       </TouchableHighlight>
                     </View>
                   ) : (
-                    <Text>""</Text>
+                    <Text></Text>
                   )}
                 </ListItem>
               );

@@ -74,7 +74,10 @@ export default class ProfileDataCompletingComponent extends Component {
       });
       this.setState({
         answers: _answers,
-        questionNumber: this.state.questionNumber + 1
+        questionNumber: this.state.questionNumber + 1,
+        currentAnswer: "",
+        SelectedYes: false,
+        selectedNo: false
       });
       console.log("statt", this.state);
     }
@@ -92,8 +95,11 @@ export default class ProfileDataCompletingComponent extends Component {
     const { height: screenHeight, width: screenWidth } = Dimensions.get(
       "window"
     );
+    const isEnabled = this.state.currentAnswer.length > 0;
+    debugger;
     const skip = this.props.questions[this.state.questionNumber].IsMandatory ? (
       <Button
+        disabled={!isEnabled}
         dark
         full
         style={{
@@ -101,31 +107,33 @@ export default class ProfileDataCompletingComponent extends Component {
           borderWidth: 0.2,
           width: 300,
           alignSelf: "center",
-          backgroundColor: "#ef9c05"
+          backgroundColor: !isEnabled ? "#808080" : "#ef9c05"
         }}
         onPress={() => {
           this.addUserQuestionAnswer();
         }}
       >
-        <Text>Answer</Text>
+        <Text>Next</Text>
       </Button>
     ) : (
       <Row>
         <Col size={50}>
           <Button
+            disabled={!isEnabled}
             dark
             full
             style={{
               borderRadius: 10,
               borderWidth: 0.2,
               width: 100,
-              backgroundColor: "#ef9c05"
+              marginLeft: 40,
+              backgroundColor: !isEnabled ? "#808080" : "#ef9c05"
             }}
             onPress={() => {
               this.addUserQuestionAnswer();
             }}
           >
-            <Text>Answer</Text>
+            <Text>Next</Text>
           </Button>
         </Col>
         <Col size={50}>
@@ -150,7 +158,8 @@ export default class ProfileDataCompletingComponent extends Component {
       </Row>
     );
     return (
-      <Container style={{ paddingTop: 10 }}>
+      <Container>
+        <Header style={{ backgroundColor: "#60b4c2" }}></Header>
         <ImageBackground
           source={require("../../../../assets/login/login.png")}
           style={{ flex: 1, height: screenHeight, width: screenWidth }}
@@ -163,16 +172,11 @@ export default class ProfileDataCompletingComponent extends Component {
 
           <View style={{ flex: 1, marginTop: 15 }}>
             <KeyboardAwareScrollView enableOnAndroid>
-              <Grid>
-                <Col size={30}>
-                  <Text> Question {this.state.questionNumber + 1}</Text>
-                </Col>
-                <Col size={70}>
-                  <Text>
-                    {this.props.questions[this.state.questionNumber].Name}
-                  </Text>
-                </Col>
-              </Grid>
+              <View style={{ alignItems: "center" }}>
+                <Text>
+                  {this.props.questions[this.state.questionNumber].Name}
+                </Text>
+              </View>
               <View
                 style={{
                   flex: 1,

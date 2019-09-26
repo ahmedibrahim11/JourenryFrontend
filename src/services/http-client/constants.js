@@ -1,5 +1,5 @@
-const PROD_BASE_URL = "";
-const DEV_BASE_URL = "http://journeyappfrontend.azurewebsites.net/";
+const PROD_BASE_URL = "http://journeyappfrontend.azurewebsites.net/";
+const DEV_BASE_URL = "http://515a0dbc.ngrok.io/";
 
 const DEV = true;
 

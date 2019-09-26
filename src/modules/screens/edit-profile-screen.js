@@ -105,7 +105,7 @@ class EditProfileContainer extends Component {
                 this.saveUpdatedAnswers(this.state.updatedAnwsers);
               }}
             >
-              <Text>Save</Text>
+              <Text>Edit</Text>
             </Button>
           </Right>
         </Header>
