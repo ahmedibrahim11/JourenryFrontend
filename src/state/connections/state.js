@@ -1,12 +1,14 @@
 // @Flow
 
-import { ConnectionModel } from "../../proxy/models";
+import { ConnectionModel, ConnectionsDto } from "../../proxy/models";
 export interface ConnectionsState {
-  connections: ConnectionModel[];
+  connections: ConnectionsDto;
+  requestedConnections: ConnectionsDto;
   currentSelectedUserId: number;
 }
 
 export const ConnectionsInitialState: ConnectionsState = {
   connections: [],
+  requestedConnections: [],
   currentUserId: 0
 };

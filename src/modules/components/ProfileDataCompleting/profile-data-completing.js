@@ -31,7 +31,8 @@ export default class ProfileDataCompletingComponent extends Component {
       currentAnswer: "",
       userId: 1,
       SelectedYes: false,
-      selectedNo: false
+      selectedNo: false,
+      textareaClear: () => {}
     };
     this.addUserQuestionAnswer = this.addUserQuestionAnswer.bind(this);
     this.getCurrentAnswer = this.getCurrentAnswer.bind(this);
@@ -72,6 +73,7 @@ export default class ProfileDataCompletingComponent extends Component {
         answer: this.state.currentAnswer,
         questionId: this.props.questions[this.state.questionNumber].Id
       });
+      this.state.textareaClear();
       this.setState({
         answers: _answers,
         questionNumber: this.state.questionNumber + 1,
@@ -83,9 +85,13 @@ export default class ProfileDataCompletingComponent extends Component {
     }
   }
 
-  getCurrentAnswer(answer: UserAnswer) {
+  getCurrentAnswer(answer: UserAnswer, callBack, questionType) {
     debugger;
-    this.setState({ currentAnswer: answer });
+    if (questionType == 2) {
+      this.setState({ currentAnswer: answer, textareaClear: callBack });
+    } else {
+      this.setState({ currentAnswer: answer });
+    }
   }
 
   render() {

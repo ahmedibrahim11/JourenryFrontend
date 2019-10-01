@@ -8,12 +8,31 @@ import {
 import axios from "axios";
 
 export class ConnectionProxyService {
-  async getConnections(journeyId: number) {
+  async getConnections(userId: number) {
     return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
       headers: { "Access-Control-Allow-Origin": "*" }
     });
   }
-
+  async getConnectionProfileData(userId: number) {
+    return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
+      headers: { "Access-Control-Allow-Origin": "*" }
+    });
+  }
+  async acceptConnectionRequest(senderId: number, reciverId: number) {
+    return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
+      headers: { "Access-Control-Allow-Origin": "*" }
+    });
+  }
+  async rejectConnectionRequest(senderId: number, reciverId: number) {
+    return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
+      headers: { "Access-Control-Allow-Origin": "*" }
+    });
+  }
+  async sendConnectionRequest(senderId: number, reciverId: number) {
+    return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
+      headers: { "Access-Control-Allow-Origin": "*" }
+    });
+  }
   //   async acceptReview(orderId: number) {
   //     return await axios.post(`${BASE_URL}/customer/acceptReview/${orderId}`, {
   //       headers: { "Access-Control-Allow-Origin": "*" }

@@ -14,7 +14,6 @@ export interface UserRegisterModel {
 export interface ConnectionModel {
   id: number;
   userName: string;
-  password: string;
   email: string;
   mobileNumber: number;
   gender: number;

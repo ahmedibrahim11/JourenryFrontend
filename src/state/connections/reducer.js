@@ -6,7 +6,9 @@ import * as types from "./actions";
 type Action =
   | actions.LOAD_CONNECTIONS_ACTION
   | actions.SELECT_CONNECTION_ACTION
-  | actions.GET_CONNECTION_BY_ID_ACTION;
+  | actions.ACCEPT_CONNECTION_REQUEST_ACTION
+  | actions.REJECT_CONNECTION_REQUEST_ACTION
+  | actions.SEND_CONNECTION_REQUEST_ACTION;
 
 export function connectionReducer(
   state: ConnectionsState = ConnectionsInitialState,
@@ -17,16 +19,35 @@ export function connectionReducer(
       debugger;
       return {
         ...state,
-        connections: action.payload,
-        currentUserId: 0
+        connections: action.payload
       };
     }
-    case types.GET_CONNECTION_BY_ID: {
+    case types.SELECT_CONNECTION: {
       return {
         ...state,
         currentUserId: action.payload
       };
     }
+    case types.ACCEPT_CONNECTION_REQUEST: {
+      let currentRequestedConnections = state.requestedConnections.filter(
+        u => u.requestedConnections.id != action.payload.id
+      );
+      return {
+        ...state,
+        requestedConnections: currentRequestedConnections,
+        connections: connections.push(action.payload)
+      };
+    }
+    case types.REJECT_CONNECTION_REQUEST: {
+      let currentRequestedConnections = state.requestedConnections.filter(
+        u => u.requestedConnections.id != action.payload.id
+      );
+      return {
+        ...state,
+        requestedConnections: currentRequestedConnections
+      };
+    }
+    case types.SEND_CONNECTION_REQUEST:
     default:
       return state;
   }

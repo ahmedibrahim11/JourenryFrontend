@@ -18,12 +18,13 @@ import {
 import * as _ from "lodash";
 import { TextInput } from "react-native-gesture-handler";
 export default class QuestionAnswersType extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedYes: false,
       selectedNo: false,
-      selectedOption: undefined
+      selectedOption: undefined,
+      answer: ""
     };
   }
   props: {
@@ -40,6 +41,11 @@ export default class QuestionAnswersType extends Component {
   componentWillMount() {
     console.log("currentAnswer", this.props.currentAnswer);
   }
+
+  textarea() {
+    this.setState({ answer: "" });
+  }
+
   render() {
     const dropDownChoices = [
       {
@@ -1110,7 +1116,7 @@ export default class QuestionAnswersType extends Component {
           : "";
         return (
           <Textarea
-            defaultValue={oldValue}
+            defaultValue={this.state.answer}
             style={{
               width: 300,
               borderColor: "black",
@@ -1121,9 +1127,11 @@ export default class QuestionAnswersType extends Component {
             bordered
             placeholder="Your Answer"
             onChangeText={txt => {
-              var answer = txt;
-              this.props.getCurrentAnswer(answer);
+              this.props.getCurrentAnswer(txt, this.textarea.bind(this), 2);
+              this.setState({ answer: txt });
+              //  txt = "";
             }}
+            value={this.state.answer}
           />
         );
       }
