@@ -14,7 +14,8 @@ import images from "../../assets/images";
 import HomeScreen from "./screens/home-screen";
 import ProfileScreen from "./screens/profile-screen";
 import { SettingScreen } from "../modules/screens";
-import ConnectionComponent from "./components/Connections/connections-component";
+import ConnectionScreen from "./screens/connections-container";
+// import ConnectionComponent from "./components/Connections/connections-component";
 export const TabNavigator = createBottomTabNavigator(
   {
     Home: {
@@ -26,7 +27,7 @@ export const TabNavigator = createBottomTabNavigator(
       }
     },
     Connections: {
-      screen: ConnectionComponent,
+      screen: ConnectionScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Image

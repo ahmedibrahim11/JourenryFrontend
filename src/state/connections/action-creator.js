@@ -77,9 +77,11 @@ export function onFailer(): FAILER_ACTION {
   const errorMsg = "UNEXPECTED HAGA HASLET";
   return { type: types.FAILER, payload: errorMsg };
 }
+
 /************************************************************/
 
 export function loadConnections(): LOAD_CONNECTIONS_ACTION {
+  debugger;
   return async dispatch => {
     // const userId = state.authorization.token.userId;
     const journeyId = 1;

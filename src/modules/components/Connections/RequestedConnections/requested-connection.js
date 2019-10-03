@@ -28,29 +28,21 @@ export default class RequestedConnectionComponent extends Component {
   constructor() {
     super();
     this.state = {
-      final: [],
-      data: [
-        { key: "1" },
-        { key: "2" },
-        { key: "3" },
-        { key: "4" },
-        { key: "5" },
-        { key: "6" }
-      ]
+      final: []
     };
   }
-  _onChangeSearchText(text) {
-    //   let _final = [];
-    //   this.props.connections.forEach(function(item) {
-    //     if (
-    //       Object.values(item)
-    //         .toString()
-    //         .includes(text)
-    //     )
-    //       _final.push(item);
-    //   });
-    //   this.setState({ final: _final });
-  }
+  // _onChangeSearchText(text) {
+  //   //   let _final = [];
+  //   //   this.props.connections.forEach(function(item) {
+  //   //     if (
+  //   //       Object.values(item)
+  //   //         .toString()
+  //   //         .includes(text)
+  //   //     )
+  //   //       _final.push(item);
+  //   //   });
+  //   //   this.setState({ final: _final });
+  // }
 
   props: {
     acceptedConnections: any
@@ -68,7 +60,7 @@ export default class RequestedConnectionComponent extends Component {
 
           <View>
             <List
-              dataArray={this.state.data}
+              dataArray={this.props.requestedConnections}
               renderRow={Item => (
                 <ListItem style={rcs.listItem} thumbnail rounded>
                   <View style={rcs.listItemThumbnailView}>
@@ -87,10 +79,22 @@ export default class RequestedConnectionComponent extends Component {
                   </View>
 
                   <View style={rcs.listItemButtonsView}>
-                    <Button rounded style={rcs.cancelButton}>
+                    <Button
+                      onPress={() => {
+                        // this.props.onRejectingConnectionRequest(senderId);
+                      }}
+                      rounded
+                      style={rcs.cancelButton}
+                    >
                       <Text style={{ color: "#EF9C05" }}>Cancel</Text>
                     </Button>
-                    <Button rounded style={rcs.acceptButton}>
+                    <Button
+                      onPress={() => {
+                        this.props.onAcceptingConnectionRequest(senderId);
+                      }}
+                      rounded
+                      style={rcs.acceptButton}
+                    >
                       <Text style={{ color: "#ffffff" }}>Accept</Text>
                     </Button>
                   </View>

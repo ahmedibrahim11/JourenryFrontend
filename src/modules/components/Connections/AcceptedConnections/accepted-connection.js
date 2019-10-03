@@ -77,7 +77,7 @@ export default class AcceptedConnectionComponent extends Component {
           </View>
 
           <List
-            dataArray={this.state.data}
+            dataArray={this.props.connections}
             renderRow={Item => (
               <ListItem
                 style={{

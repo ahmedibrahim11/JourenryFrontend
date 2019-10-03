@@ -100,32 +100,7 @@ export class ProductService extends Component {
           <List style={{ flex: 1 }}>
             {this.props.answers.map((Item, index) => {
               debugger;
-              // const viewData =
-              //   Item.Question.QuestionType === 2 ? (
-              //     <Grid>
-              //       <Row>
-              //         <Text style={{ color: "#666e68" }}>
-              //           {Item.Question.Metadata}
-              //         </Text>
-              //       </Row>
-              //       <Row>
-              //         <Text>{Item.Value}</Text>
-              //       </Row>
-              //     </Grid>
-              //   ) : (
-              //     <View style={{ flex: 1 }}>
-              //       <Grid>
-              //         <Col size={65}>
-              //           <Text style={{ color: "#666e68" }}>
-              //             {Item.Question.Metadata}
-              //           </Text>
-              //         </Col>
-              //         <Col>
-              //           <Text>{Item.Value}</Text>
-              //         </Col>
-              //       </Grid>
-              //     </View>
-              //   );
+
               return (
                 <ListItem key={index}>
                   {/* {viewData} */}

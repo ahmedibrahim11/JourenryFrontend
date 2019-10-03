@@ -6,4 +6,6 @@ export * from "./profile-screen";
 
 export * from "./setting-screen";
 
+export * from "./connections-container";
+
 export * from "./profile-data-completing-screen";

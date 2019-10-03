@@ -1,29 +1,23 @@
 import React, { Component } from "react";
-import { Image, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import {
   Container,
   Header,
   Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Icon,
-  Left,
-  Body,
-  List,
-  ListItem,
   Tab,
   Tabs,
   ScrollableTab,
   Title,
   View,
-  TabHeading
+  TabHeading,
+  Item
 } from "native-base";
 import AcceptedConnectionComponent from "./AcceptedConnections/accepted-connection";
 import RequestedConnectionComponent from "./RequestedConnections/requested-connection";
 export default class ConnectionComponent extends Component {
+  componentDidMount() {
+    this.props.onConnectionsLoaded();
+  }
   render() {
     return (
       <Container>
@@ -47,7 +41,9 @@ export default class ConnectionComponent extends Component {
                 activeTabStyle={styles.activeTabStyle}
                 activeTextStyle={styles.activeTextStyle}
               >
-                <AcceptedConnectionComponent />
+                <AcceptedConnectionComponent
+                  connections={this.props.connections.filter(Item => Item)}
+                />
               </Tab>
               <Tab
                 heading="New Requests"
@@ -56,7 +52,17 @@ export default class ConnectionComponent extends Component {
                 activeTabStyle={styles.activeTabStyle}
                 activeTextStyle={styles.activeTextStyle}
               >
-                <RequestedConnectionComponent />
+                <RequestedConnectionComponent
+                  requestedConnections={this.props.connections.filter(
+                    Item => Item
+                  )}
+                  onAcceptingConnectionRequest={
+                    this.props.onAcceptingConnectionRequest
+                  }
+                  onRejectingConnectionRequest={
+                    this.props.onRejectingConnectionRequest
+                  }
+                />
               </Tab>
             </Tabs>
           </Content>
@@ -65,6 +71,7 @@ export default class ConnectionComponent extends Component {
     );
   }
 }
+
 var styles = StyleSheet.create({
   tabStyle: {
     backgroundColor: "white",

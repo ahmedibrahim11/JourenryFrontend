@@ -8,7 +8,7 @@ import {
 import axios from "axios";
 
 export class ConnectionProxyService {
-  async getConnections(userId: number) {
+  async getConnections(journeyId: number) {
     return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
       headers: { "Access-Control-Allow-Origin": "*" }
     });
@@ -29,9 +29,12 @@ export class ConnectionProxyService {
     });
   }
   async sendConnectionRequest(senderId: number, reciverId: number) {
-    return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
-      headers: { "Access-Control-Allow-Origin": "*" }
-    });
+    return await axios.get(
+      `${BASE_URL}Connection/newconnection/${senderId}/${reciverId}`,
+      {
+        headers: { "Access-Control-Allow-Origin": "*" }
+      }
+    );
   }
   //   async acceptReview(orderId: number) {
   //     return await axios.post(`${BASE_URL}/customer/acceptReview/${orderId}`, {
