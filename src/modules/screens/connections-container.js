@@ -20,17 +20,14 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import ConnectionComponent from "../components/Connections/connections-component";
 
-import { loadConnections } from "../../state/connections/action-creator";
+import { loadMyConnections,acceptingConnectionRequest,rejectingConnectionRequest } from "../../state/connections/action-creator";
 
 class ConnectionContainer extends Component {
   props: {
-    connections: [],
-    loadConnections: () => void,
-    requestedConnections: [],
-    onConnectionsLoaded: () => void,
-    onAcceptingConnectionRequest: (senderId: Number) => void,
-    onRejectingConnectionRequest: () => void,
-    onSendConnectionRequest: () => void
+    myConnections: [],
+    loadMyConnections: () => void,
+    acceptingConnectionRequest: (senderId: Number) => void,
+    rejectingConnectionRequest: () => void,
   };
 
   componentWillMount() {
@@ -41,19 +38,16 @@ class ConnectionContainer extends Component {
 
   static mapStatetToProps(state: State) {
     return {
-      connections: state.connections.connections,
-      requestedConnections: state.connections.requestedConnections
+      myConnections: state.connection.myConnections,
     };
   }
 
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators(
       {
-        onConnectionsLoaded,
-        onAcceptingConnectionRequest,
-        onRejectingConnectionRequest,
-        onSendConnectionRequest,
-        loadConnections
+        loadMyConnections,
+        acceptingConnectionRequest,
+        rejectingConnectionRequest
       },
       dispatch
     );
@@ -63,12 +57,10 @@ class ConnectionContainer extends Component {
     return (
       <Container>
         <ConnectionComponent
-          connections={this.props.connections}
-          requestedConnections={this.props.requestedConnections}
-          onConnectionsLoaded={this.props.onConnectionsLoaded}
-          onAcceptingConnectionRequest={this.props.onAcceptingConnectionRequest}
-          onRejectingConnectionRequest={this.props.onRejectingConnectionRequest}
-          onSendConnectionRequest={this.props.onSendConnectionRequest}
+          myConnections={this.props.myConnections}
+          loadMyConnections={this.props.loadMyConnections}
+          acceptingConnectionRequest={this.props.acceptingConnectionRequest}
+          rejectingConnectionRequest={this.props.rejectingConnectionRequest}
         ></ConnectionComponent>
       </Container>
     );

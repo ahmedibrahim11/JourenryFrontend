@@ -31,21 +31,9 @@ export default class RequestedConnectionComponent extends Component {
       final: []
     };
   }
-  // _onChangeSearchText(text) {
-  //   //   let _final = [];
-  //   //   this.props.connections.forEach(function(item) {
-  //   //     if (
-  //   //       Object.values(item)
-  //   //         .toString()
-  //   //         .includes(text)
-  //   //     )
-  //   //       _final.push(item);
-  //   //   });
-  //   //   this.setState({ final: _final });
-  // }
 
   props: {
-    acceptedConnections: any
+    requestedConnections: any
   };
 
   render() {
@@ -59,48 +47,51 @@ export default class RequestedConnectionComponent extends Component {
           </View>
 
           <View>
-            <List
-              dataArray={this.props.requestedConnections}
-              renderRow={Item => (
-                <ListItem style={rcs.listItem} thumbnail rounded>
-                  <View style={rcs.listItemThumbnailView}>
-                    <Left>
-                      <Thumbnail large source={images.logo} />
-                    </Left>
-                  </View>
-                  <View style={rcs.listItemTextView}>
-                    <Body>
-                      <Text style={rcs.contactName}>Menna Mohamed</Text>
+            <List style={{ flex: 1 }}>
+              {this.props.requestedConnections.map((Item, index) => {
+                debugger;
 
-                      <Text style={rcs.contactTitle}>
-                        Fashion Designer FreeLancer
-                      </Text>
-                    </Body>
-                  </View>
+                return (
+                  <ListItem style={rcs.listItem} thumbnail rounded>
+                    <View style={rcs.listItemThumbnailView}>
+                      <Left>
+                        <Thumbnail large source={images.logo} />
+                      </Left>
+                    </View>
+                    <View style={rcs.listItemTextView}>
+                      <Body>
+                        <Text style={rcs.contactName}>{Item.Name}</Text>
 
-                  <View style={rcs.listItemButtonsView}>
-                    <Button
-                      onPress={() => {
-                        // this.props.onRejectingConnectionRequest(senderId);
-                      }}
-                      rounded
-                      style={rcs.cancelButton}
-                    >
-                      <Text style={{ color: "#EF9C05" }}>Cancel</Text>
-                    </Button>
-                    <Button
-                      onPress={() => {
-                        this.props.onAcceptingConnectionRequest(senderId);
-                      }}
-                      rounded
-                      style={rcs.acceptButton}
-                    >
-                      <Text style={{ color: "#ffffff" }}>Accept</Text>
-                    </Button>
-                  </View>
-                </ListItem>
-              )}
-            />
+                        <Text style={rcs.contactTitle}>
+                          {Item.Email}
+                        </Text>
+                      </Body>
+                    </View>
+
+                    <View style={rcs.listItemButtonsView}>
+                      <Button
+                        onPress={() => {
+                          this.props.onRejectingConnectionRequest(Item.ConnectionId);
+                        }}
+                        rounded
+                        style={rcs.cancelButton}
+                      >
+                        <Text style={{ color: "#EF9C05" }}>Cancel</Text>
+                      </Button>
+                      <Button
+                        onPress={() => {
+                          this.props.acceptingConnectionRequest(Item.ConnectionId);
+                        }}
+                        rounded
+                        style={rcs.acceptButton}
+                      >
+                        <Text style={{ color: "#ffffff" }}>Accept</Text>
+                      </Button>
+                    </View>
+                  </ListItem>
+                );
+              })}
+            </List>
           </View>
         </Content>
       </Container>

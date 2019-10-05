@@ -3,12 +3,12 @@
 import { ConnectionModel, ConnectionsDto } from "../../proxy/models";
 export interface ConnectionsState {
   connections: ConnectionsDto;
-  requestedConnections: ConnectionsDto;
+  myConnections: Array;
   currentSelectedUserId: number;
 }
 
 export const ConnectionsInitialState: ConnectionsState = {
   connections: [],
-  requestedConnections: [],
+  myConnections: [],
   currentUserId: 0
 };

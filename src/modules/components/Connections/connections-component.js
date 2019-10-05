@@ -16,7 +16,7 @@ import AcceptedConnectionComponent from "./AcceptedConnections/accepted-connecti
 import RequestedConnectionComponent from "./RequestedConnections/requested-connection";
 export default class ConnectionComponent extends Component {
   componentDidMount() {
-    this.props.onConnectionsLoaded();
+    this.props.loadMyConnections();
   }
   render() {
     return (
@@ -42,7 +42,7 @@ export default class ConnectionComponent extends Component {
                 activeTextStyle={styles.activeTextStyle}
               >
                 <AcceptedConnectionComponent
-                  connections={this.props.connections.filter(Item => Item)}
+                  acceptedConnections={this.props.myConnections.filter(Item => Item.Status==2)}
                 />
               </Tab>
               <Tab
@@ -53,14 +53,12 @@ export default class ConnectionComponent extends Component {
                 activeTextStyle={styles.activeTextStyle}
               >
                 <RequestedConnectionComponent
-                  requestedConnections={this.props.connections.filter(
-                    Item => Item
-                  )}
-                  onAcceptingConnectionRequest={
-                    this.props.onAcceptingConnectionRequest
+                  requestedConnections={this.props.myConnections.filter(Item => Item.Status==1)}
+                  acceptingConnectionRequest={
+                    this.props.acceptingConnectionRequest
                   }
-                  onRejectingConnectionRequest={
-                    this.props.onRejectingConnectionRequest
+                  rejectingConnectionRequest={
+                    this.props.rejectingConnectionRequest
                   }
                 />
               </Tab>

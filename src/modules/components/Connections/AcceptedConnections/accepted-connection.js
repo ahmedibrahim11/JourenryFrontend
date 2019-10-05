@@ -29,8 +29,7 @@ export default class AcceptedConnectionComponent extends Component {
   constructor() {
     super();
     this.state = {
-      final: [],
-      data: [{ key: "1" }, { key: "2" }]
+      final: []
     };
   }
   _onChangeSearchText(text) {
@@ -76,55 +75,58 @@ export default class AcceptedConnectionComponent extends Component {
             </InputGroup>
           </View>
 
-          <List
-            dataArray={this.props.connections}
-            renderRow={Item => (
-              <ListItem
-                style={{
-                  width: "90%",
-                  backgroundColor: "white",
-                  marginBottom: 10
-                }}
-                thumbnail
-              >
-                <Left style={{ marginLeft: 5 }}>
-                  <Thumbnail large source={images.logo} />
-                </Left>
-                <Body>
-                  <Text style={{ marginBottom: 7, fontWeight: "bold" }}>
-                    Menna Mohamed
-                  </Text>
-                  <Text style={{ fontSize: 12, marginBottom: 4 }}>
-                    Fashion Designer FreeLancer
-                  </Text>
-                  <View style={{ flex: 1, flexDirection: "row" }}>
-                    <Icon
-                      style={{
-                        color: "#60b4c2",
-                        fontSize: 17,
-                        marginRight: 4
-                      }}
-                      name="md-call"
-                    />
+          <List style={{ flex: 1 }}>
+            {this.props.acceptedConnections.map((Item, index) => {
+              debugger;
 
-                    <Text style={{ fontSize: 12 }}>+20 1143713532</Text>
-                  </View>
-                  <View style={{ flex: 1, flexDirection: "row" }}>
-                    <Icon
-                      style={{
-                        color: "#60b4c2",
-                        fontSize: 17,
-                        marginRight: 4
-                      }}
-                      name="mail"
-                    />
+              return (
+                <ListItem
+                  style={{
+                    width: "90%",
+                    backgroundColor: "white",
+                    marginBottom: 10
+                  }}
+                  thumbnail
+                >
+                  <Left style={{ marginLeft: 5 }}>
+                    <Thumbnail large source={images.logo} />
+                  </Left>
+                  <Body>
+                    <Text style={{ marginBottom: 7, fontWeight: "bold" }}>
+                      {Item.Name}
+                    </Text>
+                    <Text style={{ fontSize: 12, marginBottom: 4 }}>
+                      {Item.Email}
+                    </Text>
+                    <View style={{ flex: 1, flexDirection: "row" }}>
+                      <Icon
+                        style={{
+                          color: "#60b4c2",
+                          fontSize: 17,
+                          marginRight: 4
+                        }}
+                        name="md-call"
+                      />
 
-                    <Text style={{ fontSize: 12 }}>Mennamohamed@gmail.com</Text>
-                  </View>
-                </Body>
-              </ListItem>
-            )}
-          />
+                      <Text style={{ fontSize: 12 }}>+20 1143713532</Text>
+                    </View>
+                    <View style={{ flex: 1, flexDirection: "row" }}>
+                      <Icon
+                        style={{
+                          color: "#60b4c2",
+                          fontSize: 17,
+                          marginRight: 4
+                        }}
+                        name="mail"
+                      />
+
+                      <Text style={{ fontSize: 12 }}>{Item.Email} </Text>
+                    </View>
+                  </Body>
+                </ListItem>
+              );
+            })}
+          </List>
         </Content>
       </Container>
     );

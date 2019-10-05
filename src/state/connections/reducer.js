@@ -2,9 +2,10 @@
 import { ConnectionsState, ConnectionsInitialState } from "./state";
 import * as actions from "./action-creator";
 import * as types from "./actions";
-
+import * as _ from "lodash";
 type Action =
   | actions.LOAD_CONNECTIONS_ACTION
+  | actions.LOAD_MY_CONNECTIONS_ACTION
   | actions.SELECT_CONNECTION_ACTION
   | actions.ACCEPT_CONNECTION_REQUEST_ACTION
   | actions.REJECT_CONNECTION_REQUEST_ACTION
@@ -22,6 +23,13 @@ export function connectionReducer(
         connections: action.payload
       };
     }
+    case types.LOAD_ALL_MY_CONNECTIONS: {
+      debugger;
+      return {
+        ...state,
+        myConnections: action.payload
+      };
+    }
     case types.SELECT_CONNECTION: {
       return {
         ...state,
@@ -29,22 +37,31 @@ export function connectionReducer(
       };
     }
     case types.ACCEPT_CONNECTION_REQUEST: {
-      let currentRequestedConnections = state.requestedConnections.filter(
-        u => u.requestedConnections.id != action.payload.id
+      let currentConnectionsUpdatedStatus = _.map(
+        state.myConnections,
+        connection => {
+          if (connection.ConnectionId == action.payload) {
+            connection.Status = 2;
+          }
+          return connection;
+        }
       );
+      debugger;
       return {
         ...state,
-        requestedConnections: currentRequestedConnections,
-        connections: connections.push(action.payload)
+        myConnections: currentConnectionsUpdatedStatus
       };
     }
     case types.REJECT_CONNECTION_REQUEST: {
-      let currentRequestedConnections = state.requestedConnections.filter(
-        u => u.requestedConnections.id != action.payload.id
+      let currentConnectionsUpdatedStatus = state.myConnections.filter(
+        connection => {
+          connection.ConnectionId != action.payload;
+        }
       );
+
       return {
         ...state,
-        requestedConnections: currentRequestedConnections
+        myConnections: currentConnectionsUpdatedStatus
       };
     }
     case types.SEND_CONNECTION_REQUEST:

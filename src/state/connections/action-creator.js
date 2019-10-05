@@ -13,6 +13,11 @@ export type LOAD_CONNECTIONS_ACTION = {
   payload: any
 };
 
+export type LOAD_MY_CONNECTIONS_ACTION = {
+  type: string,
+  payload: any
+};
+
 export type SELECT_CONNECTION_ACTION = {
   type: string,
   payload: any
@@ -38,7 +43,11 @@ export type FAILER_ACTION = {
 /************************************************************/
 
 export function onConnectionsLoaded(connections): LOAD_CONNECTIONS_ACTION {
-  return { type: types.LOAD_ALL_CONNECTIONS, payload: connection };
+  return { type: types.LOAD_ALL_CONNECTIONS, payload: connections };
+}
+
+export function onMyConnectionsLoaded(connections): LOAD_MY_CONNECTIONS_ACTION {
+  return { type: types.LOAD_ALL_MY_CONNECTIONS, payload: connections };
 }
 
 export function connectionProfileDataViewing(
@@ -52,7 +61,7 @@ export function onAcceptingConnectionRequest(
 ): ACCEPT_CONNECTION_REQUEST_ACTION {
   return {
     type: types.ACCEPT_CONNECTION_REQUEST,
-    payload: { senderId, reciverId }
+    payload: senderId
   };
 }
 
@@ -99,6 +108,23 @@ export function loadConnections(): LOAD_CONNECTIONS_ACTION {
   };
 }
 
+
+export function loadMyConnections(): LOAD_CONNECTIONS_ACTION {
+  return async dispatch => {
+    // const userId = state.authorization.token.userId;
+    const journeyId = 1;
+    let response = await connectionProxyService.getMyConnections(journeyId);
+    let conns;
+    conns = await response.data;
+    if (response.status === 200) {
+      debugger;
+      dispatch(onMyConnectionsLoaded(conns));
+    } else {
+      dispatch(onFailer());
+    }
+  };
+}
+
 export function GetUserById(userId: number): SELECT_CONNECTION_ACTION {
   debugger;
   return async (dispatch, getState) => {
@@ -125,20 +151,18 @@ export function acceptingConnectionRequest(
   senderId: Number
 ): ACCEPT_CONNECTION_REQUEST_ACTION {
   return async (dispatch, getState) => {
+  
     const state = getState();
-    const reciverId = state.authorization.token.userId;
-
+    var reciverId = state.authorization.token.id;
+    debugger;
     let response = await connectionProxyService.acceptConnectionRequest(
       senderId,
       reciverId
     );
-    let userData;
-    debugger;
-    userData = await response.data;
-    debugger;
+ 
     if (response.status === 200) {
       debugger;
-      dispatch(onAcceptingConnectionRequest(userData));
+      dispatch(onAcceptingConnectionRequest(senderId));
     } else {
       dispatch(onFailer());
     }
