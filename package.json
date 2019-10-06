@@ -10,6 +10,7 @@
     "axios": "^0.18.1",
     "expo": "^33.0.0",
     "expo-jwt": "^1.1.2",
+    "expo-permissions": "~5.0.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "native-base": "^2.13.8",

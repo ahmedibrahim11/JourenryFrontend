@@ -8,7 +8,8 @@ import { persistStore, persistReducer } from "redux-persist";
 import { Application } from "./src/application";
 import { Navigator } from "./src/routing";
 import { PersistGate } from "redux-persist/integration/react";
-
+import { Notifications } from "expo";
+import { NotificationManager } from "./src/services/pushNotification";
 export default class App extends Component {
   constructor() {
     super();
@@ -25,11 +26,12 @@ export default class App extends Component {
       Ionicons: require("native-base/Fonts/Ionicons.ttf")
     });
     this.setState({ isReady: true });
+    Notifications.addListener(notification => {
+      NotificationManager.handleNotification(notification);
+      debugger;
+    });
   }
-  async componentWillUnmount() {
-    debugger;
-    await Application.onClose();
-  }
+
   _handleAppStateChange = async nextAppState => {
     debugger;
     if (

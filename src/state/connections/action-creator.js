@@ -78,7 +78,7 @@ export function onSendConnectionRequest(
 ): SEND_CONNECTION_REQUEST_ACTION {
   return {
     type: types.SEND_CONNECTION_REQUEST,
-    payload: { senderId, reciverId }
+    payload: reciverId
   };
 }
 
@@ -91,10 +91,10 @@ export function onFailer(): FAILER_ACTION {
 
 export function loadConnections(): LOAD_CONNECTIONS_ACTION {
   debugger;
-  return async dispatch => {
-    // const userId = state.authorization.token.userId;
-    const journeyId = 1;
-    let response = await connectionProxyService.getConnections(journeyId);
+  return async (dispatch, getState) => {
+    const state = getState();
+    let userId = state.authorization.token.id;
+    let response = await connectionProxyService.getConnections(userId);
     let conns;
     debugger;
     conns = await response.data;
@@ -108,12 +108,13 @@ export function loadConnections(): LOAD_CONNECTIONS_ACTION {
   };
 }
 
+export function loadMyConnections(): LOAD_ALL_MY_CONNECTIONS {
+  return async (dispatch, getState) => {
+    const state = getState();
+    let userId = state.authorization.token.id;
+    debugger;
 
-export function loadMyConnections(): LOAD_CONNECTIONS_ACTION {
-  return async dispatch => {
-    // const userId = state.authorization.token.userId;
-    const journeyId = 1;
-    let response = await connectionProxyService.getMyConnections(journeyId);
+    let response = await connectionProxyService.getMyConnections(userId);
     let conns;
     conns = await response.data;
     if (response.status === 200) {
@@ -129,8 +130,9 @@ export function GetUserById(userId: number): SELECT_CONNECTION_ACTION {
   debugger;
   return async (dispatch, getState) => {
     debugger;
-    // const state = getState();
-    // dispatch({ type: UiTypes.UI_LOADING });
+    const state = getState();
+    let userId = state.authorization.token.id;
+
     let response = await connectionProxyService.getConnectionProfileData(
       userId
     );
@@ -151,15 +153,14 @@ export function acceptingConnectionRequest(
   senderId: Number
 ): ACCEPT_CONNECTION_REQUEST_ACTION {
   return async (dispatch, getState) => {
-  
     const state = getState();
-    var reciverId = state.authorization.token.id;
+    let reciverId = state.authorization.token.id;
     debugger;
     let response = await connectionProxyService.acceptConnectionRequest(
       senderId,
       reciverId
     );
- 
+
     if (response.status === 200) {
       debugger;
       dispatch(onAcceptingConnectionRequest(senderId));
@@ -173,7 +174,7 @@ export function rejectingConnectionRequest(
 ): REJECT_CONNECTION_REQUEST_ACTION {
   return async (dispatch, getState) => {
     const state = getState();
-    const reciverId = state.authorization.token.userId;
+    const reciverId = state.authorization.token.id;
 
     let response = await connectionProxyService.rejectConnectionRequest(
       senderId,
@@ -196,7 +197,7 @@ export function sendingConnectionRequest(
 ): SEND_CONNECTIONS_ACTION {
   return async (dispatch, getState) => {
     const state = getState();
-    const senderId = state.authorization.token.userId;
+    const senderId = state.authorization.token.id;
 
     let response = await connectionProxyService.sendConnectionRequest(
       senderId,
@@ -208,7 +209,7 @@ export function sendingConnectionRequest(
     debugger;
     if (response.status === 200) {
       debugger;
-      dispatch(onSendConnectionRequest());
+      dispatch(onSendConnectionRequest(reciverId));
     } else {
       dispatch(onFailer());
     }

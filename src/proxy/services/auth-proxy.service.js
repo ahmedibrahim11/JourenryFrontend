@@ -11,7 +11,8 @@ export class AuthProxyService {
     const data = {};
     data["email"] = user.email;
     data["password"] = user.password;
-
+    data["tokenPush"] = Application.token;
+    debugger;
     return await fetch(`${BASE_URL}auth/login`, {
       method: "post",
       headers: { "content-Type": "application/json" },
@@ -34,9 +35,7 @@ export class AuthProxyService {
   }
 
   async confirm(user: UserConfirmModel) {
-    const data = `grant_type=confirm&membershipid=${user.membershipId}&mobile=${
-      user.mobile
-    }&pin=${user.pin}&client_id=1&client_secret=p@$$w0rd`;
+    const data = `grant_type=confirm&membershipid=${user.membershipId}&mobile=${user.mobile}&pin=${user.pin}&client_id=1&client_secret=p@$$w0rd`;
     return await fetch(`${BASE_URL}/token`, {
       method: "post",
       headers: { "content-Type": "application/x-www-form-urlencoded" },

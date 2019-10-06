@@ -19,8 +19,11 @@ const persistConfig = {
   storage
 };
 
+import { NotificationManager } from "./services/pushNotification";
+
 export class Application {
   static current: Application;
+  static token: string;
   // persistReducer = persistReducer(persistConfig, reducer);
   store = createStore(
     reducer,
@@ -42,15 +45,17 @@ export class Application {
     // var state = await AsyncStorage.getItem('State');
     //Application.current.store.setState(state);
     // console.log(Application.current.store.getState());
+    Application.token = await NotificationManager.registerForPushNotifications();
+    debugger;
   }
 
-  static async onClose() {
-    debugger;
-    var json = Application.current.store.getState();
-    //console.log(JSON.stringify(state));
-    console.log(json);
-    await AsyncStorage.setItem("State", json);
-  }
+  // static async onClose() {
+  //   debugger;
+  //   var json = Application.current.store.getState();
+  //   //console.log(JSON.stringify(state));
+  //   console.log(json);
+  //   await AsyncStorage.setItem("State", json);
+  // }
   async onInstall() {}
   async onUpdate() {}
 

@@ -40,7 +40,7 @@ export function connectionReducer(
       let currentConnectionsUpdatedStatus = _.map(
         state.myConnections,
         connection => {
-          if (connection.ConnectionId == action.payload) {
+          if (connection.Id == action.payload) {
             connection.Status = 2;
           }
           return connection;
@@ -55,7 +55,7 @@ export function connectionReducer(
     case types.REJECT_CONNECTION_REQUEST: {
       let currentConnectionsUpdatedStatus = state.myConnections.filter(
         connection => {
-          connection.ConnectionId != action.payload;
+          connection.Id != action.payload;
         }
       );
 
@@ -64,7 +64,22 @@ export function connectionReducer(
         myConnections: currentConnectionsUpdatedStatus
       };
     }
-    case types.SEND_CONNECTION_REQUEST:
+    case types.SEND_CONNECTION_REQUEST: {
+      let currentConnectionsUpdatedStatus = _.map(
+        state.connections,
+        connection => {
+          if (connection.Id == action.payload) {
+            connection.Status = 1;
+          }
+          return connection;
+        }
+      );
+      debugger;
+      return {
+        ...state,
+        connections: currentConnectionsUpdatedStatus
+      };
+    }
     default:
       return state;
   }

@@ -29,18 +29,24 @@ import { Dispatch, bindActionCreators } from "redux";
 
 import { ProductService } from "../components/ProfileDataTabs/ProductService/product-service";
 import images from "../../../assets/images.js";
-import { getOtherUserAnswers, state } from "../../state";
+import {
+  getOtherUserAnswers,
+  sendingConnectionRequest,
+  state
+} from "../../state";
 
 // import { NavigationContext } from "./application-container";
 class OtherProfileContainer extends Component {
   constructor() {
     super();
     this.state = {
-      userInfo: {}
+      userInfo: {},
+      user: {}
     };
   }
   props: {
     otherUserAnswers: any,
+    sendingConnectionRequest: any,
     getOtherUserAnswers: () => any,
     navigation: any,
     userId: any
@@ -48,14 +54,12 @@ class OtherProfileContainer extends Component {
   componentWillMount() {
     debugger;
     const { navigation } = this.props;
-    const user = navigation.getParam("user");
-
+    let user = navigation.getParam("user");
+    debugger;
+    this.setState({ user: user });
     this.props.getOtherUserAnswers(user.Id);
   }
-  componentDidMount() {
-    console.log("seksek", this.props.otherUserAnswers);
-    debugger;
-  }
+  componentDidMount() {}
   static mapStatetToProps(state: State) {
     return {
       otherUserAnswers: state.profileDataCompleting.otherUserAnswers
@@ -63,11 +67,46 @@ class OtherProfileContainer extends Component {
   }
   // static contextType = NavigationContext;
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({ getOtherUserAnswers }, dispatch);
+    return bindActionCreators(
+      { getOtherUserAnswers, sendingConnectionRequest },
+      dispatch
+    );
   }
   render() {
-    const { navigation } = this.props;
-    const user = navigation.getParam("user");
+    if (this.state.user.Status == 2) {
+      statusButton = (
+        <Button
+          rounded
+          style={{ backgroundColor: "#60b4c2", shadowColor: "#60b4c2" }}
+        >
+          <Text style={{ color: "#ffffff" }}>Connected</Text>
+        </Button>
+      );
+    } else if (this.state.user.Status == 1) {
+      statusButton = (
+        <Button
+          rounded
+          style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
+        >
+          <Text style={{ color: "#ffffff" }}>Pending</Text>
+        </Button>
+      );
+    } else {
+      statusButton = (
+        <Button
+          onPress={() => {
+            this.props.sendingConnectionRequest(this.state.user.Id);
+            let _user = this.state.user;
+            _user.Status = 1;
+            this.setState({ user: _user });
+          }}
+          rounded
+          style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
+        >
+          <Text style={{ color: "#ffffff" }}>Send Request</Text>
+        </Button>
+      );
+    }
     // let _nav = this.context;
     return (
       <Container>
@@ -112,14 +151,9 @@ class OtherProfileContainer extends Component {
                 alignItems: "center"
               }}
             >
-              <Text>{user.UserName}</Text>
+              <Text>{this.state.user.Name}</Text>
               {/* <Text note>CEO - Giftia</Text> */}
-              <Button
-                rounded
-                style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
-              >
-                <Text style={{ color: "#ffffff" }}>Request Contacts</Text>
-              </Button>
+              {statusButton}
             </CardItem>
           </Card>
 
