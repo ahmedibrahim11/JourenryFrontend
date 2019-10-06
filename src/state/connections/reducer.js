@@ -37,8 +37,17 @@ export function connectionReducer(
       };
     }
     case types.ACCEPT_CONNECTION_REQUEST: {
-      let currentConnectionsUpdatedStatus = _.map(
+      let currentMyConnectionsUpdatedStatus = _.map(
         state.myConnections,
+        connection => {
+          if (connection.Id == action.payload) {
+            connection.Status = 2;
+          }
+          return connection;
+        }
+      );
+      let currentConnectionsUpdatedStatus = _.map(
+        state.connections,
         connection => {
           if (connection.Id == action.payload) {
             connection.Status = 2;
@@ -49,7 +58,8 @@ export function connectionReducer(
       debugger;
       return {
         ...state,
-        myConnections: currentConnectionsUpdatedStatus
+        myConnections: currentMyConnectionsUpdatedStatus,
+        connections: currentConnectionsUpdatedStatus
       };
     }
     case types.REJECT_CONNECTION_REQUEST: {
@@ -69,7 +79,7 @@ export function connectionReducer(
         state.connections,
         connection => {
           if (connection.Id == action.payload) {
-            connection.Status = 1;
+            connection.Status = 4;
           }
           return connection;
         }

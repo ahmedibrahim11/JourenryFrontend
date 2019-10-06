@@ -82,7 +82,7 @@ class OtherProfileContainer extends Component {
           <Text style={{ color: "#ffffff" }}>Connected</Text>
         </Button>
       );
-    } else if (this.state.user.Status == 1) {
+    } else if (this.state.user.Status == 1 || this.state.user.Status == 4) {
       statusButton = (
         <Button
           rounded

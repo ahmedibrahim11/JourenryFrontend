@@ -69,7 +69,6 @@ export class ProductService extends Component {
                     rounded
                     title="Cancel"
                     color="#EF9C05"
-                    title Style={{ color: "#EF9C05" }}
                     style={rcs.cancelButton}
                     onPress={() => {
                       this.setModalVisible(!this.state.modalVisible);
@@ -78,8 +77,7 @@ export class ProductService extends Component {
                   ></Button>
                   <Button
                     title="edit"
-                    color="#e60000"
-                    titleStyle={{ color: "#ffffff" }}
+                    color="#ef9c05"
                     rounded
                     style={rcs.acceptButton}
                     onPress={() => {
