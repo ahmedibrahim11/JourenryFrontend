@@ -8,8 +8,8 @@ import {
 import axios from "axios";
 
 export class ConnectionProxyService {
-  async getConnections(journeyId: number) {
-    return await axios.get(`${BASE_URL}journey/allusers/${journeyId}`, {
+  async getConnections(userId: number) {
+    return await axios.get(`${BASE_URL}journey/allusers/${userId}`, {
       headers: { "Access-Control-Allow-Origin": "*" }
     });
   }
@@ -25,17 +25,23 @@ export class ConnectionProxyService {
   }
   async acceptConnectionRequest(senderId: number, reciverId: number) {
     debugger;
-    return await axios.put(`${BASE_URL}Connection/approveConnection/${reciverId}/${senderId}`, {
-      headers: { "Access-Control-Allow-Origin": "*" }
-    });
+    return await axios.put(
+      `${BASE_URL}Connection/approveConnection/${reciverId}/${senderId}`,
+      {
+        headers: { "Access-Control-Allow-Origin": "*" }
+      }
+    );
   }
   async rejectConnectionRequest(senderId: number, reciverId: number) {
-    return await axios.get(`${BASE_URL}Connection/approveConnection/${senderId}/${reciverId}`, {
-      headers: { "Access-Control-Allow-Origin": "*" }
-    });
+    return await axios.get(
+      `${BASE_URL}Connection/approveConnection/${senderId}/${reciverId}`,
+      {
+        headers: { "Access-Control-Allow-Origin": "*" }
+      }
+    );
   }
   async sendConnectionRequest(senderId: number, reciverId: number) {
-    return await axios.get(
+    return await axios.post(
       `${BASE_URL}Connection/newConnection/${senderId}/${reciverId}`,
       {
         headers: { "Access-Control-Allow-Origin": "*" }

@@ -62,16 +62,14 @@ export default class RequestedConnectionComponent extends Component {
                       <Body>
                         <Text style={rcs.contactName}>{Item.Name}</Text>
 
-                        <Text style={rcs.contactTitle}>
-                          {Item.Email}
-                        </Text>
+                        <Text style={rcs.contactTitle}>{Item.Email}</Text>
                       </Body>
                     </View>
 
                     <View style={rcs.listItemButtonsView}>
                       <Button
                         onPress={() => {
-                          this.props.onRejectingConnectionRequest(Item.ConnectionId);
+                          this.props.onRejectingConnectionRequest(Item.Id);
                         }}
                         rounded
                         style={rcs.cancelButton}
@@ -80,7 +78,7 @@ export default class RequestedConnectionComponent extends Component {
                       </Button>
                       <Button
                         onPress={() => {
-                          this.props.acceptingConnectionRequest(Item.ConnectionId);
+                          this.props.acceptingConnectionRequest(Item.Id);
                         }}
                         rounded
                         style={rcs.acceptButton}

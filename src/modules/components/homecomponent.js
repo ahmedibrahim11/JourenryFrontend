@@ -111,7 +111,7 @@ export default class HomeComponent extends Component {
                     <Thumbnail square source={images.logo} />
                   </Left>
                   <Body>
-                    <Text>{item.UserName}</Text>
+                    <Text>{item.Name}</Text>
                     <Text style={{ color: "#60b4c2" }}>{item.Email}</Text>
                     <Button
                       rounded

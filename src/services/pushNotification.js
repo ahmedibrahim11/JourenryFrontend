@@ -3,8 +3,9 @@ import { Alert } from "react-native";
 
 import { Permissions, Notifications } from "expo";
 import NavigatorService from "./navigator";
-import { loadRequests } from "../state";
+import { loadRequestBids } from "../state";
 import { Application } from "../application";
+
 type PushData = {
   code: string,
   nav?: string,
@@ -20,9 +21,12 @@ type PushMessage = {
   body?: string,
   origin: string
 };
-const VEN_NEW_REQ = "VEN_NEW_REQ";
-const CUS_NEW_BID = "CUS_NEW_BID";
+const NEW_CONNECTION = "NEW_CONN";
+const APPROVE_CONNECTION = "APPROVE_CONN";
 const VEN_BID_ACC = "VEN_BID_ACC";
+//NOT DONE
+const CUS_WAIT_REVIEW = "CUS_WAIT_REVIEW";
+
 export class NotificationManager {
   static async registerForPushNotifications() {
     const { status: existingStatus } = await Permissions.getAsync(
@@ -46,10 +50,12 @@ export class NotificationManager {
 
     // Get the token that uniquely identifies this device
     let token = await Notifications.getExpoPushTokenAsync();
+
     return token;
   }
 
   static handleNotification(notification: PushMessage) {
+    debugger;
     if (notification.origin === "received") {
       Alert.alert(notification.data.title, notification.data.body, [
         {
@@ -57,28 +63,28 @@ export class NotificationManager {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => handleRouting(notification) }
+        { text: "OK", onPress: () => console.log("OK") }
       ]);
     } else {
-      handleRouting(notification);
+      // handleRouting(notification);
     }
   }
 }
-function handleRouting(notification) {
-  var currentRoutObj = NavigatorService.getCurrentRoute();
-  switch (notification.data.code) {
-    case VEN_NEW_REQ: {
-      if (currentRoutObj.routeName !== "RequestScreen")
-        NavigatorService.navigate("RequestScreen");
-      else Application.current.store.dispatch(loadRequests());
-      break;
-    }
-    case VEN_BID_ACC: {
-      NavigatorService.navigate("OrderDetails", {
-        id: notification.data.id
-      });
-      break;
-    }
-    default:
-  }
-}
+
+// function handleRouting(notification) {
+//   // var currentRoutObj = NavigatorService.getCurrentRoute();
+//   switch (notification.data.code) {
+//     case NEW_CONNECTION:
+//     case APPROVE_CONNECTION:
+//     case CUS_NEW_BID: {
+//       if (currentRoutObj.routeName !== "Bids")
+//         NavigatorService.navigate("Bids");
+//       else
+//         Application.current.store.dispatch(
+//           loadRequestBids(notification.data.id)
+//         );
+//       break;
+//     }
+//     default:
+//   }
+// }
