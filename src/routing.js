@@ -2,7 +2,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import { RegisterScreen, LoginScreen } from "./modules/screens";
 
-import ApplicationContainer from "./modules/screens/application-container";
+import ApplicationScreen from "./modules/screens/application-container";
 
 import ProfileDataCompletingScreen from "./modules/screens/profile-data-completing-screen";
 import OthersProfileScreen from  "./modules/screens/others-profile-screen";
@@ -16,7 +16,7 @@ export const navigator = createStackNavigator(
       screen: LoginScreen
     },
     HomeScreen: {
-      screen: ApplicationContainer
+      screen: ApplicationScreen
     },
     ProfileDataCompletingScreen: {
       screen: ProfileDataCompletingScreen

@@ -5,7 +5,7 @@ import images from "../../../assets/images";
 import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
-import { State, tryLogin } from "../../state";
+import { State } from "../../state";
 import { loadConnections } from "../../state/connections/action-creator";
 import HomeComponent from "../components/homecomponent";
 
