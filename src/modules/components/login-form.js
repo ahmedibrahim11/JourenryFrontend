@@ -25,6 +25,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 import { UserLoginModel } from "../../proxy/models";
 import { GradientBtn } from "../components/Gradient-Btn";
+import { ScrollView } from "react-native-gesture-handler";
 // import i18next from 'i18next';
 
 // var language = require('../../languages/english.json');
@@ -63,16 +64,7 @@ export class LoginForm extends Component {
     );
 
     return (
-      // <View
-      //   style={{
-      //     flex: 1,
-      //     justifyContent: "center",
-      //     alignContent: "center",
-      //     padding: 15
-      //   }}
-      // >
-      <KeyboardAwareScrollView>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1}}>
           <Form>
             <Item floatingLabel>
               <Label>Email</Label>
@@ -99,8 +91,7 @@ export class LoginForm extends Component {
                 ForgetPassword
               </Text>
             </View>
-          </Form>
-          <View style={styles.loginContainer}>
+            <View style={styles.loginContainer}>
             <Button
               dark
               full
@@ -117,30 +108,10 @@ export class LoginForm extends Component {
             </Button>
             {/* <GradientBtn text="Sign IN" action={this.login.bind(this)} /> */}
           </View>
-          {/* <View style={styles.registerTextContainer}>
-              <Text style={styles.forgetText}>Have No Account</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Button
-                dark
-                full
-                style={{
-                  borderRadius: 25,
-                  borderWidth: 0.8,
-                  borderColor: "rgba(3, 3, 3, 0.2)",
-                  backgroundColor: "transparent"
-                }}
-                onPress={() => {
-                  this.props.navigation.navigate("RegisterScreen");
-                }}
-              >
-                <Text style={{ color: "#1550d6" }}>Register</Text>
-              </Button>
-            </View> */}
           {loadingSpinner}
+          </Form>
         </View>
-      </KeyboardAwareScrollView>
-      // </View>
+
     );
   }
 }

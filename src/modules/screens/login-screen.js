@@ -25,8 +25,8 @@ import { State, tryLogin } from "../../state";
 
 import { UserLoginModel } from "../../proxy/models";
 import Images from "../../../assets/images";
-// import Loader from "../components/misc/loader";
-//import i18next from 'i18next';
+
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 class loginContainer extends Component {
   constructor() {
     super();
@@ -74,6 +74,7 @@ class loginContainer extends Component {
   render() {
     // console.log("from login screen", i18next.t("key"));
     return (
+      <KeyboardAwareScrollView extraScrollHeight={100} enableOnAndroid={true} keyboardShouldPersistTaps='handled'>
       <ImageBackground
         source={Images.loginBackground}
         style={styles.backgroundImage}
@@ -91,6 +92,7 @@ class loginContainer extends Component {
         </Container>
         {/* <Loader modalVisible={this.props.loading} animationType="fade" /> */}
       </ImageBackground>
+      </KeyboardAwareScrollView>
     );
   }
 }

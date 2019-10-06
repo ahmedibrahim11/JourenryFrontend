@@ -1121,7 +1121,7 @@ export default class QuestionAnswersType extends Component {
               width: 300,
               borderColor: "black",
               alignSelf: "center",
-              marginTop: 20
+              marginTop: 2
             }}
             rowSpan={7}
             bordered
@@ -1139,7 +1139,7 @@ export default class QuestionAnswersType extends Component {
       case 3: {
         return (
           <List>
-            <ListItem style={{ marginTop: 20 }}>
+            <ListItem style={{ marginTop: 5 }}>
               <CheckBox
                 style={{ borderRadius: -3 }}
                 color="#ef9c05"

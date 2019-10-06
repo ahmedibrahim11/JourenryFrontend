@@ -164,6 +164,7 @@ export default class ProfileDataCompletingComponent extends Component {
       </Row>
     );
     return (
+      <KeyboardAwareScrollView extraScrollHeight={100} enableOnAndroid={true} keyboardShouldPersistTaps='handled'>
       <Container>
         <Header style={{ backgroundColor: "#60b4c2" }}></Header>
         <ImageBackground
@@ -177,7 +178,6 @@ export default class ProfileDataCompletingComponent extends Component {
           />
 
           <View style={{ flex: 1, marginTop: 15 }}>
-            <KeyboardAwareScrollView enableOnAndroid>
               <View style={{ alignItems: "center" }}>
                 <Text>
                   {this.props.questions[this.state.questionNumber].Name}
@@ -196,18 +196,13 @@ export default class ProfileDataCompletingComponent extends Component {
                   saveAnswer={this.props.saveAnswer}
                 />
               </View>
-
-              <View
-                style={{
-                  marginTop: 50
-                }}
-              >
+              <View style={{marginBottom:120}}>
                 {skip}
               </View>
-            </KeyboardAwareScrollView>
           </View>
         </ImageBackground>
       </Container>
+      </KeyboardAwareScrollView>
     );
   }
 }
