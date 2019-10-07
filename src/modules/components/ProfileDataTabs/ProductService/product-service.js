@@ -96,19 +96,27 @@ export class ProductService extends Component {
             </View>
           </Modal>
         </View>
-        <View style={{ flex: 1 }}>
+        
           <List style={{ flex: 1 }}>
             {this.props.answers.map((Item, index) => {
               debugger;
 
               return (
-                <ListItem key={index}>
+                <ListItem
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    flexWrap:'wrap'
+                  }}
+                  key={index}
+                >
                   {/* {viewData} */}
                   <Text style={{ color: "#666e68" }}>
                     {Item.Question.Metadata}
                   </Text>
+                  
                   <Text>{Item.Value}</Text>
-
+                  
                   {this.props.editingMode === true ? (
                     <View style={{ flex: 1, marginLeft: 20 }}>
                       <TouchableHighlight
@@ -136,7 +144,7 @@ export class ProductService extends Component {
             })}
           </List>
         </View>
-      </View>
+     
     );
   }
 }

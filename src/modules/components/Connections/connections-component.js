@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -10,7 +10,8 @@ import {
   Title,
   View,
   TabHeading,
-  Item
+  Item,
+  Body
 } from "native-base";
 import AcceptedConnectionComponent from "./AcceptedConnections/accepted-connection";
 import RequestedConnectionComponent from "./RequestedConnections/requested-connection";
@@ -21,50 +22,59 @@ export default class ConnectionComponent extends Component {
   render() {
     return (
       <Container>
-        <Header style={{ backgroundColor: "#60b4c2" }}>
-          <Title style={{ paddingTop: 35, fontSize: 15 }}>My Connections</Title>
+        <Header
+          style={{
+           
+            marginTop: StatusBar.currentHeight,
+            backgroundColor: "#60b4c2"
+          }}
+        >
+          <Title style={{ alignContent:'center', fontSize: 15 }}>My Connections</Title>
         </Header>
-        <Container>
-          <Content>
-            <Tabs
-              tabBarUnderlineStyle={{
-                backgroundColor: "white",
-                borderBottomWidth: 2,
-                borderBottomColor: "#EF9C05"
-              }}
-              renderTabBar={() => <ScrollableTab />}
+
+        <Content>
+          <Tabs
+            tabBarUnderlineStyle={{
+              backgroundColor: "white",
+              borderBottomWidth: 2,
+              borderBottomColor: "#EF9C05"
+            }}
+            renderTabBar={() => <ScrollableTab />}
+          >
+            <Tab
+              heading="Connections"
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}
             >
-              <Tab
-                heading="Connections"
-                tabStyle={styles.tabStyle}
-                textStyle={styles.textStyle}
-                activeTabStyle={styles.activeTabStyle}
-                activeTextStyle={styles.activeTextStyle}
-              >
-                <AcceptedConnectionComponent
-                  acceptedConnections={this.props.myConnections.filter(Item => Item.Status==2)}
-                />
-              </Tab>
-              <Tab
-                heading="New Requests"
-                tabStyle={styles.tabStyle}
-                textStyle={styles.textStyle}
-                activeTabStyle={styles.activeTabStyle}
-                activeTextStyle={styles.activeTextStyle}
-              >
-                <RequestedConnectionComponent
-                  requestedConnections={this.props.myConnections.filter(Item => Item.Status==1)}
-                  acceptingConnectionRequest={
-                    this.props.acceptingConnectionRequest
-                  }
-                  rejectingConnectionRequest={
-                    this.props.rejectingConnectionRequest
-                  }
-                />
-              </Tab>
-            </Tabs>
-          </Content>
-        </Container>
+              <AcceptedConnectionComponent
+                acceptedConnections={this.props.myConnections.filter(
+                  Item => Item.Status == 2
+                )}
+              />
+            </Tab>
+            <Tab
+              heading="New Requests"
+              tabStyle={styles.tabStyle}
+              textStyle={styles.textStyle}
+              activeTabStyle={styles.activeTabStyle}
+              activeTextStyle={styles.activeTextStyle}
+            >
+              <RequestedConnectionComponent
+                requestedConnections={this.props.myConnections.filter(
+                  Item => Item.Status == 1
+                )}
+                acceptingConnectionRequest={
+                  this.props.acceptingConnectionRequest
+                }
+                rejectingConnectionRequest={
+                  this.props.rejectingConnectionRequest
+                }
+              />
+            </Tab>
+          </Tabs>
+        </Content>
       </Container>
     );
   }

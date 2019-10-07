@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet } from "react-native";
+import { StatusBar, Image, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -58,20 +58,37 @@ class ProfileContainer extends Component {
     // let _nav = this.context;
     return (
       <Container>
-        <Header style={{ backgroundColor: "#60b4c2" }}>
-          <Title style={{ paddingTop: 15, fontSize: 15 }}>My Profile</Title>
-          <Right>
-            <Button
-              hasText
-              transparent
-              light
-              onPress={() => {
-                this.props.screenProps.navigate("EditProfileScreen");
-              }}
-            >
-              <Text>Edit</Text>
-            </Button>
-          </Right>
+        <Header
+          style={{
+            flexDirection: "row",
+            justifyContent: 'space-between',
+            marginTop: StatusBar.currentHeight,
+            backgroundColor: "#60b4c2"
+          }}
+        >
+          <Button
+            hasText
+            transparent
+            light
+           
+          >
+            <Text></Text>
+          </Button>
+
+          <Title style={{ fontSize: 15 }}>
+            My Profile
+          </Title>
+
+          <Button
+            hasText
+            transparent
+            light
+            onPress={() => {
+              this.props.screenProps.navigate("EditProfileScreen");
+            }}
+          >
+            <Text>Edit</Text>
+          </Button>
         </Header>
         <Content>
           <Card
@@ -101,7 +118,7 @@ class ProfileContainer extends Component {
               </Button> */}
             </CardItem>
           </Card>
-
+           
           <Tabs
             tabBarUnderlineStyle={{
               borderBottomWidth: 2,
@@ -175,7 +192,8 @@ class ProfileContainer extends Component {
               ></ProductService>
             </Tab>
           </Tabs>
-        </Content>
+           
+ </Content>
       </Container>
     );
   }

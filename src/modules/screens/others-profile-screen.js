@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet } from "react-native";
+import {StatusBar, Image, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -73,6 +73,10 @@ class OtherProfileContainer extends Component {
     );
   }
   render() {
+
+this.props.otherUserAnswers;
+debugger;
+
     if (this.state.user.Status == 2) {
       statusButton = (
         <Button
@@ -110,28 +114,20 @@ class OtherProfileContainer extends Component {
     // let _nav = this.context;
     return (
       <Container>
-        <Header style={{ backgroundColor: "#60b4c2" }}>
-          <Left>
-            <Button
-              hasText
-              transparent
-              light
-              onPress={() => {
-                this.props.navigation.goBack();
-              }}
-            >
-              <Text>Back</Text>
-            </Button>
-          </Left>
-          <Title
-            style={{
-              paddingTop: 15,
-              fontSize: 15,
-              marginRight: 150
-            }}
-          >
-            Profile
+        <Header
+          style={{
+            flexDirection: "row",
+            justifyContent: 'center',
+            marginTop: StatusBar.currentHeight,
+            backgroundColor: "#60b4c2"
+          }}
+        >
+          
+          <Title style={{ fontSize: 15 }}>
+            {this.state.user.UserName} Profile
           </Title>
+
+         
         </Header>
         <Content>
           <Card
@@ -151,12 +147,11 @@ class OtherProfileContainer extends Component {
                 alignItems: "center"
               }}
             >
-              <Text>{this.state.user.Name}</Text>
+              <Text>{this.state.user.UserName}</Text>
               {/* <Text note>CEO - Giftia</Text> */}
               {statusButton}
             </CardItem>
           </Card>
-
           <Tabs
             tabBarUnderlineStyle={{
               borderBottomWidth: 2,
@@ -230,7 +225,7 @@ class OtherProfileContainer extends Component {
               ></ProductService>
             </Tab>
           </Tabs>
-        </Content>
+ </Content>
       </Container>
     );
   }

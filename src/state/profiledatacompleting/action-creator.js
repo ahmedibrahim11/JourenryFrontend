@@ -101,7 +101,7 @@ export async function postAnswers(userAnswers: UserAnswer[]) {
   debugger;
 
   return async (dispatch, getstate) => {
-    const answers = [];
+    let answers = [];
     const state = getstate();
     var userId = state.authorization.token.id;
     debugger;
@@ -130,7 +130,7 @@ export async function postAnswers(userAnswers: UserAnswer[]) {
 export async function updateUserAnswers(userAnswers: UserAnswer[]) {
   debugger;
   return async (dispatch, getstate) => {
-    const answers = [];
+    let answers = [];
     const state = getstate();
     var userId = state.authorization.token.id;
     debugger;
@@ -150,6 +150,7 @@ export async function updateUserAnswers(userAnswers: UserAnswer[]) {
     if (response.status === 200) {
       debugger;
       dispatch(profileDataCompletingSuccess(token));
+      debugger;
     } else {
       dispatch(profileDataCompletingFail());
     }

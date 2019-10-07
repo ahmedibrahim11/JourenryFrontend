@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -82,32 +82,37 @@ class EditProfileContainer extends Component {
     debugger;
     return (
       <Container>
-        <Header style={{ backgroundColor: "#60b4c2" }}>
-          <Left>
-            <Button
-              hasText
-              transparent
-              light
-              onPress={() => {
-                this.props.navigation.navigate("HomeScreen");
-              }}
-            >
-              <Text>Cancel</Text>
-            </Button>
-          </Left>
-          <Title style={{ paddingTop: 15, fontSize: 15 }}>My Profile</Title>
-          <Right>
-            <Button
-              hasText
-              transparent
-              light
-              onPress={() => {
-                this.saveUpdatedAnswers(this.state.updatedAnwsers);
-              }}
-            >
-              <Text>Edit</Text>
-            </Button>
-          </Right>
+        <Header
+          style={{
+            flexDirection: "row",
+            justifyContent: 'space-between',
+            marginTop: StatusBar.currentHeight,
+            backgroundColor: "#60b4c2"
+          }}
+        >
+          <Button
+            hasText
+            transparent
+            light
+            onPress={() => {
+              this.props.navigation.navigate("HomeScreen");
+            }}
+          >
+            <Text>Cancel</Text>
+          </Button>
+
+          <Title style={{ justifyContent:'center', fontSize: 15 }}>My Profile</Title>
+
+          <Button
+            hasText
+            transparent
+            light
+            onPress={() => {
+              this.saveUpdatedAnswers(this.state.updatedAnwsers);
+            }}
+          >
+            <Text>Save</Text>
+          </Button>
         </Header>
         <Content>
           <Card
