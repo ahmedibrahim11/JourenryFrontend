@@ -13,6 +13,12 @@ export type LOAD_CONNECTIONS_ACTION = {
   payload: any
 };
 
+export type FILTER_CONNECTIONS_ACTION = {
+  type: string,
+  payload: any
+};
+
+
 export type LOAD_MY_CONNECTIONS_ACTION = {
   type: string,
   payload: any
@@ -44,6 +50,10 @@ export type FAILER_ACTION = {
 
 export function onConnectionsLoaded(connections): LOAD_CONNECTIONS_ACTION {
   return { type: types.LOAD_ALL_CONNECTIONS, payload: connections };
+}
+
+export function onFiltersLoaded(filteredConnections): FILTER_CONNECTIONS_ACTION {
+  return { type: types.FILTER_ALL_CONNECTIONS, payload: filteredConnections };
 }
 
 export function onMyConnectionsLoaded(connections): LOAD_MY_CONNECTIONS_ACTION {
@@ -107,7 +117,23 @@ export function loadConnections(): LOAD_CONNECTIONS_ACTION {
     }
   };
 }
-
+export function filterConnections(critirea:Array): FILTER_CONNECTIONS_ACTION {
+  debugger;
+  return async (dispatch, getState) => {
+    const state = getState();
+    let response = await connectionProxyService.advancedFilter(critirea);
+    let conns;
+    debugger;
+    conns = await response.data;
+    debugger;
+    if (response.status === 200) {
+      debugger;
+      dispatch(onFiltersLoaded(conns));
+    } else {
+      dispatch(onFailer());
+    }
+  };
+}
 export function loadMyConnections(): LOAD_ALL_MY_CONNECTIONS {
   return async (dispatch, getState) => {
     const state = getState();

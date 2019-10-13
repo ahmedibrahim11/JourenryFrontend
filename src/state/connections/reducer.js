@@ -36,6 +36,12 @@ export function connectionReducer(
         currentUserId: action.payload
       };
     }
+    case types.FILTER_ALL_CONNECTIONS:{
+      return{
+        ...state,
+        advancedFilter:action.payload
+      };
+    }
     case types.ACCEPT_CONNECTION_REQUEST: {
       let currentMyConnectionsUpdatedStatus = _.map(
         state.myConnections,
