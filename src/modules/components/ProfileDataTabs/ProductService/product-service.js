@@ -65,30 +65,35 @@ export class ProductService extends Component {
                     getCurrentAnswer={this.getCurrentAnswer}
                     currentAnswer={this.state.currentQuestionData.Value}
                   />
-                  <Button
-                    rounded
-                    title="Cancel"
-                    color="#EF9C05"
-                    style={rcs.cancelButton}
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                      this.setState({ currentQuestionData: {} });
-                    }}
-                  ></Button>
-                  <Button
-                    title="edit"
-                    color="#ef9c05"
-                    rounded
-                    style={rcs.acceptButton}
-                    onPress={() => {
-                      this.props.updateAnwsers(this.state.currentUpdatedAnswer);
-                      this.setModalVisible(!this.state.modalVisible);
-                      this.setState({
-                        currentUpdatedAnswer: {},
-                        currentQuestionData: {}
-                      });
-                    }}
-                  ></Button>
+
+                  <TouchableHighlight>
+                    <Button
+                      title="edit"
+                      rounded
+                      onPress={() => {
+                        this.props.updateAnwsers(
+                          this.state.currentUpdatedAnswer
+                        );
+                        this.setModalVisible(!this.state.modalVisible);
+                        this.setState({
+                          currentUpdatedAnswer: {},
+                          currentQuestionData: {}
+                        });
+                      }}
+                    ></Button>
+                  </TouchableHighlight>
+
+                  <TouchableHighlight>
+                    <Button
+                      rounded
+                      title="Cancel"
+                      style={rcs.cancelButton}
+                      onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                        this.setState({ currentQuestionData: {} });
+                      }}
+                    ></Button>
+                  </TouchableHighlight>
                 </View>
               ) : (
                 <View></View>
@@ -124,7 +129,7 @@ export class ProductService extends Component {
                   </Grid>
                 </View>
                 {this.props.editingMode === true ? (
-                  <View style={{ flex: 1, marginLeft: 20 }}>
+                  <View style={{ flex: 1, alignItems: "flex-end" }}>
                     <TouchableHighlight
                       onPress={() => {
                         debugger;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {StatusBar, Image, StyleSheet } from "react-native";
+import { StatusBar, Image, StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -73,9 +73,8 @@ class OtherProfileContainer extends Component {
     );
   }
   render() {
-
-this.props.otherUserAnswers;
-debugger;
+    this.props.otherUserAnswers;
+    debugger;
 
     if (this.state.user.Status == 2) {
       statusButton = (
@@ -117,17 +116,14 @@ debugger;
         <Header
           style={{
             flexDirection: "row",
-            justifyContent: 'center',
+            justifyContent: "center",
             marginTop: StatusBar.currentHeight,
             backgroundColor: "#60b4c2"
           }}
         >
-          
           <Title style={{ fontSize: 15 }}>
             {this.state.user.UserName} Profile
           </Title>
-
-         
         </Header>
         <Content>
           <Card
@@ -138,7 +134,7 @@ debugger;
             }}
           >
             <CardItem>
-              <Thumbnail large source={images.logo} />
+              <Thumbnail large circular source={images.avtar} />
             </CardItem>
             <CardItem
               style={{
@@ -225,7 +221,7 @@ debugger;
               ></ProductService>
             </Tab>
           </Tabs>
- </Content>
+        </Content>
       </Container>
     );
   }

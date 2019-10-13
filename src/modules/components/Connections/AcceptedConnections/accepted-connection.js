@@ -89,7 +89,7 @@ export default class AcceptedConnectionComponent extends Component {
                   thumbnail
                 >
                   <Left style={{ marginLeft: 5 }}>
-                    <Thumbnail large source={images.logo} />
+                    <Thumbnail large circular source={images.avtar} />
                   </Left>
                   <Body>
                     <Text style={{ marginBottom: 7, fontWeight: "bold" }}>
