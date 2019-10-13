@@ -61,23 +61,16 @@ class ProfileContainer extends Component {
         <Header
           style={{
             flexDirection: "row",
-            justifyContent: 'space-between',
+            justifyContent: "space-between",
             marginTop: StatusBar.currentHeight,
             backgroundColor: "#60b4c2"
           }}
         >
-          <Button
-            hasText
-            transparent
-            light
-           
-          >
+          <Button hasText transparent light>
             <Text></Text>
           </Button>
 
-          <Title style={{ fontSize: 15 }}>
-            My Profile
-          </Title>
+          <Title style={{ fontSize: 15 }}>My Profile</Title>
 
           <Button
             hasText
@@ -99,7 +92,7 @@ class ProfileContainer extends Component {
             }}
           >
             <CardItem>
-              <Thumbnail large source={images.logo} />
+              <Thumbnail large circular source={images.avtar} />
             </CardItem>
             <CardItem
               style={{
@@ -118,7 +111,7 @@ class ProfileContainer extends Component {
               </Button> */}
             </CardItem>
           </Card>
-           
+
           <Tabs
             tabBarUnderlineStyle={{
               borderBottomWidth: 2,
@@ -192,8 +185,7 @@ class ProfileContainer extends Component {
               ></ProductService>
             </Tab>
           </Tabs>
-           
- </Content>
+        </Content>
       </Container>
     );
   }

@@ -55,7 +55,7 @@ export default class RequestedConnectionComponent extends Component {
                   <ListItem style={rcs.listItem} thumbnail rounded>
                     <View style={rcs.listItemThumbnailView}>
                       <Left>
-                        <Thumbnail large source={images.logo} />
+                        <Thumbnail large source={images.avtar} />
                       </Left>
                     </View>
                     <View style={rcs.listItemTextView}>

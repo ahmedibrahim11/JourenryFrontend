@@ -92,6 +92,16 @@ export default class HomeComponent extends Component {
                 placeholder="Search El-Re7la Alumni"
               />
             </Item>
+            <Button
+              hasText
+              transparent
+              light
+              onPress={() => {
+                this.props.screenProps.navigate("AdvancedFilterScreen");
+              }}
+            >
+              <Text>Filter</Text>
+            </Button>
           </Body>
         </Header>
         <Content>
@@ -108,7 +118,7 @@ export default class HomeComponent extends Component {
                   }}
                 >
                   <Left>
-                    <Thumbnail square source={images.logo} />
+                    <Thumbnail circular source={images.avtar} />
                   </Left>
                   <Body>
                     <Text>{item.Name}</Text>

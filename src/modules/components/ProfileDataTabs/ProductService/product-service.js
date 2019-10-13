@@ -65,30 +65,35 @@ export class ProductService extends Component {
                     getCurrentAnswer={this.getCurrentAnswer}
                     currentAnswer={this.state.currentQuestionData.Value}
                   />
-                  <Button
-                    rounded
-                    title="Cancel"
-                    color="#EF9C05"
-                    style={rcs.cancelButton}
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                      this.setState({ currentQuestionData: {} });
-                    }}
-                  ></Button>
-                  <Button
-                    title="edit"
-                    color="#ef9c05"
-                    rounded
-                    style={rcs.acceptButton}
-                    onPress={() => {
-                      this.props.updateAnwsers(this.state.currentUpdatedAnswer);
-                      this.setModalVisible(!this.state.modalVisible);
-                      this.setState({
-                        currentUpdatedAnswer: {},
-                        currentQuestionData: {}
-                      });
-                    }}
-                  ></Button>
+
+                  <TouchableHighlight>
+                    <Button
+                      title="edit"
+                      rounded
+                      onPress={() => {
+                        this.props.updateAnwsers(
+                          this.state.currentUpdatedAnswer
+                        );
+                        this.setModalVisible(!this.state.modalVisible);
+                        this.setState({
+                          currentUpdatedAnswer: {},
+                          currentQuestionData: {}
+                        });
+                      }}
+                    ></Button>
+                  </TouchableHighlight>
+
+                  <TouchableHighlight>
+                    <Button
+                      rounded
+                      title="Cancel"
+                      style={rcs.cancelButton}
+                      onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                        this.setState({ currentQuestionData: {} });
+                      }}
+                    ></Button>
+                  </TouchableHighlight>
                 </View>
               ) : (
                 <View></View>
@@ -96,55 +101,60 @@ export class ProductService extends Component {
             </View>
           </Modal>
         </View>
-        
-          <List style={{ flex: 1 }}>
-            {this.props.answers.map((Item, index) => {
-              debugger;
 
-              return (
-                <ListItem
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    flexWrap:'wrap'
-                  }}
-                  key={index}
-                >
-                  {/* {viewData} */}
-                  <Text style={{ color: "#666e68" }}>
-                    {Item.Question.Metadata}
-                  </Text>
-                  
-                  <Text>{Item.Value}</Text>
-                  
-                  {this.props.editingMode === true ? (
-                    <View style={{ flex: 1, marginLeft: 20 }}>
-                      <TouchableHighlight
-                        onPress={() => {
-                          debugger;
-                          this.setState({ currentQuestionData: Item });
+        <List style={{ flex: 1 }}>
+          {this.props.answers.map((Item, index) => {
+            debugger;
 
-                          this.setModalVisible(true);
-                        }}
-                      >
-                        <View>
-                          <Icon
-                            type="FontAwesome"
-                            name="edit"
-                            style={{ color: "#EF9C05" }}
-                          />
-                        </View>
-                      </TouchableHighlight>
-                    </View>
-                  ) : (
-                    <Text></Text>
-                  )}
-                </ListItem>
-              );
-            })}
-          </List>
-        </View>
-     
+            return (
+              <ListItem
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap"
+                }}
+                key={index}
+              >
+                {/* {viewData} */}
+                <View>
+                  <Grid>
+                    <Row>
+                      <Text style={{ color: "#9BC4DA" }}>
+                        {Item.Question.Metadata}
+                      </Text>
+                    </Row>
+                    <Row>
+                      <Text>{Item.Value}</Text>
+                    </Row>
+                  </Grid>
+                </View>
+                {this.props.editingMode === true ? (
+                  <View style={{ flex: 1, alignItems: "flex-end" }}>
+                    <TouchableHighlight
+                      onPress={() => {
+                        debugger;
+                        this.setState({ currentQuestionData: Item });
+
+                        this.setModalVisible(true);
+                      }}
+                    >
+                      <View>
+                        <Icon
+                          type="FontAwesome"
+                          name="edit"
+                          style={{ color: "#EF9C05" }}
+                        />
+                      </View>
+                    </TouchableHighlight>
+                  </View>
+                ) : (
+                  <Text></Text>
+                )}
+              </ListItem>
+            );
+          })}
+        </List>
+      </View>
     );
   }
 }
