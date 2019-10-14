@@ -13,27 +13,34 @@ import {
   Icon,
   List,
   Header,
-  Title
+  Title,
+  View,
+  Button
 } from "native-base";
 import DropDownQuestionsData from "../Question/DropDownQuestionsData";
 export default class AdvancedFilterComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: { 5: "", 6: "", 18: "" },
-      selectedOption: undefined
+      filter: {
+        5: { value: "Any", metaData: "service or product" },
+        6: { value: "Any", metaData: "Platform Type" },
+        16: { value: "Any", metaData: "Industry" },
+        17: { value: "Any", metaData: "Startup phase" },
+        18: { value: "Any", metaData: "Year started" },
+        20: { value: "Any", metaData: "Funding stage" },
+        21: { value: "Any", metaData: "Business Model" },
+        22: { value: "Any", metaData: "Business / Social" },
+        38: { value: "Any", metaData: "Current City" },
+        39: { value: "Any", metaData: "Home City" },
+        71: { value: "Any", metaData: "Global Markets" },
+        72: { value: "Any", metaData: "Local Markets" }
+      }
     };
-    this.onValueChange = this.onValueChange.bind(this);
     this.filterCriteria = this.filterCriteria.bind(this);
   }
   componentDidMount() {}
 
-  onValueChange(value) {
-    this.setState({
-      selectedOption: value
-    });
-    this.props.getCurrentAnswer(value);
-  }
   filterCriteria(questionId) {
     return Object.keys(this.state.filter).some(
       criteria => criteria == questionId
@@ -48,43 +55,82 @@ export default class AdvancedFilterComponent extends Component {
       <Container>
         <Header
           style={{
+            flexDirection: "row",
+            justifyContent: 'space-between',
             marginTop: StatusBar.currentHeight,
             backgroundColor: "#60b4c2"
           }}
         >
+            <Button
+            hasText
+            transparent
+            light
+            onPress={() => {
+              this.props.navigation.navigate("HomeScreen");
+            }}
+          >
+            <Text>Back</Text>
+          </Button>
           <Title style={{ alignContent: "center", fontSize: 15 }}>
             Advanced Filter
           </Title>
+          <Button
+            hasText
+            transparent
+            light
+            onPress={() => {
+              this.props.filterConnections(this.state.filter)
+              this.props.navigation.navigate("HomeScreen");
+            }}
+          >
+            <Text>Query</Text>
+          </Button>
         </Header>
-        <Content>
+        <Content
+          contentContainerStyle={{ justifyContent: "space-around" }}
+          style={{ flexDirection: "column" }}
+        >
           {options.map((item, index) => {
             return (
-              <Picker
-                style={{ alignSelf: "center" }}
-                key={index}
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                placeholder="Select your Answer"
-                textStyle={{ color: "#ef9c05" }}
-                itemStyle={{
-                  marginLeft: 0,
-                  paddingLeft: 10
-                }}
-                itemTextStyle={{ color: "#ef9c05" }}
-                style={{ width: undefined }}
-                selectedValue={this.state.filter[item.questionId]}
-                onValueChange={value => {
-                  var _filter = this.state.filter;
-                  _filter[item.questionId] = value;
-                  this.setState({ filter: _filter });
-                }}
-              >
-                {item.values.map((value, index) => {
-                  return (
-                    <Picker.Item label={value} key={index} value={value} />
-                  );
-                })}
-              </Picker>
+              <View>
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    color: "#60b4c2",
+                    fontSize: 17
+                  }}
+                >
+                  {this.state.filter[item.questionId].metaData}
+                </Text>
+                <Picker
+                  style={{ alignSelf: "center" }}
+                  key={index}
+                  mode="dropdown"
+                  iosIcon={<Icon name="arrow-down" />}
+                  placeholder="Select your Answer"
+                  textStyle={{ color: "#ef9c05" }}
+                  itemStyle={{
+                    marginLeft: 0,
+                    paddingLeft: 10
+                  }}
+                  itemTextStyle={{ color: "#ef9c05" }}
+                  style={{ width: undefined }}
+                  selectedValue={this.state.filter[item.questionId].value}
+                  onValueChange={value => {
+                    var _filter = this.state.filter;
+                    _filter[item.questionId].value = value;
+                    this.setState({ filter: _filter });
+                    debugger;
+                  }}
+                >
+                  <Picker.Item label={"Any"} key={"Any"} value={"Any"} />
+                  {item.values.map((value, index) => {
+                    return (
+                      <Picker.Item label={value} key={index} value={value} />
+                    );
+                  })}
+                </Picker>
+              </View>
             );
           })}
         </Content>

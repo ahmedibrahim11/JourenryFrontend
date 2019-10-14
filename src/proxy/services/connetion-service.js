@@ -13,6 +13,21 @@ export class ConnectionProxyService {
       headers: { "Access-Control-Allow-Origin": "*" }
     });
   }
+  
+  async advancedFilter(critirea) {
+    debugger;
+    return await axios({
+      method: "post",
+      url: `${BASE_URL}search/getSearchResult`,
+      data: critirea,
+      config: {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "content-Type": "application/json"
+        }
+      }
+    });
+  }
   async getMyConnections(userId: number) {
     return await axios.get(`${BASE_URL}Connection/getConnection/${userId}`, {
       headers: { "Access-Control-Allow-Origin": "*" }
@@ -48,9 +63,5 @@ export class ConnectionProxyService {
       }
     );
   }
-  //   async acceptReview(orderId: number) {
-  //     return await axios.post(`${BASE_URL}/customer/acceptReview/${orderId}`, {
-  //       headers: { "Access-Control-Allow-Origin": "*" }
-  //     });
-  //   }
+  
 }

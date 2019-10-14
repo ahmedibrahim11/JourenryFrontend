@@ -16,22 +16,24 @@ import {
 } from "native-base";
 
 import { connect } from "react-redux";
-
+import { filterConnections } from "../../state"
 import { Dispatch, bindActionCreators } from "redux";
 import AdvancedFilterComponent from "../components/AdvancedFilter/advanced-filter-component";
 class AdvancedFilterContainer extends Component {
   static mapStatetToProps(state: State) {
-    return {};
+    return {
+      advancedFilter:state.connection.advancedFilter
+    };
   }
 
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({filterConnections}, dispatch);
   }
 
   render() {
     return (
       <Container>
-        <AdvancedFilterComponent></AdvancedFilterComponent>
+        <AdvancedFilterComponent navigation={this.props.navigation} filterConnections={this.props.filterConnections} advancedFilter={this.props.advancedFilter} ></AdvancedFilterComponent>
       </Container>
     );
   }

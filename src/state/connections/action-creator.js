@@ -18,7 +18,6 @@ export type FILTER_CONNECTIONS_ACTION = {
   payload: any
 };
 
-
 export type LOAD_MY_CONNECTIONS_ACTION = {
   type: string,
   payload: any
@@ -52,7 +51,9 @@ export function onConnectionsLoaded(connections): LOAD_CONNECTIONS_ACTION {
   return { type: types.LOAD_ALL_CONNECTIONS, payload: connections };
 }
 
-export function onFiltersLoaded(filteredConnections): FILTER_CONNECTIONS_ACTION {
+export function onFiltersLoaded(
+  filteredConnections
+): FILTER_CONNECTIONS_ACTION {
   return { type: types.FILTER_ALL_CONNECTIONS, payload: filteredConnections };
 }
 
@@ -117,11 +118,18 @@ export function loadConnections(): LOAD_CONNECTIONS_ACTION {
     }
   };
 }
-export function filterConnections(critirea:Array): FILTER_CONNECTIONS_ACTION {
+export function filterConnections(critirea: Object): FILTER_CONNECTIONS_ACTION {
   debugger;
   return async (dispatch, getState) => {
     const state = getState();
-    let response = await connectionProxyService.advancedFilter(critirea);
+    let _finalFilter = {};
+    for (var key in critirea) {
+      if (critirea[key].value != "Any") {
+        _finalFilter[key] = critirea[key].value;
+      }
+    }
+    debugger;
+    let response = await connectionProxyService.advancedFilter(_finalFilter);
     let conns;
     debugger;
     conns = await response.data;
