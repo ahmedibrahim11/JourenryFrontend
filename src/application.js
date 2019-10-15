@@ -45,7 +45,7 @@ export class Application {
     // var state = await AsyncStorage.getItem('State');
     //Application.current.store.setState(state);
     // console.log(Application.current.store.getState());
-    Application.token = await NotificationManager.registerForPushNotifications();
+    // Application.token = await NotificationManager.registerForPushNotifications();
     debugger;
   }
 

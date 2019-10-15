@@ -8,6 +8,7 @@ export interface AuthorizationState {
   isRegistered: boolean;
   errorMessage: string;
   loading: boolean;
+  isChange: Boolean;
 }
 
 export const AuthorizationInitialState: AuthorizationState = {
@@ -16,7 +17,8 @@ export const AuthorizationInitialState: AuthorizationState = {
   isLoggedIn: false,
   isRegistered: false,
   errorMessage: "",
-  loading: false
+  loading: false,
+  isChange: false
 };
 
 // export function to return auth intial state

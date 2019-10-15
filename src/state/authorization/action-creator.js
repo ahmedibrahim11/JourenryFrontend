@@ -6,7 +6,8 @@ import {
   authProxyService,
   TokenDto,
   UserLoginModel,
-  UserRegisterModel
+  UserRegisterModel,
+  ChangePasswordModel
 } from "../../proxy";
 import * as UiTypes from "../ui/actions";
 
@@ -30,6 +31,15 @@ export type REGISTER_SUCCESS_Action = { type: string, payload: any };
 export type REGISTER_FAIL_Action = { type: string, payload: string };
 
 /*************************** */
+
+export type ON_CHANGE_PASSWORD_Action = { type: string, payload: any };
+
+export type ON_CHANGE_PASSWORD_SUCCESS_Action = { type: string, payload: any };
+
+export type ON_CHANGE_PASSWORD_FAIL_Action = {
+  type: string,
+  payload: string
+};
 
 export async function tryLogin(user: UserLoginModel) {
   let result = null;
@@ -72,7 +82,7 @@ export async function tryRegister(user: UserRegisterModel) {
   return async dispatch => {
     dispatch(onRegister(user));
     dispatch({ type: UiTypes.UI_LOADING });
-    let response = await authProxyService.register(user);
+    let response = await authProxyService.changePassword(user);
 
     token = await response.json();
     if (response.status === 200) {
@@ -85,6 +95,33 @@ export async function tryRegister(user: UserRegisterModel) {
       //   return request;
       // });
       dispatch(registerSuccess());
+      // dispatch({ type: UiTypes.UI_LOADING });
+    } else {
+      dispatch(ChangePasswordFail());
+      dispatch({ type: UiTypes.UI_LOADING });
+    }
+  };
+}
+
+export async function tryChangePassword(user: ChangePasswordModel) {
+  debugger;
+  let token = null;
+  return async dispatch => {
+    dispatch(onChangePassword(user));
+    dispatch({ type: UiTypes.UI_LOADING });
+    let response = await authProxyService.register(user);
+
+    token = await response.json();
+    if (response.status === 200) {
+      // HttpClient.requestInterceptor.push(request => {
+      //   let _token: TokenDto;
+      //   if (token) _token = token;
+      //   request.headers = Object.assign({}, request.headers, {
+      //     Authorization: `bearer ${_token.access_token}`
+      //   });
+      //   return request;
+      // });
+      dispatch(ChangePasswordSuccess());
       // dispatch({ type: UiTypes.UI_LOADING });
     } else {
       dispatch(registerFail());
@@ -117,4 +154,17 @@ export function registerSuccess(): REGISTER_SUCCESS_Action {
 export function registerFail(): REGISTER_FAIL_Action {
   const errorMsg = "Invalid Credentials";
   return { type: types.REGISTER_FAIL, payload: errorMsg };
+}
+
+export function onChangePassword(user): ON_CHANGE_PASSWORD_Action {
+  return { type: types.ON_CHANGE_PASSWORD, payload: user };
+}
+
+export function ChangePasswordSuccess(): ON_CHANGE_PASSWORD_SUCCESS_Action {
+  return { type: types.ON_CHANGE_PASSWORD_SUCCESS };
+}
+
+export function ChangePasswordFail(): ON_CHANGE_PASSWORD_FAIL_Action {
+  const errorMsg = "Faild To ChangePassword";
+  return { type: types.ON_CHANGE_PASSWORD_FAIL, payload: errorMsg };
 }

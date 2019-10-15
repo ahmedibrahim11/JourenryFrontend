@@ -10,7 +10,10 @@ type Action =
   | actions.LOGIN_FAIL_Action
   | actions.ON_REGISTER_Action
   | actions.REGISTER_SUCCESS_Action
-  | actions.REGISTER_FAIL_Action;
+  | actions.REGISTER_FAIL_Action
+  | actions.ON_CHANGE_PASSWORD_Action
+  | actions.ON_CHANGE_PASSWORD_SUCCESS_Action
+  | actions.ON_CHANGE_PASSWORD_FAIL_Action;
 
 export function authorizationReducer(
   state: AuthorizationState = AuthorizationInitialState,
@@ -63,6 +66,34 @@ export function authorizationReducer(
       return {
         ...state,
         isRegistered: false,
+        errorMessage: action.payload
+      };
+    }
+
+    case types.ON_CHANGE_PASSWORD: {
+      return {
+        ...state,
+        isRegistered: false,
+        errorMessage: "",
+        token: null,
+        isLoggedIn: false,
+        username: "",
+        loading: false,
+        isChange: false
+      };
+    }
+
+    case types.ON_CHANGE_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        isChange: true
+      };
+    }
+
+    case types.ON_CHANGE_PASSWORD_FAIL: {
+      return {
+        ...state,
+        isChange: false,
         errorMessage: action.payload
       };
     }

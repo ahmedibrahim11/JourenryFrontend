@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import * as rcs from "./product-service-styles";
-import { Modal, TouchableHighlight, View, Alert, Button } from "react-native";
+import {
+  Modal,
+  TouchableOpacity,
+  TouchableHighlight,
+  View,
+  Alert,
+  Button
+} from "react-native";
 import images from "../../../../../assets/images";
 import {
   Container,
@@ -65,35 +72,60 @@ export class ProductService extends Component {
                     getCurrentAnswer={this.getCurrentAnswer}
                     currentAnswer={this.state.currentQuestionData.Value}
                   />
-
-                  <TouchableHighlight>
-                    <Button
-                      title="edit"
-                      rounded
-                      onPress={() => {
-                        this.props.updateAnwsers(
-                          this.state.currentUpdatedAnswer
-                        );
-                        this.setModalVisible(!this.state.modalVisible);
-                        this.setState({
-                          currentUpdatedAnswer: {},
-                          currentQuestionData: {}
-                        });
-                      }}
-                    ></Button>
-                  </TouchableHighlight>
-
-                  <TouchableHighlight>
-                    <Button
-                      rounded
-                      title="Cancel"
-                      style={rcs.cancelButton}
-                      onPress={() => {
-                        this.setModalVisible(!this.state.modalVisible);
-                        this.setState({ currentQuestionData: {} });
-                      }}
-                    ></Button>
-                  </TouchableHighlight>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      marginTop: 5
+                    }}
+                  >
+                    <View>
+                      <TouchableOpacity
+                        style={{
+                          borderRadius: 25,
+                          borderWidth: 0.8,
+                          backgroundColor: "#ef9c05",
+                          width: 100,
+                          height: 30,
+                          borderStyle: "solid",
+                          borderColor: "#ef9c05"
+                        }}
+                        onPress={() => {
+                          this.props.updateAnwsers(
+                            this.state.currentUpdatedAnswer
+                          );
+                          this.setModalVisible(!this.state.modalVisible);
+                          this.setState({
+                            currentUpdatedAnswer: {},
+                            currentQuestionData: {}
+                          });
+                        }}
+                      >
+                        <Text style={{ color: "#FFFFFF", alignSelf: "center" }}>
+                          Edit
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View>
+                      <TouchableOpacity
+                        style={{
+                          width: 100,
+                          height: 30,
+                          borderRadius: 10,
+                          borderStyle: "solid",
+                          borderColor: "#ef9c05"
+                        }}
+                        onPress={() => {
+                          this.setModalVisible(!this.state.modalVisible);
+                          this.setState({ currentQuestionData: {} });
+                        }}
+                      >
+                        <Text style={{ color: "#ef9c05", alignSelf: "center" }}>
+                          Cancel
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 </View>
               ) : (
                 <View></View>

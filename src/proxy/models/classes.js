@@ -11,6 +11,12 @@ export interface UserRegisterModel {
   gender: number;
 }
 
+export interface ChangePasswordModel {
+  oldPassword: String;
+  newPassword: String;
+  confirmPassword: String;
+}
+
 export interface ConnectionModel {
   id: number;
   userName: string;

@@ -5,6 +5,8 @@ import AdvancedFilterScreen from "./modules/screens/advanced-filter-container";
 import ProfileDataCompletingScreen from "./modules/screens/profile-data-completing-screen";
 import OthersProfileScreen from "./modules/screens/others-profile-screen";
 import EditProfileScreen from "./modules/screens/edit-profile-screen";
+import { ChangePassword } from "./modules/screens/change-password";
+import { FeedBackForm } from "./modules/screens/feedback";
 export const navigator = createStackNavigator(
   {
     RegisterScreen: {
@@ -15,6 +17,12 @@ export const navigator = createStackNavigator(
     },
     HomeScreen: {
       screen: ApplicationScreen
+    },
+    ChangePassword: {
+      screen: ChangePassword
+    },
+    Feedback: {
+      screen: FeedBackForm
     },
     ProfileDataCompletingScreen: {
       screen: ProfileDataCompletingScreen
