@@ -17,6 +17,10 @@ export type FILTER_CONNECTIONS_ACTION = {
   type: string,
   payload: any
 };
+export type REMOVE_FILTER_CONNECTIONS_ACTION = {
+  type: string,
+  payload: any
+};
 
 export type LOAD_MY_CONNECTIONS_ACTION = {
   type: string,
@@ -56,7 +60,9 @@ export function onFiltersLoaded(
 ): FILTER_CONNECTIONS_ACTION {
   return { type: types.FILTER_ALL_CONNECTIONS, payload: filteredConnections };
 }
-
+export function onRemoveFilters(): REMOVE_FILTER_CONNECTIONS_ACTION {
+  return { type: types.REMOVE_FILTER_CONNECTIONS };
+}
 export function onMyConnectionsLoaded(connections): LOAD_MY_CONNECTIONS_ACTION {
   return { type: types.LOAD_ALL_MY_CONNECTIONS, payload: connections };
 }
@@ -122,10 +128,10 @@ export function filterConnections(critirea: Object): FILTER_CONNECTIONS_ACTION {
   debugger;
   return async (dispatch, getState) => {
     const state = getState();
-    let _finalFilter =[];
+    let _finalFilter = [];
     for (var key in critirea) {
       if (critirea[key].value != "Any") {
-        _finalFilter.push({QuestionId:key,value:critirea[key].value}) ;
+        _finalFilter.push({ QuestionId: key, value: critirea[key].value });
       }
     }
     let response = await connectionProxyService.advancedFilter(_finalFilter);
@@ -139,6 +145,13 @@ export function filterConnections(critirea: Object): FILTER_CONNECTIONS_ACTION {
     } else {
       dispatch(onFailer());
     }
+  };
+}
+
+export function removeFilter(): REMOVE_FILTER_CONNECTIONS_ACTION {
+  debugger;
+  return async dispatch => {
+    dispatch(onRemoveFilters());
   };
 }
 export function loadMyConnections(): LOAD_ALL_MY_CONNECTIONS {
@@ -175,9 +188,7 @@ export function GetUserById(userId: number): SELECT_CONNECTION_ACTION {
     if (response.status === 200) {
       debugger;
       dispatch(connectionProfileDataViewing(userData));
-      //dispatch({ type: UiTypes.UI_LOADING });
     } else {
-      //dispatch({ type: UiTypes.UI_LOADING });
       dispatch(onFailer());
     }
   };

@@ -86,7 +86,6 @@ export async function tryRegister(user: UserRegisterModel) {
 
     token = await response.json();
     if (response.status === 200) {
-   
       dispatch(registerSuccess());
     } else {
       dispatch(registerFail());
@@ -98,12 +97,12 @@ export async function tryRegister(user: UserRegisterModel) {
 export async function tryChangePassword(user: ChangePasswordModel) {
   debugger;
   let token = null;
-  return async (dispatch,getstate) => {
+  return async (dispatch, getstate) => {
     const state = getstate();
     var userId = Number(state.authorization.token.id);
     dispatch(onChangePassword());
     dispatch({ type: UiTypes.UI_LOADING });
-    let response = await authProxyService.changePassword(user,userId);
+    let response = await authProxyService.changePassword(user, userId);
     debugger;
     // token = await response.json();
     if (response.status === 200) {
@@ -112,7 +111,6 @@ export async function tryChangePassword(user: ChangePasswordModel) {
     } else {
       dispatch({ type: UiTypes.UI_LOADING });
       dispatch(ChangePasswordFail());
-   
     }
   };
 }
