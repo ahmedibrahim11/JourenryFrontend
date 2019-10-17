@@ -6,7 +6,10 @@ import { connect } from "react-redux";
 
 import { Dispatch, bindActionCreators } from "redux";
 import { State } from "../../state";
-import { loadConnections } from "../../state/connections/action-creator";
+import {
+  loadConnections,
+  removeFilter
+} from "../../state/connections/action-creator";
 import HomeComponent from "../components/homecomponent";
 
 class HomeContainer extends Component {
@@ -22,13 +25,13 @@ class HomeContainer extends Component {
   static mapStatetToProps(state: State) {
     return {
       connections: state.connection.connections,
-      advancedFilter:state.connection.advancedFilter,
-      applyFilter:state.connection.applyFilter
+      advancedFilter: state.connection.advancedFilter,
+      applyFilter: state.connection.applyFilter
     };
   }
 
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({ loadConnections }, dispatch);
+    return bindActionCreators({ loadConnections, removeFilter }, dispatch);
   }
 
   render() {
@@ -40,6 +43,7 @@ class HomeContainer extends Component {
           advancedFilter={this.props.advancedFilter}
           navigation={this.props.navigation}
           applyFilter={this.props.applyFilter}
+          removeFilter={this.props.removeFilter}
         />
       </Container>
     );

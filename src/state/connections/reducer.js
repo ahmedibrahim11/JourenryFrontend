@@ -9,7 +9,8 @@ type Action =
   | actions.SELECT_CONNECTION_ACTION
   | actions.ACCEPT_CONNECTION_REQUEST_ACTION
   | actions.REJECT_CONNECTION_REQUEST_ACTION
-  | actions.SEND_CONNECTION_REQUEST_ACTION;
+  | actions.SEND_CONNECTION_REQUEST_ACTION
+  | actions.REMOVE_FILTER_CONNECTIONS_ACTION;
 
 export function connectionReducer(
   state: ConnectionsState = ConnectionsInitialState,
@@ -36,11 +37,18 @@ export function connectionReducer(
         currentUserId: action.payload
       };
     }
-    case types.FILTER_ALL_CONNECTIONS:{
-      return{
+    case types.FILTER_ALL_CONNECTIONS: {
+      return {
         ...state,
-        advancedFilter:action.payload,
-        applyFilter:true
+        advancedFilter: action.payload,
+        applyFilter: true
+      };
+    }
+    case types.REMOVE_FILTER_CONNECTIONS: {
+      return {
+        ...state,
+        advancedFilter: [],
+        applyFilter: false
       };
     }
     case types.ACCEPT_CONNECTION_REQUEST: {

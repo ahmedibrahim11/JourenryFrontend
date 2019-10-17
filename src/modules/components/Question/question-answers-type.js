@@ -40,6 +40,7 @@ export default class QuestionAnswersType extends Component {
       selectedOption: value
     });
     this.props.getCurrentAnswer(value);
+    debugger;
   }
   componentWillMount() {
     console.log("currentAnswer", this.props.currentAnswer);
@@ -79,7 +80,9 @@ export default class QuestionAnswersType extends Component {
               itemTextStyle={{ color: "#ef9c05" }}
               style={{ width: undefined }}
               selectedValue={this.state.selectedOption}
-              onValueChange={this.onValueChange.bind(this)}
+              onValueChange={itemValue => {
+                this.onValueChange(itemValue);
+              }}
             >
               {options[0].values.map((item, index) => {
                 return <Picker.Item label={item} key={index} value={item} />;

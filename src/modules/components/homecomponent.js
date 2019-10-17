@@ -1,5 +1,12 @@
 import React, { Component } from "react";
 import {
+  Modal,
+  TouchableOpacity,
+  TouchableHighlight,
+  View,
+  Alert
+} from "react-native";
+import {
   Container,
   Header,
   Content,
@@ -16,12 +23,12 @@ import {
   Right,
   Item,
   Body,
-  Title,
-  View
+  Title
 } from "native-base";
 import images from "../../../assets/images";
 
 import * as _ from "lodash";
+import { white } from "ansi-colors";
 
 export default class HomeComponent extends Component {
   constructor() {
@@ -34,7 +41,6 @@ export default class HomeComponent extends Component {
     debugger;
     if (this.state.final.length === 0) {
       this.setState({ final: this.props.connections });
-      console.log("finaaaa", this.state.final);
       debugger;
     }
   }
@@ -72,6 +78,31 @@ export default class HomeComponent extends Component {
   };
 
   render() {
+    let leftButton =
+      this.props.applyFilter == false ? (
+        <Button
+          hasText
+          transparent
+          light
+          onPress={() => {
+            this.props.screenProps.navigate("AdvancedFilterScreen");
+          }}
+        >
+          <Text>Filter</Text>
+        </Button>
+      ) : (
+        <Button
+          hasText
+          transparent
+          light
+          onPress={() => {
+            this.props.removeFilter();
+          }}
+        >
+          <Text>Remove Filter</Text>
+        </Button>
+      );
+
     return (
       <Container>
         <Header
@@ -96,16 +127,8 @@ export default class HomeComponent extends Component {
                 placeholder="Search El-Re7la Alumni"
               />
             </Item>
-            <Button
-              hasText
-              transparent
-              light
-              onPress={() => {
-                this.props.screenProps.navigate("AdvancedFilterScreen");
-              }}
-            >
-              <Text>Filter</Text>
-            </Button>
+
+            {leftButton}
           </Body>
         </Header>
         <Content>
@@ -127,30 +150,38 @@ export default class HomeComponent extends Component {
                   <Body>
                     <Text>{item.Name}</Text>
                     <Text style={{ color: "#60b4c2" }}>{item.Email}</Text>
-                    <Button
-                      rounded
-                      style={{
-                        backgroundColor: "#60b4c2",
-                        fontSize: 14,
-                        color: "white",
-                        height: 40,
-                        margin: 5
-                      }}
-                    >
-                      <Text>Telecom</Text>
-                    </Button>
-                    <Button
-                      rounded
-                      style={{
-                        backgroundColor: "#60b4c2",
-                        fontSize: 14,
-                        color: "white",
-                        height: 40,
-                        margin: 5
-                      }}
-                    >
-                      <Text>Business</Text>
-                    </Button>
+                    <View>
+                      <TouchableOpacity
+                        style={{
+                          borderRadius: 25,
+                          borderWidth: 0.8,
+                          backgroundColor: "#60b4c2",
+                          width: 100,
+                          height: 30,
+                          borderStyle: "solid",
+                          borderColor: "#60b4c2"
+                        }}
+                      >
+                        <Text style={{ color: "#ffffff", alignSelf: "center" }}>
+                          Telecom
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View>
+                      <TouchableOpacity
+                        style={{
+                          borderRadius: 25,
+                          borderWidth: 0.8,
+                          backgroundColor: "#60b4c2",
+                          borderStyle: "solid",
+                          borderColor: "#60b4c2"
+                        }}
+                      >
+                        <Text style={{ color: "#ffffff", alignSelf: "center" }}>
+                          Online Shopping
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </Body>
                 </ListItem>
               );

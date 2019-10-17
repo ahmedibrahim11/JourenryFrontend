@@ -2,6 +2,8 @@ export const LOAD_ALL_CONNECTIONS = "[connections] load connections";
 
 export const FILTER_ALL_CONNECTIONS = "[connections] filter connections";
 
+export const REMOVE_FILTER_CONNECTIONS = "[connections] remove filter";
+
 export const LOAD_ALL_MY_CONNECTIONS = "[connections] load my connections";
 
 export const SELECT_CONNECTION = "[connection] select connection";

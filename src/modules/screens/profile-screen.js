@@ -103,12 +103,6 @@ class ProfileContainer extends Component {
             >
               <Text>Mohamed Emad</Text>
               <Text note>CEO - Giftia</Text>
-              {/* <Button
-                rounded
-                style={{ backgroundColor: "#EF9C05", shadowColor: "#f99c05" }}
-              >
-                <Text style={{ color: "#ffffff" }}>Request Contacts</Text>
-              </Button> */}
             </CardItem>
           </Card>
 

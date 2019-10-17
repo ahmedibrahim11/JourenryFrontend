@@ -55,8 +55,9 @@ class EditProfileContainer extends Component {
     console.log("updatedAnwsers", _updatedAnwsers);
   }
   saveUpdatedAnswers(newAnswers) {
-    debugger;
     this.props.updateUserAnswers(this.state.updatedAnwsers);
+    debugger;
+
     this.props.navigation.navigate("HomeScreen");
   }
 
@@ -85,7 +86,7 @@ class EditProfileContainer extends Component {
         <Header
           style={{
             flexDirection: "row",
-            justifyContent: 'space-between',
+            justifyContent: "space-between",
             marginTop: StatusBar.currentHeight,
             backgroundColor: "#60b4c2"
           }}
@@ -101,7 +102,9 @@ class EditProfileContainer extends Component {
             <Text>Cancel</Text>
           </Button>
 
-          <Title style={{ justifyContent:'center', fontSize: 15 }}>My Profile</Title>
+          <Title style={{ justifyContent: "center", fontSize: 15 }}>
+            My Profile
+          </Title>
 
           <Button
             hasText
@@ -170,7 +173,17 @@ class EditProfileContainer extends Component {
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}
             >
-              <Text>tab content</Text>
+              {this.props.answers ? (
+                <ProductService
+                  editingMode={true}
+                  updateAnwsers={this.updateAnwsers}
+                  answers={this.props.answers.filter(
+                    item => item.Question.QuestionTab == 1
+                  )}
+                ></ProductService>
+              ) : (
+                <View></View>
+              )}
             </Tab>
             <Tab
               heading="Personal"
@@ -179,7 +192,17 @@ class EditProfileContainer extends Component {
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}
             >
-              <Text>tab content</Text>
+              {this.props.answers ? (
+                <ProductService
+                  editingMode={true}
+                  updateAnwsers={this.updateAnwsers}
+                  answers={this.props.answers.filter(
+                    item => item.Question.QuestionTab == 2
+                  )}
+                ></ProductService>
+              ) : (
+                <View></View>
+              )}
             </Tab>
             <Tab
               heading="Connections"
@@ -188,7 +211,17 @@ class EditProfileContainer extends Component {
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}
             >
-              <Text>tab content</Text>
+              {this.props.answers ? (
+                <ProductService
+                  editingMode={true}
+                  updateAnwsers={this.updateAnwsers}
+                  answers={this.props.answers.filter(
+                    item => item.Question.QuestionTab == 3
+                  )}
+                ></ProductService>
+              ) : (
+                <View></View>
+              )}
             </Tab>
             <Tab
               heading="Community Support"
@@ -197,7 +230,17 @@ class EditProfileContainer extends Component {
               activeTabStyle={styles.activeTabStyle}
               activeTextStyle={styles.activeTextStyle}
             >
-              <Text>tab content</Text>
+              {this.props.answers ? (
+                <ProductService
+                  editingMode={true}
+                  updateAnwsers={this.updateAnwsers}
+                  answers={this.props.answers.filter(
+                    item => item.Question.QuestionTab == 5
+                  )}
+                ></ProductService>
+              ) : (
+                <View></View>
+              )}
             </Tab>
           </Tabs>
         </Content>
