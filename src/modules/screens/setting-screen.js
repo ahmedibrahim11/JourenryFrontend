@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import {connect} from "react-redux";
 import {Dispatch,bindActionCreators} from "redux";
+import { AsyncStorage } from "react-native";
+
+import { Application } from "../../application";
+
+// import {State,SendFeedback} from "../../state"
 import {
   Container,
   Header,
@@ -15,23 +20,25 @@ import {
 
 import { StatusBar, Image, StyleSheet } from "react-native";
 
- class SettingContainer extends Component {
-   constructor(){
-     super();
-     this.state={};
-   }
-
-   static mapStatetToProps(state: State) {
-    return {
-      
-    };
+class SettingContainer extends Component {
+  constructor() {
+    super();
+    this.state = {};
   }
 
-  
+  static mapStatetToProps(state: State) {
+    return {};
+  }
+
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({  }, dispatch);
+    return bindActionCreators({}, dispatch);
   }
 
+  // props:{
+  //   error:String,
+  //   isSumbit:Boolean
+  //   SendFeedback:(feedback:String)=>void
+  // };
 
   render() {
     return (
@@ -81,9 +88,13 @@ import { StatusBar, Image, StyleSheet } from "react-native";
               </Right>
             </ListItem>
 
-            <ListItem onPress={() => {
-                this.props.screenProps.navigate("LoginScreen");
-              }}>
+            <ListItem
+              onPress={() => {
+                AsyncStorage.clear(() => {
+                  this.props.screenProps.navigate("LoginScreen");
+                });
+              }}
+            >
               <Left>
                 <Text>Logout</Text>
               </Left>
