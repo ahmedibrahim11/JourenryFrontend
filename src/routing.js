@@ -6,7 +6,7 @@ import ProfileDataCompletingScreen from "./modules/screens/profile-data-completi
 import OthersProfileScreen from "./modules/screens/others-profile-screen";
 import EditProfileScreen from "./modules/screens/edit-profile-screen";
 import  ChangePasswordScreen  from "./modules/screens/change-password";
-import { FeedBackForm } from "./modules/screens/feedback";
+import { FeedBackScreen } from "./modules/screens/feedback";
 export const navigator = createStackNavigator(
   {
     RegisterScreen: {
@@ -22,7 +22,7 @@ export const navigator = createStackNavigator(
       screen: ChangePasswordScreen
     },
     Feedback: {
-      screen: FeedBackForm
+      screen: FeedBackScreen
     },
     ProfileDataCompletingScreen: {
       screen: ProfileDataCompletingScreen

@@ -6,7 +6,6 @@ import {
   authProxyService,
   TokenDto,
   UserLoginModel,
-  UserRegisterModel,
   ChangePasswordModel
 } from "../../proxy";
 import * as UiTypes from "../ui/actions";
@@ -22,16 +21,6 @@ export type LOGIN_SUCCESS_Action = {
 export type LOGIN_FAIL_Action = { type: string, payload: string };
 
 /*************** */
-
-/************************* */
-export type ON_REGISTER_Action = { type: string, payload: any };
-
-export type REGISTER_SUCCESS_Action = { type: string, payload: any };
-
-export type REGISTER_FAIL_Action = { type: string, payload: string };
-
-/*************************** */
-
 export type ON_CHANGE_PASSWORD_Action = { type: string, payload: any };
 
 export type ON_CHANGE_PASSWORD_SUCCESS_Action = { type: string, payload: any };
@@ -57,44 +46,22 @@ export async function tryLogin(user: UserLoginModel) {
         finalToken.id = decoded["Id"];
         finalToken.isRegisterd = decoded["IsRegisterd"];
         finalToken.token = token;
-        console.log("final", finalToken);
       } catch (error) {
         console.log("err", error);
       }
     }
-
     debugger;
-
     if (response.status === 200) {
       debugger;
       dispatch({ type: UiTypes.UI_LOADING });
       dispatch(success(finalToken));
     } else {
-      dispatch(fail());
-      //dispatch({ type: UiTypes.UI_LOADING });
-    }
-  };
-}
-
-export async function tryRegister(user: UserRegisterModel) {
-  debugger;
-  let token = null;
-  return async dispatch => {
-    dispatch(onRegister(user));
-    dispatch({ type: UiTypes.UI_LOADING });
-    let response = await authProxyService.register(user);
-
-    token = await response.json();
-    if (response.status === 200) {
-   
-      dispatch(registerSuccess());
-    } else {
-      dispatch(registerFail());
       dispatch({ type: UiTypes.UI_LOADING });
+      dispatch(fail());
+
     }
   };
 }
-
 export async function tryChangePassword(user: ChangePasswordModel) {
   debugger;
   let token = null;
@@ -128,19 +95,6 @@ export function success(token: TokenDto): LOGIN_SUCCESS_Action {
 export function fail(): LOGIN_FAIL_Action {
   const errorMsg = "Invalid Credentials";
   return { type: types.LOGIN_FAIL, payload: errorMsg };
-}
-
-export function onRegister(user): ON_REGISTER_Action {
-  return { type: types.ON_REGISTER, payload: user };
-}
-
-export function registerSuccess(): REGISTER_SUCCESS_Action {
-  return { type: types.REGISTER_SUCCESS };
-}
-
-export function registerFail(): REGISTER_FAIL_Action {
-  const errorMsg = "Invalid Credentials";
-  return { type: types.REGISTER_FAIL, payload: errorMsg };
 }
 
 export function onChangePassword(user): ON_CHANGE_PASSWORD_Action {

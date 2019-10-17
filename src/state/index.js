@@ -15,3 +15,8 @@ export * from "./connections/action-creator";
 export * from "./profiledatacompleting/state";
 export * from "./profiledatacompleting/reducer";
 export * from "./profiledatacompleting/action-creator";
+
+export * from "./setting/state";
+export * from "./setting/reducer";
+export * from "./setting/action-creator";
+

@@ -58,7 +58,7 @@ export class LoginForm extends Component {
     const loadingSpinner = this.props.loading ? (
       <Spinner color="#ef9c05" />
     ) : (
-      <Text bold red margin20>
+      <Text style={{alignSelf:'center',marginTop:5}} bold>
         {this.props.errorMessage}
       </Text>
     );

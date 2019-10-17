@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
+import {Dispatch,bindActionCreators} from "redux";
+import {State,SendFeedback} from "../../state"
 
 import {
   ImageBackground,
@@ -15,22 +18,54 @@ import {
   Form,
   Textarea,
   Button,
-  Text
+  Text,
+  Spinner
 } from "native-base";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import Images from "../../../assets/images";
 
-export class FeedBackForm extends Component {
+ class FeedBackContainer extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state={
+      message:''
+    };
   }
+
+  
+  static mapStatetToProps(state: State) {
+    return {
+       isSumbit:state.setting.isSubmit,
+       error:state.setting.errorMessage,
+       loading: state.ui.loading,
+    };
+  }
+
+  
+  static mapDispatchToProps(dispatch: Dispatch) {
+    return bindActionCreators({ SendFeedback }, dispatch);
+  }
+
+   props:{
+    error:String,
+    isSumbit:Boolean,
+    loading:Boolean;
+    SendFeedback:(feedback:String)=>void
+  };
+
 
   render() {
     const { height: screenHeight, width: screenWidth } = Dimensions.get(
       "window"
+    );
+    const loadingSpinner = this.props.loading ? (
+      <Spinner color="#ef9c05" />
+    ) : (
+      <Text bold red margin20>
+        {this.props.error}
+      </Text>
     );
     return (
       <Container style={{ padding: 1 }}>
@@ -86,7 +121,10 @@ export class FeedBackForm extends Component {
             >
               <View>
                 <Form>
-                  <Textarea
+                  <Textarea 
+                  onChangeText={(text)=>{
+                   this.setState({message:text})
+                  }}
                     rowSpan={3}
                     placeholder="Type your message here …"
                   />
@@ -104,13 +142,16 @@ export class FeedBackForm extends Component {
                     marginTop: 20
                   }}
                   onPress={() => {
-                    this.props.tryLogin(this.state);
+                    this.props.SendFeedback(this.state);
                   }}
                 >
                   <Text style={{ color: "#FFFFFF" }}>Send</Text>
                 </Button>
               </View>
             </View>
+            <View style={{flex:1}}>
+             {loadingSpinner}
+             </View>
           </KeyboardAwareScrollView>
         </ImageBackground>
       </Container>
@@ -125,3 +166,8 @@ var styles = StyleSheet.create({
     height: null
   }
 });
+
+export const FeedBackScreen=connect(
+  FeedBackContainer.mapStatetToProps,
+  FeedBackContainer.mapDispatchToProps
+)(FeedBackContainer);

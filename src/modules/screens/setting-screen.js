@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
+import {Dispatch,bindActionCreators} from "redux";
+// import {State,SendFeedback} from "../../state"
 import {
   Container,
   Header,
@@ -13,7 +16,31 @@ import {
 
 import { StatusBar, Image, StyleSheet } from "react-native";
 
-export class SettingScreen extends Component {
+ class SettingContainer extends Component {
+   constructor(){
+     super();
+     this.state={};
+   }
+
+   static mapStatetToProps(state: State) {
+    return {
+      
+    };
+  }
+
+  
+  static mapDispatchToProps(dispatch: Dispatch) {
+    return bindActionCreators({  }, dispatch);
+  }
+
+  // props:{
+  //   error:String,
+  //   isSumbit:Boolean
+  //   SendFeedback:(feedback:String)=>void
+  // };
+
+
+
   render() {
     return (
       <Container>
@@ -62,7 +89,9 @@ export class SettingScreen extends Component {
               </Right>
             </ListItem>
 
-            <ListItem>
+            <ListItem onPress={() => {
+                this.props.screenProps.navigate("LoginScreen");
+              }}>
               <Left>
                 <Text>Logout</Text>
               </Left>
@@ -73,3 +102,8 @@ export class SettingScreen extends Component {
     );
   }
 }
+
+export const SettingScreen=connect(
+  SettingContainer.mapStatetToProps,
+  SettingContainer.mapDispatchToProps
+)(SettingContainer);
