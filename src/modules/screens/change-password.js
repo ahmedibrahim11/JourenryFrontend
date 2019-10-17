@@ -18,7 +18,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Images from "../../../assets/images";
 import { ChangePasswordForm } from "../components/change-password-form";
 
-export class ChangePassword extends Component {
+ class ChangePassword extends Component {
   constructor() {
     super();
     this.state = {

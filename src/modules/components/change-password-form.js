@@ -30,10 +30,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 // var language = require('../../languages/english.json');
 export class ChangePasswordForm extends Component {
-  //koko
-  //p@$$w0rd
-  //msam
-  //123
+  
   constructor() {
     super();
     this.state = {
@@ -107,7 +104,7 @@ export class ChangePasswordForm extends Component {
                 backgroundColor: "#ef9c05"
               }}
               onPress={() => {
-                this.props.tryChangePassword(this.state,this.successChangePassword);
+                this.props.tryChangePassword(this.state);
               }}
             >
               <Text style={{ color: "#FFFFFF" }}>SetNewPassword</Text>

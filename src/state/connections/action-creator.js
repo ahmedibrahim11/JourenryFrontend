@@ -70,7 +70,7 @@ export function onMyConnectionsLoaded(connections): LOAD_MY_CONNECTIONS_ACTION {
 export function connectionProfileDataViewing(
   userData: AnswersDto
 ): SELECT_CONNECTION_ACTION {
-  return { type: types.SELECT_CONNECTION, payload: answers };
+  return { type: types.SELECT_CONNECTION, payload: userData };
 }
 
 export function onAcceptingConnectionRequest(

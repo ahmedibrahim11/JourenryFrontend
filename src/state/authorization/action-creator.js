@@ -68,13 +68,15 @@ export async function tryChangePassword(user: ChangePasswordModel) {
     const state = getstate();
     var userId = Number(state.authorization.token.id);
     dispatch(onChangePassword());
-    dispatch({ type: UiTypes.UI_LOADING });
+    //dispatch({ type: UiTypes.UI_LOADING });
+    debugger;
     let response = await authProxyService.changePassword(user, userId);
     debugger;
     // token = await response.json();
     if (response.status === 200) {
-      dispatch({ type: UiTypes.UI_LOADING });
+    //  dispatch({ type: UiTypes.UI_LOADING });
       dispatch(ChangePasswordSuccess());
+      debugger;
     } else {
       dispatch({ type: UiTypes.UI_LOADING });
       dispatch(ChangePasswordFail());

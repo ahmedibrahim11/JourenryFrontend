@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {connect} from "react-redux";
 import {Dispatch,bindActionCreators} from "redux";
-// import {State,SendFeedback} from "../../state"
 import {
   Container,
   Header,
@@ -32,13 +31,6 @@ import { StatusBar, Image, StyleSheet } from "react-native";
   static mapDispatchToProps(dispatch: Dispatch) {
     return bindActionCreators({  }, dispatch);
   }
-
-  // props:{
-  //   error:String,
-  //   isSumbit:Boolean
-  //   SendFeedback:(feedback:String)=>void
-  // };
-
 
 
   render() {
@@ -103,7 +95,7 @@ import { StatusBar, Image, StyleSheet } from "react-native";
   }
 }
 
-export const SettingScreen=connect(
+export default SettingScreen=connect(
   SettingContainer.mapStatetToProps,
   SettingContainer.mapDispatchToProps
 )(SettingContainer);
