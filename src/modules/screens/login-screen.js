@@ -58,6 +58,12 @@ class loginContainer extends Component {
     tryLogin: (userModel: UserLoginModel) => void
   };
 
+  componentWillMount() {
+    if (this.props.isLoggedIn == true) {
+      this.props.navigation.navigate("HomeScreen");
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
       debugger;
@@ -74,24 +80,28 @@ class loginContainer extends Component {
   render() {
     // console.log("from login screen", i18next.t("key"));
     return (
-      <KeyboardAwareScrollView extraScrollHeight={100} enableOnAndroid={true} keyboardShouldPersistTaps='handled'>
-      <ImageBackground
-        source={Images.loginBackground}
-        style={styles.backgroundImage}
-        imageStyle={{ resizeMode: "cover" }}
+      <KeyboardAwareScrollView
+        extraScrollHeight={100}
+        enableOnAndroid={true}
+        keyboardShouldPersistTaps="handled"
       >
-        <Container style={{ padding: 10 }}>
-          <Logo />
-          <LoginForm
-            loading={this.props.loading}
-            tryLogin={this.props.tryLogin}
-            errorMessage={this.props.loginError}
-            isLoggedIn={this.props.isLoggedIn}
-            navigation={this.props.navigation}
-          />
-        </Container>
-        {/* <Loader modalVisible={this.props.loading} animationType="fade" /> */}
-      </ImageBackground>
+        <ImageBackground
+          source={Images.loginBackground}
+          style={styles.backgroundImage}
+          imageStyle={{ resizeMode: "cover" }}
+        >
+          <Container style={{ padding: 10 }}>
+            <Logo />
+            <LoginForm
+              loading={this.props.loading}
+              tryLogin={this.props.tryLogin}
+              errorMessage={this.props.loginError}
+              isLoggedIn={this.props.isLoggedIn}
+              navigation={this.props.navigation}
+            />
+          </Container>
+          {/* <Loader modalVisible={this.props.loading} animationType="fade" /> */}
+        </ImageBackground>
       </KeyboardAwareScrollView>
     );
   }
