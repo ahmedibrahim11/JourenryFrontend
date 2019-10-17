@@ -39,7 +39,16 @@ export default class HomeComponent extends Component {
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props != nextProps) {
+    if (this.props != nextProps && nextProps.applyFilter == true) {
+      let _final = [];
+      nextProps.connections.forEach(function(item) {
+        if (nextProps.advancedFilter.includes(item.Id)) {
+          _final.push(item);
+        }
+      });
+      this.setState({ final: _final });
+      debugger;
+    } else if (this.props != nextProps) {
       this.setState({ final: nextProps.connections });
       debugger;
     }
@@ -63,11 +72,6 @@ export default class HomeComponent extends Component {
   };
 
   render() {
-    debugger;
-    console.log("this.props.connections", this.props.connections);
-
-    console.log("this.final", this.state.final);
-
     return (
       <Container>
         <Header

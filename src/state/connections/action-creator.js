@@ -122,17 +122,16 @@ export function filterConnections(critirea: Object): FILTER_CONNECTIONS_ACTION {
   debugger;
   return async (dispatch, getState) => {
     const state = getState();
-    let _finalFilter = {};
+    let _finalFilter =[];
     for (var key in critirea) {
       if (critirea[key].value != "Any") {
-        _finalFilter[key] = critirea[key].value;
+        _finalFilter.push({QuestionId:key,value:critirea[key].value}) ;
       }
     }
-    debugger;
     let response = await connectionProxyService.advancedFilter(_finalFilter);
     let conns;
-    debugger;
     conns = await response.data;
+
     debugger;
     if (response.status === 200) {
       debugger;

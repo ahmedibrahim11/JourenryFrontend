@@ -67,8 +67,8 @@ export async function tryLogin(user: UserLoginModel) {
 
     if (response.status === 200) {
       debugger;
+      dispatch({ type: UiTypes.UI_LOADING });
       dispatch(success(finalToken));
-      //dispatch({ type: UiTypes.UI_LOADING });
     } else {
       dispatch(fail());
       //dispatch({ type: UiTypes.UI_LOADING });
@@ -82,22 +82,14 @@ export async function tryRegister(user: UserRegisterModel) {
   return async dispatch => {
     dispatch(onRegister(user));
     dispatch({ type: UiTypes.UI_LOADING });
-    let response = await authProxyService.changePassword(user);
+    let response = await authProxyService.register(user);
 
     token = await response.json();
     if (response.status === 200) {
-      // HttpClient.requestInterceptor.push(request => {
-      //   let _token: TokenDto;
-      //   if (token) _token = token;
-      //   request.headers = Object.assign({}, request.headers, {
-      //     Authorization: `bearer ${_token.access_token}`
-      //   });
-      //   return request;
-      // });
+   
       dispatch(registerSuccess());
-      // dispatch({ type: UiTypes.UI_LOADING });
     } else {
-      dispatch(ChangePasswordFail());
+      dispatch(registerFail());
       dispatch({ type: UiTypes.UI_LOADING });
     }
   };
@@ -106,26 +98,21 @@ export async function tryRegister(user: UserRegisterModel) {
 export async function tryChangePassword(user: ChangePasswordModel) {
   debugger;
   let token = null;
-  return async dispatch => {
-    dispatch(onChangePassword(user));
+  return async (dispatch,getstate) => {
+    const state = getstate();
+    var userId = Number(state.authorization.token.id);
+    dispatch(onChangePassword());
     dispatch({ type: UiTypes.UI_LOADING });
-    let response = await authProxyService.register(user);
-
-    token = await response.json();
+    let response = await authProxyService.changePassword(user,userId);
+    debugger;
+    // token = await response.json();
     if (response.status === 200) {
-      // HttpClient.requestInterceptor.push(request => {
-      //   let _token: TokenDto;
-      //   if (token) _token = token;
-      //   request.headers = Object.assign({}, request.headers, {
-      //     Authorization: `bearer ${_token.access_token}`
-      //   });
-      //   return request;
-      // });
-      dispatch(ChangePasswordSuccess());
-      // dispatch({ type: UiTypes.UI_LOADING });
-    } else {
-      dispatch(registerFail());
       dispatch({ type: UiTypes.UI_LOADING });
+      dispatch(ChangePasswordSuccess());
+    } else {
+      dispatch({ type: UiTypes.UI_LOADING });
+      dispatch(ChangePasswordFail());
+   
     }
   };
 }
@@ -157,7 +144,7 @@ export function registerFail(): REGISTER_FAIL_Action {
 }
 
 export function onChangePassword(user): ON_CHANGE_PASSWORD_Action {
-  return { type: types.ON_CHANGE_PASSWORD, payload: user };
+  return { type: types.ON_CHANGE_PASSWORD };
 }
 
 export function ChangePasswordSuccess(): ON_CHANGE_PASSWORD_SUCCESS_Action {

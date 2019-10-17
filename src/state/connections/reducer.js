@@ -39,7 +39,8 @@ export function connectionReducer(
     case types.FILTER_ALL_CONNECTIONS:{
       return{
         ...state,
-        advancedFilter:action.payload
+        advancedFilter:action.payload,
+        applyFilter:true
       };
     }
     case types.ACCEPT_CONNECTION_REQUEST: {

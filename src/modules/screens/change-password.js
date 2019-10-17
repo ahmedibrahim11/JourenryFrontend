@@ -1,5 +1,14 @@
 import React, { Component } from "react";
 
+import {connect} from "react-redux";
+
+import {Dispatch,bindActionCreators} from "redux";
+
+import {State,tryChangePassword} from "../../state";
+
+import { ChangePasswordModel } from "../../proxy/models";
+
+
 import { ImageBackground, StyleSheet, StatusBar } from "react-native";
 
 import { Thumbnail, Container, Header, Button, Text } from "native-base";
@@ -12,7 +21,27 @@ import { ChangePasswordForm } from "../components/change-password-form";
 export class ChangePassword extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      isMounted: false
+    };
+  }
+
+  static mapStatetToProps(state:State){
+    return{
+     chanePasswordError:state.authorization.errorMessage,
+     loading:state.ui.loading,
+     isChange:state.authorization.isChange
+    };
+  }
+  static mapDispatchToProps(dispatch:Dispatch){
+    return bindActionCreators({tryChangePassword},dispatch);
+  }
+
+  props:{
+    chanePasswordError:String,
+    loading:Boolean,
+    isChange:Boolean,
+    tryChangePassword: (changePasswordModel:ChangePasswordModel ) => void
   }
 
   render() {
@@ -52,13 +81,25 @@ export class ChangePassword extends Component {
               style={{ height: 200, width: 300, alignSelf: "center" }}
               square
             />
-            <ChangePasswordForm></ChangePasswordForm>
-          </KeyboardAwareScrollView>
+            <ChangePasswordForm
+             loading={this.props.loading}
+             tryChangePassword={this.props.tryChangePassword}
+             chanePasswordError={this.props.errorMessage}
+             isChanged={this.props.isChanged}
+             navigation={this.props.navigation}
+            />
+            </KeyboardAwareScrollView>
         </ImageBackground>
       </Container>
     );
   }
 }
+
+export default ChangePasswordScreen = connect(
+  ChangePassword.mapStatetToProps,
+  ChangePassword.mapDispatchToProps
+)(ChangePassword);
+
 
 var styles = StyleSheet.create({
   backgroundImage: {

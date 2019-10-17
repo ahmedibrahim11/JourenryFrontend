@@ -56,12 +56,12 @@ export default class AdvancedFilterComponent extends Component {
         <Header
           style={{
             flexDirection: "row",
-            justifyContent: 'space-between',
+            justifyContent: "space-between",
             marginTop: StatusBar.currentHeight,
             backgroundColor: "#60b4c2"
           }}
         >
-            <Button
+          <Button
             hasText
             transparent
             light
@@ -79,7 +79,7 @@ export default class AdvancedFilterComponent extends Component {
             transparent
             light
             onPress={() => {
-              this.props.filterConnections(this.state.filter)
+              this.props.filterConnections(this.state.filter);
               this.props.navigation.navigate("HomeScreen");
             }}
           >

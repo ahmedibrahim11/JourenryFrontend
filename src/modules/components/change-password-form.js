@@ -38,31 +38,34 @@ export class ChangePasswordForm extends Component {
     super();
     this.state = {
       oldPassword: "",
-      NewPassword: "",
-      ConfirmPassword: ""
+      newPassword: "",
+      confirmPassword: ""
     };
+    this.successChangePassword=this.successChangePassword.bind(this);
   }
 
-  props: {
-    // isLoggedIn: boolean,
-    // loading: boolean,
-    // errorMessage: string,
-    // navigation: any,
-    // tryLogin: UserLoginModel => void
-  };
-
-  login() {
-    this.props.tryLogin(this.state);
+  props:{
+    chanePasswordError:String,
+    loading:Boolean,
+    isChanged:Boolean,
+    tryChangePassword: (changePasswordModel:ChangePasswordModel ) => void
   }
 
+  successChangePassword() {
+    this.props.navigation.navigate("HomeScreen");
+  }
+  changePassword(state,callBack) {
+    debugger;
+      this.props.tryChangePassword(state);
+  }
   render() {
-    // const loadingSpinner = this.props.loading ? (
-    //   <Spinner color="#ef9c05" />
-    // ) : (
-    //   <Text bold red margin20>
-    //     {this.props.errorMessage}
-    //   </Text>
-    // );
+    const loadingSpinner = this.props.loading ? (
+      <Spinner color="#ef9c05" />
+    ) : (
+      <Text bold red margin20>
+        {this.props.chanePasswordError}
+      </Text>
+    );
 
     return (
       <View style={{ flex: 1 }}>
@@ -80,7 +83,7 @@ export class ChangePasswordForm extends Component {
             <Input
               secureTextEntry={true}
               onChangeText={txt => {
-                this.setState({ NewPassword: txt });
+                this.setState({ newPassword: txt });
               }}
             />
           </Item>
@@ -89,10 +92,11 @@ export class ChangePasswordForm extends Component {
             <Input
               secureTextEntry={true}
               onChangeText={txt => {
-                this.setState({ ConfirmPassword: txt });
+                this.setState({ confirmPassword: txt });
               }}
             />
           </Item>
+          <Text></Text>
           <View style={styles.ChangePasswordContainer}>
             <Button
               dark
@@ -103,14 +107,13 @@ export class ChangePasswordForm extends Component {
                 backgroundColor: "#ef9c05"
               }}
               onPress={() => {
-                this.props.tryLogin(this.state);
+                this.props.tryChangePassword(this.state,this.successChangePassword);
               }}
             >
               <Text style={{ color: "#FFFFFF" }}>SetNewPassword</Text>
             </Button>
-            {/* <GradientBtn text="Sign IN" action={this.login.bind(this)} /> */}
           </View>
-          {/* {loadingSpinner} */}
+          {loadingSpinner}
         </Form>
       </View>
     );

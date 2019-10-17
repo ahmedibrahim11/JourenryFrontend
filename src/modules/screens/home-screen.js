@@ -21,7 +21,9 @@ class HomeContainer extends Component {
   }
   static mapStatetToProps(state: State) {
     return {
-      connections: state.connection.connections
+      connections: state.connection.connections,
+      advancedFilter:state.connection.advancedFilter,
+      applyFilter:state.connection.applyFilter
     };
   }
 
@@ -35,6 +37,9 @@ class HomeContainer extends Component {
         <HomeComponent
           connections={this.props.connections}
           screenProps={this.props.screenProps}
+          advancedFilter={this.props.advancedFilter}
+          navigation={this.props.navigation}
+          applyFilter={this.props.applyFilter}
         />
       </Container>
     );

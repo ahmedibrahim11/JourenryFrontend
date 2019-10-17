@@ -72,18 +72,12 @@ export function authorizationReducer(
 
     case types.ON_CHANGE_PASSWORD: {
       return {
-        ...state,
-        isRegistered: false,
-        errorMessage: "",
-        token: null,
-        isLoggedIn: false,
-        username: "",
-        loading: false,
-        isChange: false
+        ...state
       };
     }
 
     case types.ON_CHANGE_PASSWORD_SUCCESS: {
+      debugger;
       return {
         ...state,
         isChange: true

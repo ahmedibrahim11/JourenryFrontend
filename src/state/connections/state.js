@@ -6,6 +6,7 @@ export interface ConnectionsState {
   myConnections: Array;
   currentSelectedUserId: number;
   advancedFilter:Array;
+  applyFilter:Boolean;
 }
 
 export const ConnectionsInitialState: ConnectionsState = {
@@ -13,4 +14,5 @@ export const ConnectionsInitialState: ConnectionsState = {
   myConnections: [],
   currentUserId: 0,
   advancedFilter:[],
+  applyFilter:false,
 };

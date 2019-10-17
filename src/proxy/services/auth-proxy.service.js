@@ -5,6 +5,9 @@ import {
   UserConfirmModel,
   ChangePasswordModel
 } from "../models/index";
+
+import axios from "axios";
+
 import { Application } from "../../application";
 export class AuthProxyService {
   async login(user: UserLoginModel) {
@@ -44,16 +47,34 @@ export class AuthProxyService {
     });
   }
 
-  async changePassword(user: ChangePasswordModel) {
-    const data = {};
-    data["oldPassword"] = user.password;
-    data["newPassword"] = user.newPassword;
-    data["confirmPassword"] = user.confirmPassword;
+  // async changePassword(user: ChangePasswordModel,id:Number) {
+  //   debugger;
+  //   const data = {};
+  //   data["oldPassword"] = user.oldPassword;
+  //   data["newPassword"] = user.newPassword;
+  //   data["confirmPassword"] = user.confirmPassword;
+  //   return await fetch(`${BASE_URL}/auth/changepassword/${id}`, {
+  //     method: "post",
+  //     headers: { "content-Type": "application/json" },
+  //     body: data
+  //   });
+  // }
 
-    return await fetch(`${BASE_URL}/token`, {
+
+  async changePassword(user: ChangePasswordModel,id:Number) {
+    debugger;
+    return await axios({
       method: "post",
-      headers: { "content-Type": "application/x-www-form-urlencoded" },
-      body: data
+      url: `${BASE_URL}auth/changepassword/${id}`,
+      data: user,
+      config: {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "content-Type": "application/json"
+        }
+      }
     });
   }
+
+
 }
