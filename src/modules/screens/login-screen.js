@@ -65,7 +65,7 @@ class loginContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isLoggedIn === true || this.props.isLoggedIn === true) {
+    if (nextProps.isLoggedIn === true) {
       debugger;
       if (nextProps.token.isRegisterd === "True") {
         this.props.navigation.navigate("HomeScreen");

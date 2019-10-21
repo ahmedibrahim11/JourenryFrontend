@@ -29,6 +29,7 @@ export type ON_CHANGE_PASSWORD_FAIL_Action = {
   type: string,
   payload: string
 };
+export type USER_LOGOUT_Action = { type: string };
 
 export async function tryLogin(user: UserLoginModel) {
   let result = null;
@@ -74,8 +75,7 @@ export async function tryChangePassword(user: ChangePasswordModel) {
     debugger;
     // token = await response.json();
     if (response.status === 200) {
-    //  dispatch({ type: UiTypes.UI_LOADING });
-      dispatch(ChangePasswordSuccess());
+      dispatch(logOutUser());
       debugger;
     } else {
       dispatch({ type: UiTypes.UI_LOADING });
@@ -83,7 +83,12 @@ export async function tryChangePassword(user: ChangePasswordModel) {
     }
   };
 }
-
+export async function logOutUser() {
+  debugger;
+  return async dispatch => {
+    dispatch(logOut());
+  };
+}
 export function onLogin(user): ON_LOGIN_Action {
   return { type: types.ON_LOGIN, payload: user };
 }
@@ -108,4 +113,8 @@ export function ChangePasswordSuccess(): ON_CHANGE_PASSWORD_SUCCESS_Action {
 export function ChangePasswordFail(): ON_CHANGE_PASSWORD_FAIL_Action {
   const errorMsg = "Faild To ChangePassword";
   return { type: types.ON_CHANGE_PASSWORD_FAIL, payload: errorMsg };
+}
+
+export function logOut(): USER_LOGOUT_Action {
+  return { type: types.USER_LOGOUT };
 }

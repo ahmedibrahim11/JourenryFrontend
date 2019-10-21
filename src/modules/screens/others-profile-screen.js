@@ -34,6 +34,7 @@ import {
   sendingConnectionRequest,
   state
 } from "../../state";
+import { gray } from "ansi-colors";
 
 // import { NavigationContext } from "./application-container";
 class OtherProfileContainer extends Component {
@@ -116,14 +117,27 @@ class OtherProfileContainer extends Component {
         <Header
           style={{
             flexDirection: "row",
-            justifyContent: "center",
+            justifyContent: "space-between",
             marginTop: StatusBar.currentHeight,
             backgroundColor: "#60b4c2"
           }}
         >
-          <Title style={{ fontSize: 15 }}>
-            {this.state.user.UserName} Profile
+          <Button
+            hasText
+            transparent
+            light
+            onPress={() => {
+              this.props.navigation.navigate("HomeScreen");
+            }}
+          >
+            <Text>Back</Text>
+          </Button>
+          <Title style={{ alignSelf: "center", fontSize: 15 }}>
+            {this.state.user.Name}'s Profile
           </Title>
+          <Button hasText transparent light>
+            <Text></Text>
+          </Button>
         </Header>
         <Content>
           <Card
@@ -143,7 +157,11 @@ class OtherProfileContainer extends Component {
                 alignItems: "center"
               }}
             >
-              <Text>{this.state.user.UserName}</Text>
+              <Text>{this.state.user.Name}</Text>
+
+              <Text style={{ color: "#919191" }}>
+                {this.state.user.JobTittle}
+              </Text>
               {/* <Text note>CEO - Giftia</Text> */}
               {statusButton}
             </CardItem>

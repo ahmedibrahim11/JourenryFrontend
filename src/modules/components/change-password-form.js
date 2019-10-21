@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { LinearGradient } from "expo";
+import { AsyncStorage } from "react-native";
+
 import {
   Dimensions,
   TouchableOpacity,
@@ -51,7 +53,7 @@ export class ChangePasswordForm extends Component {
   successChangePassword() {
     this.props.navigation.navigate("HomeScreen");
   }
-  changePassword(state,callBack) {
+  changePassword(state) {
     debugger;
       this.props.tryChangePassword(state);
   }
@@ -103,8 +105,11 @@ export class ChangePasswordForm extends Component {
                 borderWidth: 0.8,
                 backgroundColor: "#ef9c05"
               }}
-              onPress={() => {
-                this.props.tryChangePassword(this.state);
+               onPress={() => {
+               this.props.tryChangePassword(this.state);
+                AsyncStorage.clear(() => {
+                  this.props.navigation.navigate("LoginScreen");
+                });
               }}
             >
               <Text style={{ color: "#FFFFFF" }}>SetNewPassword</Text>

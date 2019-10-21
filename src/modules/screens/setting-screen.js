@@ -4,7 +4,7 @@ import {Dispatch,bindActionCreators} from "redux";
 import { AsyncStorage } from "react-native";
 
 import { Application } from "../../application";
-
+import { logOutUser } from "../../state"
 // import {State,SendFeedback} from "../../state"
 import {
   Container,
@@ -31,7 +31,7 @@ class SettingContainer extends Component {
   }
 
   static mapDispatchToProps(dispatch: Dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({ logOutUser }, dispatch);
   }
 
   // props:{
@@ -90,6 +90,8 @@ class SettingContainer extends Component {
 
             <ListItem
               onPress={() => {
+                this.props.logOutUser();
+                debugger;
                 AsyncStorage.clear(() => {
                   this.props.screenProps.navigate("LoginScreen");
                 });

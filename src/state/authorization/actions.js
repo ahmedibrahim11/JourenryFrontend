@@ -9,3 +9,5 @@ export const REGISTER_FAIL = "[auth] Register fail";
 export const ON_CHANGE_PASSWORD = "[auth] on ChangePassword";
 export const ON_CHANGE_PASSWORD_SUCCESS = "[auth] on ChangePassword success";
 export const ON_CHANGE_PASSWORD_FAIL = "[auth] on ChangePassword Fail";
+
+export const USER_LOGOUT = "USER_LOGOUT";

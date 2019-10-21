@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { StatusBar, StyleSheet } from "react-native";
+
 import {
   Modal,
   TouchableOpacity,
@@ -99,36 +101,47 @@ export default class HomeComponent extends Component {
             this.props.removeFilter();
           }}
         >
-          <Text>Remove Filter</Text>
+          <View style={{ flexDirection: "column" }}>
+            <Text>Remove </Text>
+            <Text>Filter</Text>
+          </View>
         </Button>
       );
 
     return (
       <Container>
         <Header
-          style={{ paddingTop: 35, backgroundColor: "#60b4c2" }}
+          style={{
+            marginTop: StatusBar.currentHeight,
+            backgroundColor: "#60b4c2"
+          }}
           span
           searchBar
           rounded
           autoCorrect={false}
         >
-          <Body style={{ marginLeft: 10 }}>
+          <Body style={{ flexDirection: "column" }}>
             <Title style={{ margin: 15, fontSize: 32 }}>Explore</Title>
-            <Item rounded style={{ width: "95%", height: "30%" }}>
-              <Icon
-                style={{ color: "white", fontSize: 14 }}
-                name="ios-search"
-              />
-              <Input
-                style={{ fontSize: 14 }}
-                transparent
-                placeholderTextColor="#bbc9cc"
-                onChangeText={this._onChangeSearchText.bind(this)} // <-- Here
-                placeholder="Search El-Re7la Alumni"
-              />
-            </Item>
+            <View style={{ flexDirection: "row" }}>
+              <Item
+                rounded
+                style={{ alignSelf: "center", width: "80%", height: "50%" }}
+              >
+                <Icon
+                  style={{ color: "white", fontSize: 14 }}
+                  name="ios-search"
+                />
+                <Input
+                  style={{ fontSize: 14 }}
+                  transparent
+                  placeholderTextColor="#bbc9cc"
+                  onChangeText={this._onChangeSearchText.bind(this)} // <-- Here
+                  placeholder="Search El-Re7la Alumni"
+                />
+              </Item>
 
-            {leftButton}
+              {leftButton}
+            </View>
           </Body>
         </Header>
         <Content>
@@ -147,40 +160,82 @@ export default class HomeComponent extends Component {
                   <Left>
                     <Thumbnail circular source={images.avtar} />
                   </Left>
-                  <Body>
+                  <Body style={{ flexDirection: "column" }}>
                     <Text>{item.Name}</Text>
                     <Text style={{ color: "#60b4c2" }}>{item.Email}</Text>
-                    <View>
-                      <TouchableOpacity
-                        style={{
-                          borderRadius: 25,
-                          borderWidth: 0.8,
-                          backgroundColor: "#60b4c2",
-                          width: 100,
-                          height: 30,
-                          borderStyle: "solid",
-                          borderColor: "#60b4c2"
-                        }}
-                      >
-                        <Text style={{ color: "#ffffff", alignSelf: "center" }}>
-                          Telecom
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View>
-                      <TouchableOpacity
-                        style={{
-                          borderRadius: 25,
-                          borderWidth: 0.8,
-                          backgroundColor: "#60b4c2",
-                          borderStyle: "solid",
-                          borderColor: "#60b4c2"
-                        }}
-                      >
-                        <Text style={{ color: "#ffffff", alignSelf: "center" }}>
-                          Online Shopping
-                        </Text>
-                      </TouchableOpacity>
+                    <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                      <View style={{margin:2}}>
+                        <TouchableOpacity
+                          style={{
+                            borderRadius: 25,
+                            borderWidth: 0.8,
+                            backgroundColor: "#60b4c2",
+                            height: 30,
+                            borderStyle: "solid",
+                            borderColor: "#60b4c2",
+                          }}
+                        >
+                          <Text style={{ color: "#ffffff",margin:5}}>Telecom</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{margin:2}}>
+                        <TouchableOpacity
+                          style={{
+                            borderRadius: 25,
+                            borderWidth: 0.8,
+                            height: 30,
+                            backgroundColor: "#60b4c2",
+                            borderStyle: "solid",
+                            borderColor: "#60b4c2"
+                          }}
+                        >
+                          <Text style={{ color: "#ffffff" ,margin:5}}>
+                            Online Shopping
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{margin:2}}>
+                        <TouchableOpacity
+                          style={{
+                            borderRadius: 25,
+                            borderWidth: 0.8,
+                            height: 30,
+                            backgroundColor: "#60b4c2",
+                            borderStyle: "solid",
+                            borderColor: "#60b4c2"
+                          }}
+                        >
+                          <Text style={{ color: "#ffffff",margin:5 }}>Seksekaa</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{margin:2}}>
+                        <TouchableOpacity
+                          style={{
+                            borderRadius: 25,
+                            borderWidth: 0.8,
+                            height: 30,
+                            backgroundColor: "#60b4c2",
+                            borderStyle: "solid",
+                            borderColor: "#60b4c2"
+                          }}
+                        >
+                          <Text style={{ color: "#ffffff",margin:5 }}>Hamadaa</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View style={{margin:2}}>
+                        <TouchableOpacity
+                          style={{
+                            borderRadius: 25,
+                            borderWidth: 0.8,
+                            height: 30,
+                            backgroundColor: "#60b4c2",
+                            borderStyle: "solid",
+                            borderColor: "#60b4c2"
+                          }}
+                        >
+                          <Text style={{ color: "#ffffff",margin:5 }}>Shopping</Text>
+                        </TouchableOpacity>
+                      </View>
                     </View>
                   </Body>
                 </ListItem>

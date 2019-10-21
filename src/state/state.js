@@ -14,3 +14,11 @@ export type State = {
   profileDataCompleting: ProfileDataInitialState,
   setting:SettingInitialState
 };
+
+export const intialState= {
+  authorization: AuthorizationInitialState,
+  ui: UiInitialState,
+  connection: ConnectionsInitialState,
+  profileDataCompleting: ProfileDataInitialState,
+  setting:SettingInitialState
+};

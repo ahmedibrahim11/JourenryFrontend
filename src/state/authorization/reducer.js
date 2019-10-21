@@ -79,8 +79,7 @@ export function authorizationReducer(
     case types.ON_CHANGE_PASSWORD_SUCCESS: {
       debugger;
       return {
-        ...state,
-        isChange: true
+        ...AuthorizationInitialState
       };
     }
 

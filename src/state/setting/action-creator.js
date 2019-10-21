@@ -29,14 +29,14 @@ export async function SendFeedback(feedback:string) {
       const state = getstate();
       var userId = Number(state.authorization.token.id);
       dispatch(SubmitFeedback(feedback));
-      dispatch({ type: UiTypes.UI_LOADING });
+     // dispatch({ type: UiTypes.UI_LOADING });
       let response = await settingProxyService.SumbitFeedback(feedback,userId);
       debugger;
       if (response.status === 200) {
-        dispatch({ type: UiTypes.UI_LOADING });
+//        dispatch({ type: UiTypes.UI_LOADING });
         dispatch(SubmitFeedbackSuccess());
       } else {
-        dispatch({ type: UiTypes.UI_LOADING });
+   //     dispatch({ type: UiTypes.UI_LOADING });
         dispatch(SubmitFeedbackFail());
       }
     };
