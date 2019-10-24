@@ -16,9 +16,7 @@ import {
 import AcceptedConnectionComponent from "./AcceptedConnections/accepted-connection";
 import RequestedConnectionComponent from "./RequestedConnections/requested-connection";
 export default class ConnectionComponent extends Component {
-  componentDidMount() {
-    this.props.loadMyConnections();
-  }
+ 
   render() {
     return (
       <Container>

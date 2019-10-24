@@ -30,11 +30,8 @@ class ConnectionContainer extends Component {
     rejectingConnectionRequest: () => void,
   };
 
-  componentWillMount() {
-    debugger;
-    this.props.loadConnections;
-    debugger;
-  }
+ 
+  
 
   static mapStatetToProps(state: State) {
     return {
@@ -58,7 +55,6 @@ class ConnectionContainer extends Component {
       <Container>
         <ConnectionComponent
           myConnections={this.props.myConnections}
-          loadMyConnections={this.props.loadMyConnections}
           acceptingConnectionRequest={this.props.acceptingConnectionRequest}
           rejectingConnectionRequest={this.props.rejectingConnectionRequest}
         ></ConnectionComponent>

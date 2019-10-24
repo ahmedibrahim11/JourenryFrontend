@@ -164,78 +164,29 @@ export default class HomeComponent extends Component {
                     <Text>{item.Name}</Text>
                     <Text style={{ color: "#60b4c2" }}>{item.Email}</Text>
                     <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                      <View style={{margin:2}}>
-                        <TouchableOpacity
-                          style={{
-                            borderRadius: 25,
-                            borderWidth: 0.8,
-                            backgroundColor: "#60b4c2",
-                            height: 30,
-                            borderStyle: "solid",
-                            borderColor: "#60b4c2",
-                          }}
-                        >
-                          <Text style={{ color: "#ffffff",margin:5}}>Telecom</Text>
-                        </TouchableOpacity>
-                      </View>
-                      <View style={{margin:2}}>
-                        <TouchableOpacity
-                          style={{
-                            borderRadius: 25,
-                            borderWidth: 0.8,
-                            height: 30,
-                            backgroundColor: "#60b4c2",
-                            borderStyle: "solid",
-                            borderColor: "#60b4c2"
-                          }}
-                        >
-                          <Text style={{ color: "#ffffff" ,margin:5}}>
-                            Online Shopping
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                      <View style={{margin:2}}>
-                        <TouchableOpacity
-                          style={{
-                            borderRadius: 25,
-                            borderWidth: 0.8,
-                            height: 30,
-                            backgroundColor: "#60b4c2",
-                            borderStyle: "solid",
-                            borderColor: "#60b4c2"
-                          }}
-                        >
-                          <Text style={{ color: "#ffffff",margin:5 }}>Seksekaa</Text>
-                        </TouchableOpacity>
-                      </View>
-                      <View style={{margin:2}}>
-                        <TouchableOpacity
-                          style={{
-                            borderRadius: 25,
-                            borderWidth: 0.8,
-                            height: 30,
-                            backgroundColor: "#60b4c2",
-                            borderStyle: "solid",
-                            borderColor: "#60b4c2"
-                          }}
-                        >
-                          <Text style={{ color: "#ffffff",margin:5 }}>Hamadaa</Text>
-                        </TouchableOpacity>
-                      </View>
-                      <View style={{margin:2}}>
-                        <TouchableOpacity
-                          style={{
-                            borderRadius: 25,
-                            borderWidth: 0.8,
-                            height: 30,
-                            backgroundColor: "#60b4c2",
-                            borderStyle: "solid",
-                            borderColor: "#60b4c2"
-                          }}
-                        >
-                          <Text style={{ color: "#ffffff",margin:5 }}>Shopping</Text>
-                        </TouchableOpacity>
-                      </View>
+                      
+                       {_.map(item.Hobbies.split(","), (_item,id) => {
+                         if(_item=="")
+                         return;
+                        return (
+                          <View id={id} style={{ margin: 2 }}>
+                            <TouchableOpacity
+                              style={{
+                                borderRadius: 25,
+                                borderWidth: 0.8,
+                                height: 30,
+                                backgroundColor: "#60b4c2",
+                                borderStyle: "solid",
+                                borderColor: "#60b4c2"
+                              }}
+                            >
+                              <Text style={{ color: "#ffffff", margin: 5 }}>
+                                {_item}
+                              </Text>
+                            </TouchableOpacity>
+                          </View>
+                        );
+                      })} 
                     </View>
                   </Body>
                 </ListItem>

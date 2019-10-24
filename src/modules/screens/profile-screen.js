@@ -47,7 +47,8 @@ class ProfileContainer extends Component {
   }
   static mapStatetToProps(state: State) {
     return {
-      answers: state.profileDataCompleting.answers
+      answers: state.profileDataCompleting.answers,
+      token: state.authorization.token
     };
   }
   // static contextType = NavigationContext;
@@ -101,8 +102,14 @@ class ProfileContainer extends Component {
                 alignItems: "center"
               }}
             >
-              <Text>Mohamed Emad</Text>
-              <Text note>CEO - Giftia</Text>
+              <Text>{this.props.token.userName}</Text>
+              <Text note>
+                {
+                  this.props.answers.filter(
+                    item => item.QuestionId == 47
+                  )[0].Value
+                }
+              </Text>
             </CardItem>
           </Card>
 

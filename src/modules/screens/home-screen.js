@@ -18,10 +18,6 @@ class HomeContainer extends Component {
     loadConnections: () => void
   };
 
-  componentWillMount() {
-    this.props.loadConnections();
-    debugger;
-  }
   static mapStatetToProps(state: State) {
     return {
       connections: state.connection.connections,

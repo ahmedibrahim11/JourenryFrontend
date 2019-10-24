@@ -47,6 +47,8 @@ export async function tryLogin(user: UserLoginModel) {
         finalToken.id = decoded["Id"];
         finalToken.isRegisterd = decoded["IsRegisterd"];
         finalToken.token = token;
+        finalToken.jobTitle=result["jobtitle"];
+        finalToken.userName=result["name"];
       } catch (error) {
         console.log("err", error);
       }
