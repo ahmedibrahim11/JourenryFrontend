@@ -8,7 +8,7 @@ import {
 
 import { Icon } from "native-base";
 
-import { Image } from "react-native";
+import { Image, Text } from "react-native";
 
 import images from "../../assets/images";
 import HomeScreen from "./screens/home-screen";
@@ -20,47 +20,82 @@ export const TabNavigator = createBottomTabNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Image source={images.homeIcon} style={{ width: 30, height: 30 }} />
-        )
+        tabBarLabel: ({ focused }) => (
+          <Text style={{ color: "red" }} focused={focused} />
+        ),
+        tabBarIcon: ({ focused }) => {
+          const image = !focused
+            ? require("../../assets/homeIcon/inActive.png")
+            : require("../../assets/homeIcon/active.png");
+          return (
+            <Image
+              source={image}
+              style={{ width: 80, height: 50, marginTop: 15 }}
+            />
+          );
+        }
       }
     },
     Connections: {
       screen: ConnectionScreen,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Image
-            source={images.connectionIcon}
-            style={{ width: 30, height: 30 }}
-          />
-        )
+        tabBarLabel: ({ focused }) => (
+          <Text style={{ color: "red" }} focused={focused} />
+        ),
+        tabBarIcon: ({ focused }) => {
+          const image = !focused
+            ? require("../../assets/connectionIcon/inActive.png")
+            : require("../../assets/connectionIcon/active.png");
+          return (
+            <Image
+              source={image}
+              style={{ width: 80, height: 50, marginTop: 15 }}
+            />
+          );
+        }
       }
     },
     MyProfile: {
       screen: ProfileScreen,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Image
-            source={images.profileIcon}
-            style={{ width: 26, height: 26 }}
-          />
-        )
+        tabBarLabel: ({ focused }) => (
+          <Text style={{ color: "red" }} focused={focused} />
+        ),
+        tabBarIcon: ({ focused }) => {
+          const image = !focused
+            ? require("../../assets/profileIcon/inActive.png")
+            : require("../../assets/profileIcon/active.png");
+          return (
+            <Image
+              source={image}
+              style={{ width: 80, height: 50, marginTop: 15 }}
+            />
+          );
+        }
       }
     },
 
     Settings: {
       screen: SettingScreen,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Image
-            source={images.settingIcon}
-            style={{ width: 26, height: 26 }}
-          />
-        )
+        tabBarLabel: ({ focused }) => (
+          <Text style={{ color: "red" }} focused={focused} />
+        ),
+        tabBarIcon: ({ focused }) => {
+          const image = !focused
+            ? require("../../assets/settingIcon/inActive.png")
+            : require("../../assets/settingIcon/active.png");
+          return (
+            <Image
+              source={image}
+              style={{ width: 80, height: 50, marginTop: 15 }}
+            />
+          );
+        }
       }
     }
   },
-  { color: "#60b4c2" }
+  { color: "red" }
 );
 
 export const MyTab = createAppContainer(TabNavigator);
